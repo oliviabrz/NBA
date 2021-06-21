@@ -12,6 +12,7 @@ class TeamRecord:
         self.FullName = None
         self.Name = None 
 
+#----------
     def insert(self, cn):
         insert_statement = f"""
         insert into Team
@@ -25,12 +26,14 @@ class TeamRecord:
         #commit insert statement to database from the connection
         cn.connection().commit()
 
+#----------
     def __str__(self):
         string = f"""ID: {self.ID}, Abbreviation: {self.Abbreviation}, City: {self.City}, 
 Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},
 Name: {self.Name}\n"""
         return string
-
+        
+#----------
     def __repr__(self):
         string = f"""ID: {self.ID}, Abbreviation: {self.Abbreviation}, City: {self.City}, 
 Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},

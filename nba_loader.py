@@ -9,6 +9,7 @@ from nba_db_record import TeamRecord
 
 app = Flask(__name__)
 
+#----------
 @app.route('/api/nba/load/teams', methods=['GET'])
 def load_teams():
     url = 'https://www.balldontlie.io/api/v1/teams'
@@ -26,6 +27,7 @@ def load_teams():
     #     row = cursor.fetchone()
     return 'it worked!'
 
+#----------
 def extract_teams_from_json(json_dict):
     rec_list = []
     id_counter = 1
@@ -50,6 +52,7 @@ def extract_teams_from_json(json_dict):
         
     return rec_list
 
+#----------
 def call_api(url):    
     response = requests.get(url)
 
@@ -62,6 +65,7 @@ def call_api(url):
         #print(msg)
         return {'error': msg}
 
+#----------
 class SqlConnection:
     def __init__(self):
         # here we are telling python what to connect to (our SQL Server)
@@ -82,6 +86,6 @@ class SqlConnection:
         # initialise query attribute
         #self.query = "-- {}\n\n-- Made in Python".format(datetime.now()
 
-
+#----------
 if __name__ == '__main__':
     app.run()
