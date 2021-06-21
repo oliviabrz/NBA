@@ -37,13 +37,3 @@ Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullNa
 Name: {self.Name}\n"""         
         return string
 
-class PlayerRecord:
-    def __init__(self):
-        self.ID = 0
-        self.FirstName = None
-        self.LastName = None
-        self.Position = None
-        self.HeightFeet = 0
-        self.HeightInches = 0
-        self.WeightPounds = 0
-        self.TeamID = 0
