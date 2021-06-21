@@ -50,7 +50,6 @@ def extract_teams_from_json(json_dict):
         
     return rec_list
 
-
 def call_api(url):    
     response = requests.get(url)
 
@@ -66,8 +65,8 @@ def call_api(url):
 class SqlConnection:
     def __init__(self):
         # here we are telling python what to connect to (our SQL Server)
-        driver = "Driver={ODBC Driver 17 for SQL Server};"
-        cnstring = f'{driver}Server=hello-world.database.windows.net;Database=NBA;UID=olivia;PWD=LearnSql123;' 
+        driver = "Driver={MySQL ODBC 8.0 Driver};"
+        cnstring = f'{driver}Server=localhost;Database=NBA;UID=root;PWD=LearnSql123;' 
 
         #connect to server
         self.cnxn = pyodbc.connect(cnstring)
