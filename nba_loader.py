@@ -20,11 +20,7 @@ def load_teams():
     team_rec_list = extract_teams_from_json(json_dict)
     for team_rec in team_rec_list:
         team_rec.insert(cn)
-    # cursor.execute("SELECT @@version;")
-    # row = cursor.fetchone()
-    # while row:
-    #     print(row)
-    #     row = cursor.fetchone()
+        #print(team_rec)
     return 'it worked!'
 
 #----------

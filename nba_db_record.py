@@ -15,13 +15,13 @@ class TeamRecord:
 #----------
     def insert(self, cn):
         insert_statement = f"""
-        insert into Team
+        insert into NBA.Team
         (ID, Abbreviation, City, Conference, Division, FullName, Name)
-        values (?,?,?,?,?,?,?)
+        values ('{self.ID}', '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division}', '{self.FullName}', '{self.Name}')
         """
+        #print(insert_statement)
         #execute insert statement from the cursor
-        cn.cursor().execute(insert_statement,
-        (self.ID, self.Abbreviation, self.City, self.Conference, self.Division, self.FullName, self.Name))
+        cn.cursor().execute(insert_statement)
         
         #commit insert statement to database from the connection
         cn.connection().commit()
