@@ -15,7 +15,7 @@ SQLULEN Size.......: 8
 SQLLEN Size........: 8
 SQLSETPOSIROW Size.: 8
 `
-3. Open file to the right of `SYSTEM DATA SOURCES:`
+3. Open file to the right of `DRIVERS:`
 4. Enter your driver information something similiar to
 `
 [ODBC Driver 17 for SQL Server]
