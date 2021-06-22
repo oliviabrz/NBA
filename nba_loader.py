@@ -69,7 +69,7 @@ def call_api(url):
 class SqlConnection:
     def __init__(self):
         # here we are telling python what to connect to (our SQL Server)
-        driver = "Driver={MySQL ODBC 8.0 Driver};"
+        driver = "Driver={MySQL ODBC 8.0 ANSI Driver};"
         cnstring = f'{driver}Server=localhost;Database=NBA;UID=root;PWD=LearnSql123;' 
 
         #connect to server
