@@ -17,7 +17,7 @@ class TeamRecord:
         insert_statement = f"""
         insert into NBA.Team
         (ID, Abbreviation, City, Conference, Division, FullName, Name)
-        values ('{self.ID}', '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division}', '{self.FullName}', '{self.Name}')
+        values ({self.ID}, '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division}', '{self.FullName}', '{self.Name}')
         """
         #print(insert_statement)
         #execute insert statement from the cursor
@@ -50,19 +50,42 @@ class PlayerRecord:
         self.HeightInches = 0
         self.WeightPounds = 0
         self.TeamID = 0
+        self.TeamAbbreviation = None
 
 #----------
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.Player
         (ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
-        values ('{self.ID}', '{self.FirstName}', '{self.LastName}', '{self.Position}', '{self.HeightFeet}', '{self.HeightInches}', {self.WeightPounds}', {self.TeamID}')
+        values ({self.ID}, '{self.FirstName}', '{self.LastName}', 
+        '{self.Position if self.Position != '' else 'NULL'}', 
+        {self.HeightFeet if self.HeightFeet != None else 'NULL'},  
+        {self.HeightInches if self.HeightInches != None else 'NULL'},
+        {self.WeightPounds if self.WeightPounds != None else 'NULL'}, 
+        {self.TeamID})
         """
         #execute insert statement from the cursor
-        cn.cursor().execute(insert_statement)
-
+        cursor = cn.cursor()
+        cursor.execute(insert_statement)
+    
         #commit insert statement to database from the connection
         cn.connection().commit()
+    
+    #----------
+    def get_team_id(self, cn, team_abbreviation):
+        select_statement = f"""
+        select ID from NBA.Team where Abbreviation = '{team_abbreviation}'
+        """
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        result = cursor.fetchone()
+        
+        if result != None:
+            self.TeamID = result[0]
+        else:
+            print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
 
 #----------
     def __str__(self):

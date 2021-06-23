@@ -58,6 +58,7 @@ def load_players():
 
     player_rec_list = extract_players_from_json(json_dict)
     for player_rec in player_rec_list:
+        player_rec.get_team_id(cn, player_rec.TeamAbbreviation)
         player_rec.insert(cn)
     return 'it worked!'
 
@@ -68,6 +69,10 @@ def extract_players_from_json(json_dict):
     for items in json_dict['data']:   
         #create new instance of class PlayerRecord 
         player_rec = PlayerRecord()
+
+        #get Team Abbreviation 
+        team = items['team']
+        player_rec.TeamAbbreviation = team['abbreviation']        
     
         #populate record with values from the json_dict items 
         player_rec.ID = id_counter
@@ -77,7 +82,6 @@ def extract_players_from_json(json_dict):
         player_rec.HeightFeet = items['height_feet'] 
         player_rec.HeightInches = items['height_inches']
         player_rec.WeightPounds = items['weight_pounds']
-        player_rec.TeamID = items['team']
 
         #increase id_counter by 1 
         id_counter += 1
