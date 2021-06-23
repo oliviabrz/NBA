@@ -50,7 +50,7 @@ def extract_teams_from_json(json_dict):
 
 #----------
 @app.route('/api/nba/load/players', methods=['GET'])
-def load_teams():
+def load_players():
     url = 'https://www.balldontlie.io/api/v1/players'
     json_dict = call_api(url)
     #print(res)
@@ -66,10 +66,10 @@ def extract_players_from_json(json_dict):
     rec_list = []
     id_counter = 1
     for items in json_dict['data']:   
-        #create new instance of class TeamRecord 
+        #create new instance of class PlayerRecord 
         player_rec = PlayerRecord()
     
-        #populate TeamRecord with values from the json_dict items 
+        #populate record with values from the json_dict items 
         player_rec.ID = id_counter
         player_rec.FirstName = items['first_name'] 
         player_rec.LastName = items['last_name']
@@ -82,7 +82,7 @@ def extract_players_from_json(json_dict):
         #increase id_counter by 1 
         id_counter += 1
 
-        #add teamrec instance to rec_list 
+        #add rec instance to rec list 
         rec_list.append(player_rec)
         
     return rec_list
