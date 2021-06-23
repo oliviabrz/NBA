@@ -4,7 +4,7 @@ import json
 from flask import Flask, request, jsonify
 import requests
 import pyodbc 
-from nba_db_record import TeamRecord 
+from nba_db_record import TeamRecord, PlayerRecord
 
 
 app = Flask(__name__)
@@ -45,6 +45,45 @@ def extract_teams_from_json(json_dict):
 
         #add teamrec instance to rec_list 
         rec_list.append(teamrec)
+        
+    return rec_list
+
+#----------
+@app.route('/api/nba/load/players', methods=['GET'])
+def load_teams():
+    url = 'https://www.balldontlie.io/api/v1/players'
+    json_dict = call_api(url)
+    #print(res)
+    cn = SqlConnection()
+
+    player_rec_list = extract_players_from_json(json_dict)
+    for player_rec in player_rec_list:
+        player_rec.insert(cn)
+    return 'it worked!'
+
+#----------
+def extract_players_from_json(json_dict):
+    rec_list = []
+    id_counter = 1
+    for items in json_dict['data']:   
+        #create new instance of class TeamRecord 
+        player_rec = PlayerRecord()
+    
+        #populate TeamRecord with values from the json_dict items 
+        player_rec.ID = id_counter
+        player_rec.FirstName = items['first_name'] 
+        player_rec.LastName = items['last_name']
+        player_rec.Position = items['position']
+        player_rec.HeightFeet = items['height_feet'] 
+        player_rec.HeightInches = items['height_inches']
+        player_rec.WeightPounds = items['weight_pounds']
+        player_rec.TeamID = items['team']
+
+        #increase id_counter by 1 
+        id_counter += 1
+
+        #add teamrec instance to rec_list 
+        rec_list.append(player_rec)
         
     return rec_list
 
