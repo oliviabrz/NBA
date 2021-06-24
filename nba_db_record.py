@@ -56,14 +56,15 @@ class PlayerRecord:
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.Player
-        (ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
-        values ({self.ID}, '{self.FirstName}', '{self.LastName}', 
+        (FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
+        values ('{self.FirstName}', '{self.LastName}', 
         '{self.Position if self.Position != '' else 'NULL'}', 
         {self.HeightFeet if self.HeightFeet != None else 'NULL'},  
         {self.HeightInches if self.HeightInches != None else 'NULL'},
         {self.WeightPounds if self.WeightPounds != None else 'NULL'}, 
         {self.TeamID})
         """
+        #print(insert_statement)
         #execute insert statement from the cursor
         cursor = cn.cursor()
         cursor.execute(insert_statement)
