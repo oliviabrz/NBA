@@ -71,7 +71,7 @@ class PlayerRecord:
     
         #commit insert statement to database from the connection
         cn.connection().commit()
-    
+
     #----------
     # def get_team_id(self, cn, team_abbreviation):
     #     select_statement = f"""
@@ -101,3 +101,30 @@ WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
 Position: {self.Position}, HeightFeet: {self.HeightFeet}, HeightInches: {self.HeightInches},
 WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
         return string
+
+class PlayerStats:
+    def __init__(self):
+        self.ID = 0
+        self.Ast = 0
+        self.Blk = 0
+        self.Dreb = 0
+        self.Fg3Pct = 0
+        self.Fg3a = 0
+        self.Fg3m = 0
+        self.FgPct = 0
+        self.Fga = 0
+        self.Fgm = 0
+        self.FtPct = 0
+        self.Fta = 0
+        self.Ftm = 0
+        self.Game = None
+        self.Min = 0
+        self.Oreb = 0
+        self.Pf = 0
+        self.Player = None
+        self.Pts = 0
+        self.Reb = 0
+        self.Stl = 0
+        self.Team = None
+        self.Turnover = 0
+        

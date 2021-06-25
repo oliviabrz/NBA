@@ -100,6 +100,10 @@ def extract_players_from_json(json_dict):
     return rec_list
 
 #----------
+@app.route('/api/nba/load/game/player/stats', methods=['GET'])
+
+
+#----------
 def call_api(url):    
     response = requests.get(url)
 
@@ -122,10 +126,12 @@ class SqlConnection:
         #connect to server
         self.cnxn = pyodbc.connect(cnstring)
 
+    #----------
     #return connection variable
     def connection(self):
         return self.cnxn
 
+    #----------
     #return cursor from connection
     def cursor(self):
         return self.cnxn.cursor() 
