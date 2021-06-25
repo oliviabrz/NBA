@@ -50,14 +50,14 @@ class PlayerRecord:
         self.HeightInches = 0
         self.WeightPounds = 0
         self.TeamID = 0
-        self.TeamAbbreviation = None
+        #self.TeamAbbreviation = None
 
 #----------
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.Player
-        (FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
-        values ('{self.FirstName}', '{self.LastName}', 
+        (ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
+        values ({self.ID}, '{self.FirstName}', '{self.LastName}', 
         '{self.Position if self.Position != '' else 'NULL'}', 
         {self.HeightFeet if self.HeightFeet != None else 'NULL'},  
         {self.HeightInches if self.HeightInches != None else 'NULL'},
@@ -73,20 +73,20 @@ class PlayerRecord:
         cn.connection().commit()
     
     #----------
-    def get_team_id(self, cn, team_abbreviation):
-        select_statement = f"""
-        select ID from NBA.Team where Abbreviation = '{team_abbreviation}'
-        """
+    # def get_team_id(self, cn, team_abbreviation):
+    #     select_statement = f"""
+    #     select ID from NBA.Team where Abbreviation = '{team_abbreviation}'
+    #     """
 
-        cursor = cn.cursor()
-        cursor.execute(select_statement)
+    #     cursor = cn.cursor()
+    #     cursor.execute(select_statement)
         
-        result = cursor.fetchone()
+    #     result = cursor.fetchone()
         
-        if result != None:
-            self.TeamID = result[0]
-        else:
-            print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
+    #     if result != None:
+    #         self.TeamID = result[0]
+    #     else:
+    #         print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
 
 #----------
     def __str__(self):
