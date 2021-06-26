@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from nba_db_record import GameRecord, TeamRecord, PlayerRecord, PlayerGameStatsRecord
+import re
 
 def extract_teams_from_json(json_dict):
     rec_list = []
@@ -54,11 +55,19 @@ def extract_players_from_json(json_dict):
 #----------
 def extract_player_game_stats_from_json(json_dict):
     rec_list = []
+    game_id_dict = {}
 
     for items in json_dict['data']:
         player_stats_rec = PlayerGameStatsRecord()
 
+        #get json game object
+        game = items['game']
+        game_id = game['id']
+
+
+
         #exract player stats
+        player_stats_rec.GameID = game_id
         player_stats_rec.Ast = items['ast']
         player_stats_rec.Blk = items['blk']
         player_stats_rec.Dreb = items['dreb']
@@ -82,17 +91,19 @@ def extract_player_game_stats_from_json(json_dict):
         #extract game info
         game_rec = GameRecord()
         
-        game = items['game']
-        game_rec.Date = game['date']
+        game_rec.ID = game_id
+        match = re.match(r'([0-9]{4}-[0-9]{2}-[0-9]{2})', game['date'])
+        if match != None:
+            game_rec.GameDate = match.group(0)
         game_rec.HomeTeamID = game['home_team_id']
         game_rec.HomeTeamScore = game['home_team_score']
         game_rec.Period = game['period']
         game_rec.PostSeason = game['postseason']
         game_rec.Season = game['season']
         game_rec.Status = game['status']
-        game_rec.Time = game['time']
+        #game_rec.GameTime = game['time']
         game_rec.VisitorTeamID = game['visitor_team_id']
-        game_rec.TeamScore = game['visitor_team_score']
+        game_rec.VisitorTeamScore = game['visitor_team_score']
 
         #extract IDs
         player = items['player']

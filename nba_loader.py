@@ -5,8 +5,7 @@ from flask import Flask, request, jsonify
 import requests
 import pyodbc 
 from nba_db_record import TeamRecord, PlayerRecord, PlayerGameStatsRecord
-import nba_extractor
-
+from nba_extractor import extract_teams_from_json, extract_players_from_json, extract_player_game_stats_from_json
 
 app = Flask(__name__)
 

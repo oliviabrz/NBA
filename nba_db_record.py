@@ -135,15 +135,16 @@ class PlayerGameStatsRecord:
         insert_statement = f"""
         insert into NBA.PlayerGameStats
         (Ast, Blk, Dreb, Fg3Pct, Fg3a, Fg3m, FgPct, Fga, Fgm, FtPct, Fta, Ftm, GameID, 
-        Min, Oreb, Pf, PlayerID, Pts, Reb, Stl, TeamID, Turnover)
-        values {rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
+        Min, Oreb, Pf, PlayerID, Pts, Reb, Stl, Turnover)
+        values ({rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
         {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
         {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
-        {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, {rnull(self.Min, None)},
+        {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, '{rnull(self.Min, None)}',
         {rnull(self.Oreb, None)}, {rnull(self.Pf, None)}, {rnull(self.PlayerID, None)}, 
-        {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.TeamID, None)}, 
-        {rnull(self.Turnover, None)}
+        {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.Turnover, None)})
         """
+        print(insert_statement)
+
         cn.cursor().execute(insert_statement)
         cn.connection().commit()
 
@@ -168,27 +169,27 @@ class PlayerGameStatsRecord:
 class GameRecord:
     def __init__(self):
         self.ID = None
-        self.Date = None
+        self.GameDate = None
         self.HomeTeamID = None
         self.HomeTeamScore = None
         self.Period = None
         self.PostSeason = None
         self.Season = None
         self.Status = None
-        self.Time = None
+        self.GameTime = None
         self.VisitorTeamID = None
-        self.TeamScore = None
+        self.VisitorTeamScore = None
 
 #----------  
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.Game
-        (ID, Date, HomeTeamID, HomeTeamScore, Period, PostSeason, Season, Status, Time, VisitorTeamID, 
-        TeamScore)
-        values ({self.ID}, '{rnull(self.Date, None)}', {rnull(self.HomeTeamID, None)},
-        {rnull(self.HomeTeamScore, None)}, {rnull(self.Period, None)}, '{rnull(self.PostSeason, None)}',
-        {rnull(self.Season, None)}, '{rnull(self.Status, None)}, '{rnull(self.Time, None)}', 
-        {rnull(self.VisitorTeamID, None)}, {rnull(self.TeamScore, None)})
+        (ID, GameDate, HomeTeamID, HomeTeamScore, Period, PostSeason, Season, Status, GameTime, VisitorTeamID, 
+        VisitorTeamScore)
+        values ({rnull(self.ID, None)}, '{rnull(self.GameDate, None)}', {rnull(self.HomeTeamID, None)},
+        {rnull(self.HomeTeamScore, None)}, {rnull(self.Period, None)}, {rnull(self.PostSeason, None)},
+        {rnull(self.Season, None)}, '{rnull(self.Status, None)}', '{rnull(self.GameTime, None)}', 
+        {rnull(self.VisitorTeamID, None)}, {rnull(self.VisitorTeamScore, None)})
         """
 
         cn.cursor().execute(insert_statement)
@@ -199,7 +200,7 @@ class GameRecord:
         string = f"""ID: {self.ID}, Date: {self.Date}, HomeTeamID: {self.HomeTeamID}, 
         HomeTeamScore: {self.HomeTeamScore}, Period: {self.Period}, PostSeason: {self.PostSeason},
         Season: {self.Season}, Status: {self.Status}, Time: {self.Time}, VisitorTeamID: {self.VisitorTeamID}, 
-        TeamScore: {self.TeamScore}\n"""
+        VisitorTeamScore: {self.VisitorTeamScore}\n"""
         return string
 
 #----------
@@ -207,6 +208,6 @@ class GameRecord:
         string = f"""ID: {self.ID}, Date: {self.Date}, HomeTeamID: {self.HomeTeamID}, 
         HomeTeamScore: {self.HomeTeamScore}, Period: {self.Period}, PostSeason: {self.PostSeason},
         Season: {self.Season}, Status: {self.Status}, Time: {self.Time}, VisitorTeamID: {self.VisitorTeamID}, 
-        TeamScore: {self.TeamScore}\n"""
+        VisitorTeamScore: {self.VisitorTeamScore}\n"""
         return string
 
