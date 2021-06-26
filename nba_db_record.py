@@ -2,9 +2,12 @@
 
 import pyodbc 
 
+def rnull(val, cmp):
+    return val if val != cmp else 'NULL'
+
 class TeamRecord:
     def __init__(self):
-        self.ID = 0
+        self.ID = None
         self.Abbreviation = None
         self.City = None
         self.Conference = None
@@ -17,7 +20,7 @@ class TeamRecord:
         insert_statement = f"""
         insert into NBA.Team
         (ID, Abbreviation, City, Conference, Division, FullName, Name)
-        values ({self.ID}, '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division}', '{self.FullName}', '{self.Name}')
+        values ({self.ID}, '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division} '{self.FullName}', '{self.Name}')
         """
         #print(insert_statement)
         #execute insert statement from the cursor
@@ -29,27 +32,27 @@ class TeamRecord:
 #----------
     def __str__(self):
         string = f"""ID: {self.ID}, Abbreviation: {self.Abbreviation}, City: {self.City}, 
-Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},
-Name: {self.Name}\n"""
+        Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},
+        Name: {self.Name}\n"""
         return string
         
 #----------
     def __repr__(self):
         string = f"""ID: {self.ID}, Abbreviation: {self.Abbreviation}, City: {self.City}, 
-Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},
-Name: {self.Name}\n"""         
+        Conference: {self.Conference}, Division: {self.Division}, FullName: {self.FullName},
+        Name: {self.Name}\n"""         
         return string
 
 class PlayerRecord:
     def __init__(self):
-        self.ID = 0
+        self.ID = None
         self.FirstName = None
         self.LastName = None
         self.Position = None
-        self.HeightFeet = 0
-        self.HeightInches = 0
-        self.WeightPounds = 0
-        self.TeamID = 0
+        self.HeightFeet = None
+        self.HeightInches = None
+        self.WeightPounds = None
+        self.TeamID = None
         #self.TeamAbbreviation = None
 
 #----------
@@ -58,14 +61,13 @@ class PlayerRecord:
         insert into NBA.Player
         (ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID)
         values ({self.ID}, '{self.FirstName}', '{self.LastName}', 
-        '{self.Position if self.Position != '' else 'NULL'}', 
-        {self.HeightFeet if self.HeightFeet != None else 'NULL'},  
-        {self.HeightInches if self.HeightInches != None else 'NULL'},
-        {self.WeightPounds if self.WeightPounds != None else 'NULL'}, 
+        '{rnull(self.Position, '')}',
+        {rnull(self.HeightFeet, None)},
+        {rnull(self.HeightInches, None)},
+        {rnull(self.WeightPounds, None)}, 
         {self.TeamID})
         """
-        #print(insert_statement)
-        #execute insert statement from the cursor
+        
         cursor = cn.cursor()
         cursor.execute(insert_statement)
     
@@ -84,47 +86,127 @@ class PlayerRecord:
     #     result = cursor.fetchone()
         
     #     if result != None:
-    #         self.TeamID = result[0]
+    #         self.TeamID = result[None]
     #     else:
     #         print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
 
 #----------
     def __str__(self):
         string = f"""ID: {self.ID}, FirstName: {self.FirstName}, LastName: {self.LastName}, 
-Position: {self.Position}, HeightFeet: {self.HeightFeet}, HeightInches: {self.HeightInches},
-WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
+        Position: {self.Position}, HeightFeet: {self.HeightFeet}, HeightInches: {self.HeightInches},
+        WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
         return string
 
 #----------
     def __repr__(self):
         string = f"""ID: {self.ID}, FirstName: {self.FirstName}, LastName: {self.LastName}, 
-Position: {self.Position}, HeightFeet: {self.HeightFeet}, HeightInches: {self.HeightInches},
-WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
+        Position: {self.Position}, HeightFeet: {self.HeightFeet}, HeightInches: {self.HeightInches},
+        WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
         return string
 
-class PlayerStats:
+class PlayerGameStats:
     def __init__(self):
-        self.ID = 0
-        self.Ast = 0
-        self.Blk = 0
-        self.Dreb = 0
-        self.Fg3Pct = 0
-        self.Fg3a = 0
-        self.Fg3m = 0
-        self.FgPct = 0
-        self.Fga = 0
-        self.Fgm = 0
-        self.FtPct = 0
-        self.Fta = 0
-        self.Ftm = 0
-        self.Game = None
-        self.Min = 0
-        self.Oreb = 0
-        self.Pf = 0
-        self.Player = None
-        self.Pts = 0
-        self.Reb = 0
-        self.Stl = 0
-        self.Team = None
-        self.Turnover = 0
+        self.ID = None
+        self.Ast = None
+        self.Blk = None
+        self.Dreb = None
+        self.Fg3Pct = None
+        self.Fg3a = None
+        self.Fg3m = None
+        self.FgPct = None
+        self.Fga = None
+        self.Fgm = None
+        self.FtPct = None
+        self.Fta = None
+        self.Ftm = None
+        self.GameID = None
+        self.Min = None
+        self.Oreb = None
+        self.Pf = None
+        self.PlayerID = None
+        self.Pts = None
+        self.Reb = None
+        self.Stl = None
+        self.TeamID = None
+        self.Turnover = None
+
+#----------
+    def insert(self, cn):
+        insert_statement = f"""
+        insert into NBA.PlayerGameStats
+        (ID, Ast, Blk, Dreb, Fg3Pct, Fg3a, Fg3m, FgPct, Fga, Fgm, FtPct, Fta, Ftm, GameID, 
+        Min, Oreb, Pf, PlayerID, Pts, Reb, Stl, TeamID, Turnover)
+        values ({self.ID}, {rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
+        {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
+        {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
+        {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, {rnull(self.Min, None)},
+        {rnull(self.Oreb, None)}, {rnull(self.Pf, None)}, {rnull(self.PlayerID, None)}, 
+        {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.TeamID, None)}, 
+        {rnull(self.Turnover, None)}
+        """
+        cn.cursor().execute(insert_statement)
+        cn.connection().commit()
+
+#----------
+    def __str__(self):
+        string = f"""ID: {self.ID}, Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
+        Fg3a: {self.Fg3a}, Fg3m: {self.Fg3m}, FgPct: {self.FgPct}, Fga: {self.Fga}, Fgm: {self.Fgm}, 
+        FtPct: {self.FtPct}, Fta: {self.Fta}, Ftm: {self.Ftm}, GameID: '{self.GameID}', Min: {self.Min}, 
+        Oreb: {self.Oreb}, Pf: {self.Pf}, PlayerID: '{self.PlayerID}', Pts: {self.Pts}, Reb: {self.Reb}, 
+        Stl: {self.Stl}, TeamID: '{self.TeamID}', Turnover: {self.Turnover}\n"""
+        return string
         
+#----------
+    def __repr__(self):
+        string = f"""ID: {self.ID}, Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
+        Fg3a: {self.Fg3a}, Fg3m: {self.Fg3m}, FgPct: {self.FgPct}, Fga: {self.Fga}, Fgm: {self.Fgm}, 
+        FtPct: {self.FtPct}, Fta: {self.Fta}, Ftm: {self.Ftm}, GameID: '{self.GameID}', Min: {self.Min}, 
+        Oreb: {self.Oreb}, Pf: {self.Pf}, PlayerID: '{self.PlayerID}', Pts: {self.Pts}, Reb: {self.Reb}, 
+        Stl: {self.Stl}, TeamID: '{self.TeamID}', Turnover: {self.Turnover}\n"""
+        return string
+
+class Game:
+    def __init__(self):
+        self.ID = None
+        self.Date = None
+        self.HomeTeamID = None
+        self.HomeTeamScore = None
+        self.Period = None
+        self.PostSeason = None
+        self.Season = None
+        self.Status = None
+        self.Time = None
+        self.VisitorTeamID = None
+        self.TeamScore = None
+
+#----------  
+    def insert(self, cn):
+        insert_statement = f"""
+        insert into NBA.Game
+        (ID, Date, HomeTeamID, HomeTeamScore, Period, PostSeason, Season, Status, Time, VisitorTeamID, 
+        TeamScore)
+        values ({self.ID}, '{rnull(self.Date, None)}', {rnull(self.HomeTeamID, None)},
+        {rnull(self.HomeTeamScore, None)}, {rnull(self.Period, None)}, '{rnull(self.PostSeason, None)}',
+        {rnull(self.Season, None)}, '{rnull(self.Status, None)}, '{rnull(self.Time, None)}', 
+        {rnull(self.VisitorTeamID, None)}, {rnull(self.TeamScore, None)})
+        """
+
+        cn.cursor().execute(insert_statement)
+        cn.connection().commit()
+
+#---------- 
+    def __str__(self):
+        string = f"""ID: {self.ID}, Date: {self.Date}, HomeTeamID: {self.HomeTeamID}, 
+        HomeTeamScore: {self.HomeTeamScore}, Period: {self.Period}, PostSeason: {self.PostSeason},
+        Season: {self.Season}, Status: {self.Status}, Time: {self.Time}, VisitorTeamID: {self.VisitorTeamID}, 
+        TeamScore: {self.TeamScore}\n"""
+        return string
+
+#----------
+    def __repr__(self):
+        string = f"""ID: {self.ID}, Date: {self.Date}, HomeTeamID: {self.HomeTeamID}, 
+        HomeTeamScore: {self.HomeTeamScore}, Period: {self.Period}, PostSeason: {self.PostSeason},
+        Season: {self.Season}, Status: {self.Status}, Time: {self.Time}, VisitorTeamID: {self.VisitorTeamID}, 
+        TeamScore: {self.TeamScore}\n"""
+        return string
+
