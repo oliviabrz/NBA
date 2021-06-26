@@ -4,7 +4,7 @@ import json
 from flask import Flask, request, jsonify
 import requests
 import pyodbc 
-from nba_db_record import TeamRecord, PlayerRecord
+from nba_db_record import TeamRecord, PlayerRecord, PlayerGameStatsRecord
 import nba_extractor
 
 
@@ -14,7 +14,7 @@ app = Flask(__name__)
 def load_teams():
     url = 'https://www.balldontlie.io/api/v1/teams'
     json_dict = call_api(url)
-    #print(res)
+    
     cn = SqlConnection()
 
     team_rec_list = extract_teams_from_json(json_dict)
@@ -52,7 +52,24 @@ def load_players():
 
 #----------
 @app.route('/api/nba/load/game/player/stats', methods=['GET'])
+def load_player_game_stats():  
+    url = 'https://www.balldontlie.io/api/v1/stats?start_date=2018-01-01&per_page=100&page='
 
+    cn = SqlConnection()
+
+    for page_number in range(1,3):
+        new_url = url + str(page_number)
+        json_dict = call_api(new_url)
+        records_list = extract_player_game_stats_from_json(json_dict)
+
+        for records in records_list:
+            game_rec = records[0]            
+            player_rec = records[1]
+
+            game_rec.insert(cn)
+            player_rec.insert(cn)
+
+    return 'it worked!'
 
 #----------
 def call_api(url):    

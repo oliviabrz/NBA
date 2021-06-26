@@ -104,9 +104,12 @@ class PlayerRecord:
         WeightPounds: {self.WeightPounds}, TeamID: {self.TeamID}\n"""
         return string
 
-class PlayerGameStats:
+class PlayerGameStatsRecord:
     def __init__(self):
-        self.ID = None
+        self.GameID = None
+        self.PlayerID = None
+        self.TeamID = None
+        
         self.Ast = None
         self.Blk = None
         self.Dreb = None
@@ -119,24 +122,21 @@ class PlayerGameStats:
         self.FtPct = None
         self.Fta = None
         self.Ftm = None
-        self.GameID = None
         self.Min = None
         self.Oreb = None
         self.Pf = None
-        self.PlayerID = None
         self.Pts = None
         self.Reb = None
         self.Stl = None
-        self.TeamID = None
         self.Turnover = None
 
 #----------
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.PlayerGameStats
-        (ID, Ast, Blk, Dreb, Fg3Pct, Fg3a, Fg3m, FgPct, Fga, Fgm, FtPct, Fta, Ftm, GameID, 
+        (Ast, Blk, Dreb, Fg3Pct, Fg3a, Fg3m, FgPct, Fga, Fgm, FtPct, Fta, Ftm, GameID, 
         Min, Oreb, Pf, PlayerID, Pts, Reb, Stl, TeamID, Turnover)
-        values ({self.ID}, {rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
+        values {rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
         {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
         {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
         {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, {rnull(self.Min, None)},
@@ -149,7 +149,7 @@ class PlayerGameStats:
 
 #----------
     def __str__(self):
-        string = f"""ID: {self.ID}, Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
+        string = f"""Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
         Fg3a: {self.Fg3a}, Fg3m: {self.Fg3m}, FgPct: {self.FgPct}, Fga: {self.Fga}, Fgm: {self.Fgm}, 
         FtPct: {self.FtPct}, Fta: {self.Fta}, Ftm: {self.Ftm}, GameID: '{self.GameID}', Min: {self.Min}, 
         Oreb: {self.Oreb}, Pf: {self.Pf}, PlayerID: '{self.PlayerID}', Pts: {self.Pts}, Reb: {self.Reb}, 
@@ -158,14 +158,14 @@ class PlayerGameStats:
         
 #----------
     def __repr__(self):
-        string = f"""ID: {self.ID}, Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
+        string = f"""Ast: {self.Ast}, Blk: {self.Blk}, Dreb: {self.Dreb}, Fg3Pct: {self.Fg3Pct},
         Fg3a: {self.Fg3a}, Fg3m: {self.Fg3m}, FgPct: {self.FgPct}, Fga: {self.Fga}, Fgm: {self.Fgm}, 
         FtPct: {self.FtPct}, Fta: {self.Fta}, Ftm: {self.Ftm}, GameID: '{self.GameID}', Min: {self.Min}, 
         Oreb: {self.Oreb}, Pf: {self.Pf}, PlayerID: '{self.PlayerID}', Pts: {self.Pts}, Reb: {self.Reb}, 
         Stl: {self.Stl}, TeamID: '{self.TeamID}', Turnover: {self.Turnover}\n"""
         return string
 
-class Game:
+class GameRecord:
     def __init__(self):
         self.ID = None
         self.Date = None
