@@ -56,7 +56,8 @@ def load_player_game_stats():
 
     cn = SqlConnection()
 
-    for page_number in range(1,3):
+    for page_number in range(1,1124):
+        print(f'processing page = [{page_number}]')
         new_url = url + str(page_number)
         json_dict = call_api(new_url)
         

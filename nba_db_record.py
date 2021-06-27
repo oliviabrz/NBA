@@ -131,20 +131,38 @@ class PlayerGameStatsRecord:
         self.Stl = None
         self.Turnover = None
 
+    def build_sql_values(self):
+        sql = f"""{rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
+        {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
+        {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
+        {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, 
+        {rnull(self.Oreb, None)}, {rnull(self.Pf, None)}, {rnull(self.PlayerID, None)}, 
+        {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.Turnover, None)}, """
+
+        if self.Min is not None:
+            sql += f"'{self.Min}'"
+        else:
+            sql += 'NULL'
+
+        return sql
+
 #----------
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.PlayerGameStats
         (Ast, Blk, Dreb, Fg3Pct, Fg3a, Fg3m, FgPct, Fga, Fgm, FtPct, Fta, Ftm, GameID, 
-        Min, Oreb, Pf, PlayerID, Pts, Reb, Stl, Turnover)
-        values ({rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
-        {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
-        {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
-        {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, '{rnull(self.Min, None)}',
-        {rnull(self.Oreb, None)}, {rnull(self.Pf, None)}, {rnull(self.PlayerID, None)}, 
-        {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.Turnover, None)})
-        """
-        print(insert_statement)
+        Oreb, Pf, PlayerID, Pts, Reb, Stl, Turnover, Min)
+        values ({self.build_sql_values()})"""
+
+        # values ({rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
+        # {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},
+        # {rnull(self.FgPct, None)}, {rnull(self.Fga, None)}, {rnull(self.Fgm, None)}, {rnull(self.FtPct, None)}, 
+        # {rnull(self.Fta, None)}, {rnull(self.Ftm, None)}, {rnull(self.GameID, None)}, 
+        # '{rnull(self.Min, None)}',
+        # {rnull(self.Oreb, None)}, {rnull(self.Pf, None)}, {rnull(self.PlayerID, None)}, 
+        # {rnull(self.Pts, None)}, {rnull(self.Reb, None)}, {rnull(self.Stl, None)}, {rnull(self.Turnover, None)})
+        # """
+        #print(insert_statement)
 
         cn.cursor().execute(insert_statement)
         cn.connection().commit()

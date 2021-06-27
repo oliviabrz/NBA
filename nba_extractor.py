@@ -2,6 +2,7 @@
 
 from nba_db_record import GameRecord, TeamRecord, PlayerRecord, PlayerGameStatsRecord
 import re
+import datetime
 
 def extract_teams_from_json(json_dict):
     rec_list = []
@@ -53,11 +54,12 @@ def extract_players_from_json(json_dict):
     return rec_list
 
 #----------
+game_id_dict = {}
+
 def extract_player_game_stats_from_json(json_dict):
     game_rec_list = []
     player_stats_rec_list = []
-    game_id_dict = {}
-
+    
     for items in json_dict['data']:
         player_stats_rec = PlayerGameStatsRecord()
 
@@ -79,7 +81,20 @@ def extract_player_game_stats_from_json(json_dict):
         player_stats_rec.FtPct = items['ft_pct']
         player_stats_rec.Fta = items['fta']
         player_stats_rec.Ftm = items['ftm']
-        player_stats_rec.Min = items['min']
+
+        # we noticed the minutes played string 
+        min = items['min']
+        if min is not None:
+            try:
+                validtime = datetime.datetime.strptime(min, "%M:%S")
+                player_stats_rec.Min = min
+                #Do your logic with validtime, which is a valid format
+            except ValueError:
+                print(f'invalid minutes played string = [{min}]')
+                #split string to capture min/sec values and increment minute by one if seconds == 60
+                
+                player_stats_rec.Min = None                
+
         player_stats_rec.Oreb = items['oreb']
         player_stats_rec.Pf = items['pf']
         player_stats_rec.Pts = items['pts']
@@ -89,6 +104,12 @@ def extract_player_game_stats_from_json(json_dict):
 
         #extract IDs
         player = items['player']
+
+        #if player doesn't exist, skip to next player
+        if player is None:
+            print(f'player was not found for game id = [{game_id}]')
+            continue
+
         player_stats_rec.PlayerID = player['id']
         team = items['team']
         player_stats_rec.TeamID = team['id']
@@ -96,7 +117,7 @@ def extract_player_game_stats_from_json(json_dict):
         #add player stats record to its list 
         player_stats_rec_list.append(player_stats_rec)
 
-        if game_id not in game_id_dict.keys():
+        if game_id not in game_id_dict:
             #extract game info
             game_rec = GameRecord()
             
@@ -115,10 +136,11 @@ def extract_player_game_stats_from_json(json_dict):
             game_rec.VisitorTeamScore = game['visitor_team_score']
 
             #add game ID to dictionary keys
-            game_id_dict[game_id] = game_id
+            game_id_dict[game_id] = None
 
             #add game record to its list 
             game_rec_list.append(game_rec)
+            print(f'added game record id = [{game_id}]')
 
     return (game_rec_list, player_stats_rec_list)
 
