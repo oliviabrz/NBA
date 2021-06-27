@@ -59,13 +59,20 @@ def load_player_game_stats():
     for page_number in range(1,3):
         new_url = url + str(page_number)
         json_dict = call_api(new_url)
-        records_list = extract_player_game_stats_from_json(json_dict)
+        
+        #extract game and player lists
+        records_lists = extract_player_game_stats_from_json(json_dict)
 
-        for records in records_list:
-            game_rec = records[0]            
-            player_rec = records[1]
+        #get access to each list
+        game_rec_list = records_lists[0]
+        player_rec_list = records_lists[1]
 
+        #iterate over game list and insert record s
+        for game_rec in game_rec_list:
             game_rec.insert(cn)
+        
+        #iterate over player list and insert record 
+        for player_rec in player_rec_list:
             player_rec.insert(cn)
 
     return 'it worked!'

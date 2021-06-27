@@ -20,7 +20,8 @@ class TeamRecord:
         insert_statement = f"""
         insert into NBA.Team
         (ID, Abbreviation, City, Conference, Division, FullName, Name)
-        values ({self.ID}, '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division} '{self.FullName}', '{self.Name}')
+        values ({self.ID}, '{self.Abbreviation}', '{self.City}', '{self.Conference}', '{self.Division}', 
+        '{self.FullName}', '{self.Name}')
         """
         #print(insert_statement)
         #execute insert statement from the cursor

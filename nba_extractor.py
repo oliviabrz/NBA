@@ -54,7 +54,8 @@ def extract_players_from_json(json_dict):
 
 #----------
 def extract_player_game_stats_from_json(json_dict):
-    rec_list = []
+    game_rec_list = []
+    player_stats_rec_list = []
     game_id_dict = {}
 
     for items in json_dict['data']:
@@ -63,8 +64,6 @@ def extract_player_game_stats_from_json(json_dict):
         #get json game object
         game = items['game']
         game_id = game['id']
-
-
 
         #exract player stats
         player_stats_rec.GameID = game_id
@@ -88,30 +87,38 @@ def extract_player_game_stats_from_json(json_dict):
         player_stats_rec.Stl = items['stl']
         player_stats_rec.Turnover = items['turnover']
 
-        #extract game info
-        game_rec = GameRecord()
-        
-        game_rec.ID = game_id
-        match = re.match(r'([0-9]{4}-[0-9]{2}-[0-9]{2})', game['date'])
-        if match != None:
-            game_rec.GameDate = match.group(0)
-        game_rec.HomeTeamID = game['home_team_id']
-        game_rec.HomeTeamScore = game['home_team_score']
-        game_rec.Period = game['period']
-        game_rec.PostSeason = game['postseason']
-        game_rec.Season = game['season']
-        game_rec.Status = game['status']
-        #game_rec.GameTime = game['time']
-        game_rec.VisitorTeamID = game['visitor_team_id']
-        game_rec.VisitorTeamScore = game['visitor_team_score']
-
         #extract IDs
         player = items['player']
         player_stats_rec.PlayerID = player['id']
         team = items['team']
         player_stats_rec.TeamID = team['id']
 
-        rec_list.append((game_rec, player_stats_rec))
+        #add player stats record to its list 
+        player_stats_rec_list.append(player_stats_rec)
 
-    return rec_list
+        if game_id not in game_id_dict.keys():
+            #extract game info
+            game_rec = GameRecord()
+            
+            game_rec.ID = game_id
+            match = re.match(r'([0-9]{4}-[0-9]{2}-[0-9]{2})', game['date'])
+            if match != None:
+                game_rec.GameDate = match.group(0)
+            game_rec.HomeTeamID = game['home_team_id']
+            game_rec.HomeTeamScore = game['home_team_score']
+            game_rec.Period = game['period']
+            game_rec.PostSeason = game['postseason']
+            game_rec.Season = game['season']
+            game_rec.Status = game['status']
+            #game_rec.GameTime = game['time']
+            game_rec.VisitorTeamID = game['visitor_team_id']
+            game_rec.VisitorTeamScore = game['visitor_team_score']
+
+            #add game ID to dictionary keys
+            game_id_dict[game_id] = game_id
+
+            #add game record to its list 
+            game_rec_list.append(game_rec)
+
+    return (game_rec_list, player_stats_rec_list)
 
