@@ -210,9 +210,11 @@ class GameRecord:
         {rnull(self.Season, None)}, '{rnull(self.Status, None)}', '{rnull(self.GameTime, None)}', 
         {rnull(self.VisitorTeamID, None)}, {rnull(self.VisitorTeamScore, None)})
         """
-
-        cn.cursor().execute(insert_statement)
-        cn.connection().commit()
+        try:            
+            cn.cursor().execute(insert_statement)
+            cn.connection().commit()
+        except Exception as e:
+            print (f"An exception occurred [{e}]")
 
 #---------- 
     def __str__(self):

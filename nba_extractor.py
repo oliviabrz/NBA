@@ -85,6 +85,7 @@ def extract_player_game_stats_from_json(json_dict):
 
         # we noticed the minutes played string sometimes has 60 as seconds 
         min = items['min']
+        player_stats_rec.Min = None
         if min is not None:
             try:
                 validtime = datetime.datetime.strptime(min, "%M:%S")
@@ -93,19 +94,16 @@ def extract_player_game_stats_from_json(json_dict):
             except ValueError:
                 print(f'invalid minutes played string = [{min}]')
                 
-                #split string to capture min/sec values and increment minute by one if seconds == 60
-                split_time = min.split(":")
-                minute = split_time[0]
-                second = split_time[1]
-                if second == '60':
-                    convert_minute = int(minute)
-                    convert_minute += 1
-                    new_time = f'{convert_minute}:00'
-                    player_stats_rec.Min = new_time
-                else:
-                    player_stats_rec.Min = None               
-        else:
-            player_stats_rec.Min = None 
+                if min != '' and ':' in min:
+                    #split string to capture min/sec values and increment minute by one if seconds == 60
+                    split_time = min.split(":")
+                    minute = split_time[0]
+                    second = split_time[1]
+                    if second == '60':
+                        convert_minute = int(minute)
+                        convert_minute += 1
+                        new_time = f'{convert_minute}:00'
+                        player_stats_rec.Min = new_time
 
         player_stats_rec.Oreb = items['oreb']
         player_stats_rec.Pf = items['pf']
