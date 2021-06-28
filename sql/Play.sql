@@ -5,6 +5,9 @@ DELETE from NBA.Player;
 
 DELETE from NBA.Team;
 
+delete from NBA.Game
+delete from NBA.PlayerGameStats 
+
 select COUNT(*) from NBA.Team;
 
 select * from NBA.Team
@@ -12,6 +15,12 @@ select * from NBA.Team
 select * from NBA.Player
 
 select COUNT(*) from NBA.Player;
+
+select COUNT(*) from NBA.PlayerGameStats;
+
+select COUNT(*) from NBA.Game;
+
+select * from NBA.Game where ID = '444934';
 
 insert into NBA.Team
 (ID, Abbreviation, City, Conference, Division, FullName, Name)
@@ -45,7 +54,19 @@ inner join Team t
 	on p.TeamID = t.ID 
 where p.LastName = 'Bryant' and t.Name = 'Lakers'
 
+select p.FirstName, p.LastName, t.FullName as 'PlayerTeam', g.HomeTeamScore, g.VisitorTeamScore, pgs.*
+from NBA.Game g
+join PlayerGameStats pgs 
+	on g.ID = pgs.GameID
+join Player p
+	on p.ID = pgs.PlayerID 
+join Team t 
+	on p.TeamID = t.ID 
+where g.GameDate >= '2021-01-01' 
+and p.FirstName = 'Joel'
+and p.LastName = 'Embiid'
+order by pgs.Min DESC 
+--order by g.GameDate DESC 
 
-INSERT into StatsAbbreviations
-(Abbreviation, Description)
-VALUES ('turnover', 'turnover')
+
+
