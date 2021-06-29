@@ -75,6 +75,27 @@ class PlayerRecord:
         #commit insert statement to database from the connection
         cn.connection().commit()
 
+    def get_player_rec_by_name(self, cn):
+        select_statement = f"""
+        select ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID
+        from NBA.Player p
+        where p.FirstName = '{self.FirstName}' and p.LastName = '{self.LastName}'
+        """
+        print(select_statement)
+
+        cursor = cn.cursor()
+        row_count = cursor.execute(select_statement)
+        if row_count == 1:
+            row = cursor.fetchone()
+            self.ID = row.ID
+            self.FirstName = row.FirstName
+            self.LastName = row.LastName
+            self.Position = row.Position
+            self.HeightFeet = row.HeightFeet
+            self.HeightInches = row.HeightInches
+            self.WeightPounds = row.WeightPounds
+            self.TeamID = row.TeamID
+    
     #----------
     # def get_team_id(self, cn, team_abbreviation):
     #     select_statement = f"""
