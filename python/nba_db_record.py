@@ -81,21 +81,22 @@ class PlayerRecord:
         from NBA.Player p
         where p.FirstName = '{self.FirstName}' and p.LastName = '{self.LastName}'
         """
-        print(select_statement)
+        #print(select_statement)
 
         cursor = cn.cursor()
-        row_count = cursor.execute(select_statement)
-        if row_count == 1:
-            row = cursor.fetchone()
-            self.ID = row.ID
-            self.FirstName = row.FirstName
-            self.LastName = row.LastName
-            self.Position = row.Position
-            self.HeightFeet = row.HeightFeet
-            self.HeightInches = row.HeightInches
-            self.WeightPounds = row.WeightPounds
-            self.TeamID = row.TeamID
-    
+        cursor.execute(select_statement)
+        
+        row = cursor.fetchone()
+        
+        self.ID = row.ID
+        self.FirstName = row.FirstName
+        self.LastName = row.LastName
+        self.Position = row.Position
+        self.HeightFeet = row.HeightFeet
+        self.HeightInches = row.HeightInches
+        self.WeightPounds = row.WeightPounds
+        self.TeamID = row.TeamID
+        
     #----------
     # def get_team_id(self, cn, team_abbreviation):
     #     select_statement = f"""
