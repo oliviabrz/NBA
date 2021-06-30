@@ -67,3 +67,21 @@ and p.FirstName = 'Joel'
 and p.LastName = 'Embiid'
 order by pgs.Min DESC 
 --order by g.GameDate DESC 
+
+select ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID
+        from NBA.Player p
+        where p.FirstName = 'Joel' and p.LastName = 'Embiid'
+        
+        
+SELECT FirstName
+  FROM NBA.Player
+ WHERE FirstName <> CONVERT(FirstName USING ASCII)       
+ 
+SELECT * FROM performance_schema.session_variables
+WHERE VARIABLE_NAME IN (
+'character_set_client', 'character_set_connection',
+'character_set_results', 'collation_connection'
+) ORDER BY VARIABLE_NAME;
+
+SHOW SESSION VARIABLES LIKE 'character\_set\_%';
+SHOW SESSION VARIABLES LIKE 'collation\_%';
