@@ -36,6 +36,9 @@ class SqlConnection:
 
         #connect to server
         self.cnxn = pyodbc.connect(cnstring)
+        
+        self.cnxn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-8')
+        self.cnxn.setencoding(encoding='utf-8')
 
     #----------
     #return connection variable
