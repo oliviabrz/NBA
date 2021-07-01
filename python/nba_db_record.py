@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import pyodbc 
+import json
 
 def rnull(val, cmp):
     return val if val != cmp else 'NULL'
@@ -75,6 +76,7 @@ class PlayerRecord:
         #commit insert statement to database from the connection
         cn.connection().commit()
 
+#----------
     def get_player_rec_by_name(self, cn):
         select_statement = f"""
         select ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID
@@ -87,6 +89,9 @@ class PlayerRecord:
         cursor.execute(select_statement)
         
         row = cursor.fetchone()
+
+        #print(str(row.FirstName))
+        #print(ascii(row.FirstName))
         
         self.ID = row.ID
         self.FirstName = row.FirstName
@@ -96,22 +101,22 @@ class PlayerRecord:
         self.HeightInches = row.HeightInches
         self.WeightPounds = row.WeightPounds
         self.TeamID = row.TeamID
-        
-    #----------
+
+#----------
     # def get_team_id(self, cn, team_abbreviation):
     #     select_statement = f"""
-    #     select ID from NBA.Team where Abbreviation = '{team_abbreviation}'
-    #     """
+    #      select ID from NBA.Team where Abbreviation = '{team_abbreviation}'
+    #      """
 
-    #     cursor = cn.cursor()
-    #     cursor.execute(select_statement)
+    #      cursor = cn.cursor()
+    #      cursor.execute(select_statement)
         
-    #     result = cursor.fetchone()
+    #      result = cursor.fetchone()
         
-    #     if result != None:
-    #         self.TeamID = result[None]
-    #     else:
-    #         print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
+    #      if result != None:
+    #          self.TeamID = result[None]
+    #      else:
+    #          print (f'error retrieving ID for Abbreviation [{team_abbreviation}]')
 
 #----------
     def __str__(self):
@@ -153,6 +158,7 @@ class PlayerGameStatsRecord:
         self.Stl = None
         self.Turnover = None
 
+#----------
     def build_sql_values(self):
         sql = f"""{rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
         {rnull(self.Fg3Pct, None)}, {rnull(self.Fg3a, None)}, {rnull(self.Fg3m, None)},

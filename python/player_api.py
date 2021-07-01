@@ -23,8 +23,6 @@ def get_player_by_name():
 
     player_rec.get_player_rec_by_name(cn)
     json_rec = player_rec.__dict__
-    #json_rec = json.dumps(player_rec, cls=PlayerEncoder) 
-    #print(json_rec)
     
     return jsonify(json_rec)
 
@@ -37,6 +35,7 @@ class SqlConnection:
         #connect to server
         self.cnxn = pyodbc.connect(cnstring)
         
+        self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
         self.cnxn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-8')
         self.cnxn.setencoding(encoding='utf-8')
 
@@ -51,4 +50,4 @@ class SqlConnection:
         return self.cnxn.cursor()    
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000)

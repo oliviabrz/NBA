@@ -24,3 +24,11 @@ Driver=/usr/local/lib/libmsodbcsql.17.dylib
 UsageCount=1
 `
 5. In your python code, use the string within the brackets for the 'Driver='
+
+## Fixing Flask issue with 'address already in use'
+Killing the Flask process does not stop the port it's using
+The Fix:
+> ps -fA | grep python
+>
+> kill -9 `<pid>`
+
