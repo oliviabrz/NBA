@@ -41,3 +41,8 @@ The Fix:
 
 ## Angular
 https://angular.io/docs
+
+## Possible ideas for site functionality 
+1. Search player stats based on player name or team
+2. Try to find how many 3 pointers a team has to shoot to get to expected total points x
+3. How many guards are on a team where the team shoots above average the 3 point percentage? Plot the teams 3 point percentage to the number of guards
