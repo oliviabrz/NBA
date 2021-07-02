@@ -25,6 +25,10 @@ UsageCount=1
 `
 5. In your python code, use the string within the brackets for the 'Driver='
 
+## Pyodbc
+This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
+> self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
+
 ## Fixing Flask issue with 'address already in use'
 Killing the Flask process does not stop the port it's using.
 The Fix:
