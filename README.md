@@ -1,7 +1,7 @@
 # NBA
 
 ## Setup ODBC for module pyodbc (unixODBC)
-1. Down load the driver for your specific database
+1. Download the driver for your specific database
 1. Open terminal
 2. Run `odbcinst -j`
 You should see something like
@@ -26,9 +26,18 @@ UsageCount=1
 5. In your python code, use the string within the brackets for the 'Driver='
 
 ## Fixing Flask issue with 'address already in use'
-Killing the Flask process does not stop the port it's using
+Killing the Flask process does not stop the port it's using.
 The Fix:
 > ps -fA | grep python
 >
 > kill -9 `<pid>`
 
+## HTML
+1. Javascript basics 
+    https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
+2. DOM basics 
+    https://www.digitalocean.com/community/tutorial_series/understanding-the-dom-document-object-model
+
+## Angular
+https://angular.io/docs
