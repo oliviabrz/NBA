@@ -3,17 +3,17 @@
   <li *ngFor="let player of players"
     [class.selected]="player === selectedPlayer"
     (click)="onSelect(player)">
-    <span class="badge">{{player.id}}</span> {{player.name}}
+    <span class="badge">{{player.ID}}</span> {{player.LastName}}
   </li>
 </ul>
 
 <div *ngIf="selectedPlayer">
 
-  <h2>{{selectedPlayer.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedPlayer.id}}</div>
+  <h2>{{selectedPlayer.LastName | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedPlayer.ID}}</div>
   <div>
     <label for="player-name">Player name: </label>
-    <input id="player-name" [(ngModel)]="selectedPlayer.name" placeholder="name">
+    <input id="player-name" [(ngModel)]="selectedPlayer.LastName" placeholder="name">
   </div>
 
 </div>

@@ -1,4 +1,10 @@
 export interface Player {
-    id: number;
-    name: string;
+    FirstName: string;
+    HeightFeet: number;
+    HeightInches: number;
+    ID: number;
+    LastName: string;
+    Position: string;
+    TeamID: number;
+    WeightPounds: number;
   }

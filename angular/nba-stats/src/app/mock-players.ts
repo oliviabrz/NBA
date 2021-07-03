@@ -1,14 +1,14 @@
 import { Player } from './player';
 
 export const PLAYERS: Player[] = [
-  { id: 11, name: 'Dr Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
+  {
+    "FirstName": "Joel",
+    "HeightFeet": 7,
+    "HeightInches": 0,
+    "ID": 145,
+    "LastName": "Embiid",
+    "Position": "F-C",
+    "TeamID": 23,
+    "WeightPounds": 250
+}
 ];
