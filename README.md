@@ -45,7 +45,23 @@ The Fix:
 
 ## Angular
 https://angular.io/docs
-
+Things we've learned about:
+1. Components
+2. TypeScript(ts)
+    -Interfaces
+        -user defined data type that describes data to create a data contract
+        -data contract
+            -a formal agreement that describes data to be exchanged 
+        -strong typing
+3. Databinding
+    -ngModel
+    -NgModule
+4. Structure
+    -HTML
+    -CSS
+    -TypeScript (ts)
+    -JavaScript
+5. app.module.ts
 ## Possible ideas for site functionality 
 1. Search player stats based on player name or team
 2. Try to find how many 3 pointers a team has to shoot to get to expected total points x
