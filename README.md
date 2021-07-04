@@ -1,5 +1,11 @@
 # NBA
 
+## Git
+
+## Python
+1. Flask
+2. Api
+
 ## Setup ODBC for module pyodbc (unixODBC)
 1. Download the driver for your specific database
 1. Open terminal
