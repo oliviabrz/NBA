@@ -3,18 +3,31 @@
   <li *ngFor="let player of players"
     [class.selected]="player === selectedPlayer"
     (click)="onSelect(player)">
-    <span class="badge">{{player.ID}}</span> {{player.LastName}}
+    <span class="badge">{{player.ID}}</span> {{player.FirstName}} {{player.LastName}}
   </li>
 </ul>
 
-<div *ngIf="selectedPlayer">
+<mat-table [dataSource]="players">
+  <ng-container  matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let ID"></mat-cell>
+  </ng-container>
+  <ng-container  matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+    <mat-cell *matCellDef="let FirstName"></mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+</mat-table>
 
+<div *ngIf="selectedPlayer">
   <h2>{{selectedPlayer.LastName | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedPlayer.ID}}</div>
+  <div><span>ID: </span>{{selectedPlayer.ID}}</div>
   <div>
     <label for="player-name">Player name: </label>
     <input id="player-name" [(ngModel)]="selectedPlayer.LastName" placeholder="name">
   </div>
-
 </div>
+
+
 
