@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../player';
 import { PLAYERS } from '../mock-players';
+import { ApiDataService } from '../apiData/api.data.service';
 
 @Component({
   selector: 'app-players',
@@ -9,14 +10,22 @@ import { PLAYERS } from '../mock-players';
 })
 export class PlayersComponent implements OnInit {
 
-  players = PLAYERS;
+  players: Player[] = PLAYERS;
+  //players: Player[] = new Array<Player>();
   selectedPlayer?: Player;
   displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
-
-  constructor() { }
+  constructor(private apiDataService: ApiDataService) { 
+    console.info('In constructor')
+  }
 
   ngOnInit(): void {
+    console.info('In ngOnInit')
+    this.players = PLAYERS;
+    // this.apiDataService.getPlayerList()
+    // .subscribe((data) => {    
+    //   this.players = data
+    // });
   }
 
   onSelect(player: Player): void {
