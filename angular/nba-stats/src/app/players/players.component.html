@@ -14,12 +14,47 @@
     <td mat-cell *matCellDef="let player"> {{player.ID}}</td>
   </ng-container>
 
+  <!-- Player Team ID Column -->
+  <ng-container  matColumnDef="teamId">
+    <th mat-header-cell *matHeaderCellDef>Team ID</th>
+    <td mat-cell *matCellDef="let player">{{player.TeamID}}</td>
+  </ng-container>
+
   <!-- Player First Name Column -->
   <ng-container  matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef>First Name</th>
     <td mat-cell *matCellDef="let player">{{player.FirstName}}</td>
   </ng-container>
 
+  <!-- Player Last Name Column -->
+  <ng-container  matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let player">{{player.LastName}}</td>
+  </ng-container>
+
+  <!-- Player Position Column -->
+  <ng-container  matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Position</th>
+    <td mat-cell *matCellDef="let player">{{player.Position}}</td>
+  </ng-container>
+
+  <!-- Player Height(ft) Column -->
+  <ng-container  matColumnDef="heightFeet">
+    <th mat-header-cell *matHeaderCellDef>Height(ft)</th>
+    <td mat-cell *matCellDef="let player">{{player.HeightFeet}}</td>
+  </ng-container>
+
+  <!-- Player Height(in) Column -->
+  <ng-container  matColumnDef="heightInches">
+    <th mat-header-cell *matHeaderCellDef>Height(in)</th>
+    <td mat-cell *matCellDef="let player">{{player.HeightInches}}</td>
+  </ng-container>
+
+  <!-- Player Weight(lbs) Column -->
+  <ng-container  matColumnDef="weightPounds">
+    <th mat-header-cell *matHeaderCellDef>Weight(lbs)</th>
+    <td mat-cell *matCellDef="let player">{{player.WeightPounds}}</td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

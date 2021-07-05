@@ -26,6 +26,23 @@ def get_player_by_name():
     
     return jsonify(json_rec)
 
+@app.route('/api/nba/player/list', methods=['GET'])
+def get_player_list():
+
+    player_rec = PlayerRecord()
+
+    cn = SqlConnection()
+
+    player_list = player_rec.get_player_list(cn)
+
+    #iterate over each player rec and convert into dictionary 
+    player_json_list = []
+    for rec in player_list:
+        player_json_list.append(rec.__dict__)
+    
+    return jsonify(player_json_list)
+
+
 class SqlConnection:
     def __init__(self):
         # here we are telling python what to connect to (our SQL Server)

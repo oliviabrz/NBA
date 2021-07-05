@@ -11,7 +11,7 @@ export class PlayersComponent implements OnInit {
 
   players = PLAYERS;
   selectedPlayer?: Player;
-  displayedColumns  :  string[] = ['id', 'firstName'];
+  displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
 
   constructor() { }

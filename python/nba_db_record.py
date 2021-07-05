@@ -102,6 +102,33 @@ class PlayerRecord:
         self.WeightPounds = row.WeightPounds
         self.TeamID = row.TeamID
 
+    def get_player_list(self, cn):
+        player_list = []
+        select_statement = f"""
+        select ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds,TeamID
+        from NBA.Player p
+        """
+        #print(select_statement)
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        for row in cursor.fetchall():
+            rec = PlayerRecord()
+        
+            rec.ID = row.ID
+            rec.FirstName = row.FirstName
+            rec.LastName = row.LastName
+            rec.Position = row.Position
+            rec.HeightFeet = row.HeightFeet
+            rec.HeightInches = row.HeightInches
+            rec.WeightPounds = row.WeightPounds
+            rec.TeamID = row.TeamID
+
+            player_list.append(rec)
+        
+        return player_list
+
 #----------
     # def get_team_id(self, cn, team_abbreviation):
     #     select_statement = f"""
