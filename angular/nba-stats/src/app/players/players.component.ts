@@ -11,7 +11,7 @@ export class PlayersComponent implements OnInit {
 
   players = PLAYERS;
   selectedPlayer?: Player;
-  tableColumns  :  string[] = ['id', 'firstName'];
+  displayedColumns  :  string[] = ['id', 'firstName'];
   
 
   constructor() { }

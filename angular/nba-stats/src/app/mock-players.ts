@@ -10,5 +10,15 @@ export const PLAYERS: Player[] = [
     "Position": "F-C",
     "TeamID": 23,
     "WeightPounds": 250
+},
+{
+  "FirstName": "LeBron",
+  "HeightFeet": 6,
+  "HeightInches": 8,
+  "ID": 237,
+  "LastName": "James",
+  "Position": "F",
+  "TeamID": 14,
+  "WeightPounds": 250
 }
 ];
