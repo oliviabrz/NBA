@@ -23,8 +23,10 @@ def get_player_by_name():
 
     player_rec.get_player_rec_by_name(cn)
     json_rec = player_rec.__dict__
+    response = jsonify(json_rec)
+    response.headers.add("Access-Control-Allow-Origin", "*")
     
-    return jsonify(json_rec)
+    return response
 
 @app.route('/api/nba/player/list', methods=['GET'])
 def get_player_list():
@@ -40,8 +42,10 @@ def get_player_list():
     for rec in player_list:
         player_json_list.append(rec.__dict__)
     
-    return jsonify(player_json_list)
+    response = jsonify(player_json_list)
+    response.headers.add("Access-Control-Allow-Origin", "*")
 
+    return response
 
 class SqlConnection:
     def __init__(self):

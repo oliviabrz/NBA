@@ -7,16 +7,18 @@ import { catchError, retry } from 'rxjs/operators';
 import { Player } from '../player';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiDataService {
   baseUrl = 'http://localhost:5000/';
   playerListApi = 'api/nba/player/list'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getPlayerList(): Observable<Player[]> { 
     let url = this.baseUrl + this.playerListApi
-    return this.httpClient.get<Player[]>(url).pipe(
+    return this.http.get<Player[]>(url).pipe(
       catchError(this.handleError)
     );
   }
