@@ -86,4 +86,6 @@ WHERE VARIABLE_NAME IN (
 SHOW SESSION VARIABLES LIKE 'character\_set\_%';
 SHOW SESSION VARIABLES LIKE 'collation\_%';
 
-
+select ID, Abbreviation, City, Conference, Division, FullName, Name
+from NBA.Team t
+where t.Abbreviation = 'LAC'
