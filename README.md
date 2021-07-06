@@ -3,8 +3,57 @@
 ## Git
 
 ## Python
-1. Flask
-2. Api
+1. Classes
+    -SOC (separation of concerns)
+2. Functions
+3. Data Types
+4. Variables
+5. Flow control
+    -looping
+6. Flask
+7. Api
+
+## Relational Database
+1. sql language
+2. mysql
+3. first, second, third normal form
+4. dbeaver 
+    -client tool used on a mac
+5. ODBC
+    -we used pyodbc module for the odbc implentation
+6. primary and foreign keys
+7. CRUD
+    -Create, Read, Update, Delete
+
+## Restful API
+1. JSON
+2. Media Type
+3. URL (Uniform Resource Locator)
+    -the path to a unique resource on the Web
+    -breakdown https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL
+
+## Http (hypertext transmission protocol)
+1. http vs https 
+    -http is insecure
+    -https is secured by a certificate on a server that tells clients that they are talking to the domain they intended to talk to 
+2. PKI (public key infrastructure)
+    -public/private key
+    -used to make https secure
+3. http server
+4. HTTP methods
+    -GET, POST, PUT, DELETE
+
+## Chrome debugger
+## Network Concepts
+1. localhost and 127.0.0.1
+    - /etc/hosts file
+2. DNS (domain name system)
+    - maps domain name to an IP address
+    - domain name 
+        -
+3. port numbers 
+    -as an example, think of IP address as an apartment building street address, and port number as a
+    specific apartment number
 
 ## Setup ODBC for module pyodbc (unixODBC)
 1. Download the driver for your specific database
@@ -66,8 +115,19 @@ Things we've learned about:
     -HTML
     -CSS
     -TypeScript (ts)
-    -JavaScript
 5. app.module.ts
+6. HttpClient service class
+    -https://angular.io/guide/http
+    -this is what we used to call our Restful api's
+7. Angular Client 
+    -ng 
+    -scaffold new application
+        -ng new 
+    -build application
+        -ng build
+    -run application
+        -ng serve
+
 ## Possible ideas for site functionality 
 1. Search player stats based on player name or team
 2. Try to find how many 3 pointers a team has to shoot to get to expected total points x
