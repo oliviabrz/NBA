@@ -31,6 +31,53 @@ class TeamRecord:
         #commit insert statement to database from the connection
         cn.connection().commit()
 
+    def get_team_rec_by_abbreviation(self, cn):
+        select_statement = f"""
+        select ID, Abbreviation, City, Conference, Division, FullName, Name
+        from NBA.Team t
+        where t.Abbreviation = '{self.Abbreviation}'
+        """
+        #print(select_statement)
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        row = cursor.fetchone()
+
+        self.ID = row.ID
+        self.Abbreviation = row.Abbreviation
+        self.City = row.City
+        self.Conference = row.Conference
+        self.Division = row.Division
+        self.FullName = row.FullName
+        self.Name = row.Name
+
+    def get_team_list(self, cn):
+        team_list = []
+        select_statement = f"""
+        select ID, Abbreviation, City, Conference, Division, FullName, Name
+        from NBA.Team t
+        """
+        #print(select_statement)
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        for row in cursor.fetchall():
+            rec = TeamRecord()
+        
+            rec.ID = row.ID
+            rec.Abbreviation = row.Abbreviation
+            rec.City = row.City
+            rec.Conference = row.Conference
+            rec.Division = row.Division
+            rec.FullName = row.FullName
+            rec.Name = row.Name
+
+            team_list.append(rec)
+        
+        return team_list
+
 #----------
     def __str__(self):
         string = f"""ID: {self.ID}, Abbreviation: {self.Abbreviation}, City: {self.City}, 
