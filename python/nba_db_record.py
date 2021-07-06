@@ -44,6 +44,7 @@ class TeamRecord:
         
         row = cursor.fetchone()
 
+        #assign the instance attributes with the values from the row
         self.ID = row.ID
         self.Abbreviation = row.Abbreviation
         self.City = row.City

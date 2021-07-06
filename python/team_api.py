@@ -12,16 +12,28 @@ app = Flask(__name__)
 
 @app.route('/api/nba/team', methods=['GET'])
 def get_team_by_abbreviation():
+    #get query string parameter from the Flask request object
     abbreviation = request.args.get('abbreviation')
 
+    #create team record instance 
     team_rec = TeamRecord()
+
+    #assign the abbreviation field with the value of the query string parameter
     team_rec.Abbreviation = abbreviation
 
+    #get sql connection
     cn = SqlConnection()
 
+    #populate record instance with database values
     team_rec.get_team_rec_by_abbreviation(cn)
+
+    #convert record instance to a dictionary 
     json_rec = team_rec.__dict__
+
+    #create a Flask response object and set the mime-type to application/json
     response = jsonify(json_rec)
+
+    #allow CORS (Cross Origin Resource Sharing)
     response.headers.add("Access-Control-Allow-Origin", "*")
     
     return response
@@ -33,14 +45,19 @@ def get_team_list():
 
     cn = SqlConnection()
 
+    #get list of TeamRecord instances
     team_list = team_rec.get_team_list(cn)
 
-    #iterate over each player rec and convert into dictionary 
+    #list to hold TeamRecord dictionaries 
     team_json_list = []
+
+    #iterate over each TeamRecord instance, convert it to a dictionary and
+    #add to dictionary list
     for rec in team_list:
         team_json_list.append(rec.__dict__)
     
     response = jsonify(team_json_list)
+    
     response.headers.add("Access-Control-Allow-Origin", "*")
 
     return response
