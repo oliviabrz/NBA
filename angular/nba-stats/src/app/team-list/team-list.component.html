@@ -1,1 +1,67 @@
-<p>team-list works!</p>
+<h2>My Teams</h2>
+<ul class="teams">
+  <li *ngFor="let team of teams"
+    [class.selected]="team === selectedTeam"
+    (click)="onSelect(team)">
+    <span class="badge">{{team.ID}}</span> {{team.FullName}}
+  </li>
+</ul>
+
+<table mat-table [dataSource]="teams">
+  <!-- Team ID Column -->
+  <ng-container  matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let team"> {{team.ID}}</td>
+  </ng-container>
+
+  <!-- Team Full Name Column -->
+  <ng-container  matColumnDef="fullName">
+    <th mat-header-cell *matHeaderCellDef>Full Name</th>
+    <td mat-cell *matCellDef="let team">{{team.FullName}}</td>
+  </ng-container>
+
+  <!-- Team Name Column -->
+  <ng-container  matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let team">{{team.Name}}</td>
+  </ng-container>
+
+  <!-- Team Abbreviation Column -->
+  <ng-container  matColumnDef="abbreviation">
+    <th mat-header-cell *matHeaderCellDef>Abbreviation</th>
+    <td mat-cell *matCellDef="let team">{{team.Abbreviation}}</td>
+  </ng-container>
+
+  <!-- Team city Column -->
+  <ng-container  matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let team">{{team.City}}</td>
+  </ng-container>
+
+  <!-- Team Conference Column -->
+  <ng-container  matColumnDef="conference">
+    <th mat-header-cell *matHeaderCellDef>Conference</th>
+    <td mat-cell *matCellDef="let team">{{team.Conference}}</td>
+  </ng-container>
+
+  <!-- Team Division Column -->
+  <ng-container  matColumnDef="division">
+    <th mat-header-cell *matHeaderCellDef>Division</th>
+    <td mat-cell *matCellDef="let team">{{team.Division}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div *ngIf="selectedTeam">
+  <h2>{{selectedTeam.FullName | uppercase}} Details</h2>
+  <div><span>ID: </span>{{selectedTeam.ID}}</div>
+  <div>
+    <label for="team-name">Team name: </label>
+    <input id="team-name" [(ngModel)]="selectedTeam.FullName" placeholder="name">
+  </div>
+</div>
+
+
+
