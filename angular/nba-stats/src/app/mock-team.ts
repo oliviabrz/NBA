@@ -1,6 +1,6 @@
 import { Team } from './team';
 
-export const TEAM: Team[] = [
+export const TEAM: Team = 
     {
       "Abbreviation": "LAL",
       "City": "Los Angeles",
@@ -10,4 +10,3 @@ export const TEAM: Team[] = [
       "ID": 14,
       "Name": "Lakers",
     }
-]

@@ -10,7 +10,6 @@ import { ApiDataService } from '../apiData/api.data.service';
 })
 export class PlayersComponent implements OnInit {
 
-  //players: Player[] = PLAYERS;
   players: Player[] = new Array<Player>();
   selectedPlayer?: Player;
   displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
@@ -21,11 +20,11 @@ export class PlayersComponent implements OnInit {
 
   ngOnInit(): void {
     //console.info('In ngOnInit')
-    //this.players = PLAYERS;
-    this.apiDataService.getPlayerList()
-    .subscribe((data) => {    
-      this.players = data
-    });
+    this.players = PLAYERS;
+    // this.apiDataService.getPlayerList()
+    // .subscribe((data) => {    
+    //   this.players = data
+    // });
   }
 
   onSelect(player: Player): void {

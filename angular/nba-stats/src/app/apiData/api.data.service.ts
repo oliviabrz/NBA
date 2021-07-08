@@ -4,8 +4,8 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { TEAM } from '../mock-team';
-import { Team } from '../team'
+import { Team } from '../team';
+import { Player } from '../player';
 
 
 @Injectable({
@@ -14,8 +14,16 @@ import { Team } from '../team'
 export class ApiDataService {
   baseUrl = 'http://localhost:5000/';
   teamListApi = 'api/nba/team/list'
+  playerListApi = 'api/nba/player/list'
 
   constructor(private http: HttpClient) { }
+
+  getPlayerList(): Observable<Player[]> { 
+    let url = this.baseUrl + this.playerListApi
+    return this.http.get<Player[]>(url).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   getTeamList(): Observable<Team[]> { 
     let url = this.baseUrl + this.teamListApi

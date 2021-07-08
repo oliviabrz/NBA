@@ -7,13 +7,15 @@ import { MatTableModule } from "@angular/material/table";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
-import { TeamComponent } from './team/team/team.component';
+import { TeamComponent } from './team/team.component';
+import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
-    TeamComponent
+    TeamComponent,
+    KeyValuePipeComponent
   ],
   imports: [
     BrowserModule,

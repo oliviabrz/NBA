@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Team } from '../team';
+import { Team, Kvp } from '../team';
 import { TEAM } from '../mock-team';
 import { ApiDataService } from '../apiData/api.data.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-team',
@@ -10,26 +11,36 @@ import { ApiDataService } from '../apiData/api.data.service';
 })
 export class TeamComponent implements OnInit {
 
-  teams: Team[] = TEAM;
-  tableData: any[] | undefined;
+  team: Team = TEAM;
+  dsTable: MatTableDataSource<Kvp>;
+  tableData: Kvp[] | undefined;
 
   //selectedTeam?: Team;
-  //displayedColumns  :  string[] = ['abbreviation', ' city', 'conference', 'division', 'fullName', 'id', 'name'] 
+  displayedColumns  :  string[] = ['Key', 'Value'] 
   
-  constructor(private apiDataService: ApiDataService) { }
+  constructor(private apiDataService: ApiDataService) { 
+    this.dsTable = new MatTableDataSource<Kvp>();
+  }
 
   ngOnInit(): void {
-    let dictList: [{ [name: string]: any }] = [{}];
-    for (let team of this.teams) {      
-        let kvp: { [name: string]: any } = {}
-        kvp.Abbreviation = team.Abbreviation
-        dictList.push(kvp)
+    this.tableData = [
+      {Key: 'Abbreviation', Value: this.team.Abbreviation},
+      {Key: 'City', Value: this.team.City},
+      {Key: 'Conference', Value: this.team.Conference},
+      {Key: 'Division', Value: this.team.Division},
+      {Key: 'FullName', Value: this.team.FullName},
+      {Key: 'ID', Value: this.team.ID},
+      {Key: 'Name', Value: this.team.Name},
+    ];
+    this.dsTable.data = this.tableData;
+    // let map = new Map();
+    // map.set('Abbreviation', this.team.Abbreviation);
+    // this.tableData.push(map)
 
-        kvp = {}
-        kvp.City = team.City
-        dictList.push(kvp)
-    }
-    this.tableData = dictList;
+    // map = new Map();
+    // map.set('City', this.team.City);
+    // this.tableData.push(map)
+
     // .subscribe((data) => {    
     //   this.teams = data
     // });
