@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Team, Kvp } from '../team';
+import { Team } from '../team';
 import { TEAM } from '../mock-team';
+import { Kvp } from '../kvp';
 import { ApiDataService } from '../apiData/api.data.service';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -12,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TeamComponent implements OnInit {
 
   team: Team = TEAM;
+  //team: Team | undefined 
   dsTable: MatTableDataSource<Kvp>;
   tableData: Kvp[] | undefined;
 
@@ -23,27 +25,25 @@ export class TeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tableData = [
-      {Key: 'Abbreviation', Value: this.team.Abbreviation},
-      {Key: 'City', Value: this.team.City},
-      {Key: 'Conference', Value: this.team.Conference},
-      {Key: 'Division', Value: this.team.Division},
-      {Key: 'FullName', Value: this.team.FullName},
-      {Key: 'ID', Value: this.team.ID},
-      {Key: 'Name', Value: this.team.Name},
-    ];
-    this.dsTable.data = this.tableData;
-    // let map = new Map();
-    // map.set('Abbreviation', this.team.Abbreviation);
-    // this.tableData.push(map)
+    // this is mock data:
+    //this.team = TEAM;
 
-    // map = new Map();
-    // map.set('City', this.team.City);
-    // this.tableData.push(map)
+    // this is api data:
+    this.apiDataService.getTeam('ATL')
+    .subscribe((data) => {    
+      this.team = data;
 
-    // .subscribe((data) => {    
-    //   this.teams = data
-    // });
+      this.tableData = [
+        {Key: 'Abbreviation', Value: this.team.Abbreviation},
+        {Key: 'City', Value: this.team.City},
+        {Key: 'Conference', Value: this.team.Conference},
+        {Key: 'Division', Value: this.team.Division},
+        {Key: 'FullName', Value: this.team.FullName},
+        {Key: 'ID', Value: this.team.ID},
+        {Key: 'Name', Value: this.team.Name},
+      ];
+      this.dsTable.data = this.tableData;
+    });
   }
 
   // onSelect(team: Team): void {

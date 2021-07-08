@@ -7,9 +7,3 @@ export interface Team {
     ID: number;
     Name: string;
 }
-
-export class Kvp {
-    constructor() {}
-    Key: string | undefined;
-    Value: any | undefined;
-}

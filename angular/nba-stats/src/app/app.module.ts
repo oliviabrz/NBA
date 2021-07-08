@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { PlayersComponent } from './players/players.component';
 import { TeamComponent } from './team/team.component';
 import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
+import { PlayerComponent } from './player/player.component';
+import { TeamListComponent } from './team-list/team-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
     TeamComponent,
-    KeyValuePipeComponent
+    KeyValuePipeComponent,
+    PlayerComponent,
+    TeamListComponent
   ],
   imports: [
     BrowserModule,

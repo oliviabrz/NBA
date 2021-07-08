@@ -20,11 +20,15 @@ export class PlayersComponent implements OnInit {
 
   ngOnInit(): void {
     //console.info('In ngOnInit')
-    this.players = PLAYERS;
-    // this.apiDataService.getPlayerList()
-    // .subscribe((data) => {    
-    //   this.players = data
-    // });
+
+    // this is mock data:
+    //this.players = PLAYERS;
+
+    // this is api data:
+    this.apiDataService.getPlayerList()
+    .subscribe((data) => {    
+    this.players = data
+    });
   }
 
   onSelect(player: Player): void {

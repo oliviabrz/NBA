@@ -129,6 +129,8 @@ Things we've learned about:
         -ng build
     -run application
         -ng serve
+8. MaterialTable (MatTable)
+    -https://stackblitz.com/edit/angular-kj6g7p?file=src%2Fapp%2Fcomponents-table%2Fcomponents-table.component.html
 
 ## Possible ideas for site functionality 
 1. Search player stats based on player name or team
