@@ -1,13 +1,13 @@
-<h2>My Players</h2>
-<ul class="players">
+<h2>Player List</h2>
+<!-- <ul class="players">
   <li *ngFor="let player of players"
     [class.selected]="player === selectedPlayer"
     (click)="onSelect(player)">
     <span class="badge">{{player.ID}}</span> {{player.FirstName}} {{player.LastName}}
   </li>
-</ul>
+</ul> -->
 
-<table mat-table [dataSource]="players">
+<table mat-table [dataSource]="dsTable">
   <!-- Player ID Column -->
   <ng-container  matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -59,6 +59,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 <div *ngIf="selectedPlayer">
   <h2>{{selectedPlayer.LastName | uppercase}} Details</h2>

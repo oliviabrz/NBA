@@ -1,11 +1,4 @@
-<h2>My Teams</h2>
-<ul class="teams">
-  <li *ngFor="let team of teams"
-    [class.selected]="team === selectedTeam"
-    (click)="onSelect(team)">
-    <span class="badge">{{team.ID}}</span> {{team.FullName}}
-  </li>
-</ul>
+<h2>Team List</h2>
 
 <table mat-table [dataSource]="teams">
   <!-- Team ID Column -->

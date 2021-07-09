@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../team';
 import { TEAMS } from '../mock-teams';
 import { ApiDataService } from '../apiData/api.data.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Kvp } from '../kvp';
 
 @Component({
   selector: 'app-team-list',
@@ -11,10 +13,12 @@ import { ApiDataService } from '../apiData/api.data.service';
 export class TeamListComponent implements OnInit {
 
   teams: Team[] = new Array<Team>();
+  dsTable: MatTableDataSource<Kvp>;
   selectedTeam?: Team;
   displayedColumns  :  string[] = ['id', 'fullName', 'name', 'abbreviation', 'city', 'conference', 'division'];
   
   constructor(private apiDataService: ApiDataService) { 
+    this.dsTable = new MatTableDataSource<Kvp>();
     //console.info('In constructor')
   }
 
