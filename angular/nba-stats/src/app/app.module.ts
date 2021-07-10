@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +30,9 @@ import { TeamListComponent } from './team-list/team-list.component';
     AppRoutingModule,
     FormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
