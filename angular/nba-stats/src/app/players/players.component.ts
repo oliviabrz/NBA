@@ -4,6 +4,7 @@ import { PLAYERS } from '../mock-players';
 import { ApiDataService } from '../apiData/api.data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   selectedPlayer?: Player;
   displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
-  constructor(private apiDataService: ApiDataService) { 
+  constructor(private apiDataService: ApiDataService,
+    public appComponent: AppComponent) { 
     this.dsTable = new MatTableDataSource<Player>();
     //console.info('In constructor')
   }
@@ -31,8 +33,7 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     // this is api data:
     this.apiDataService.getPlayerList()
     .subscribe((data) => {    
-    //this.players = data
-    this.dsTable.data = data;
+      this.dsTable.data = data;
     });
   }
   ngAfterViewInit() {
@@ -41,5 +42,8 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   onSelect(player: Player): void {
     this.selectedPlayer = player;
   }
-
+  showAlert(player: Player) {
+    //alert(player.FirstName)
+    this.appComponent.playerDetailVisible = !this.appComponent.playerDetailVisible;
+  }
 }
