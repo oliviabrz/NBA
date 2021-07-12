@@ -1,11 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Player } from '../player';
-import { PLAYERS } from '../mock-players';
 import { ApiDataService } from '../apiData/api.data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AppComponent } from '../app.component';
-
+import { AppStateService } from '../app-state';
 
 @Component({
   selector: 'app-players',
@@ -18,19 +16,18 @@ export class PlayersComponent implements OnInit, AfterViewInit {
 
   players: Player[] = new Array<Player>();
   dsTable: MatTableDataSource<Player>;
-  selectedPlayer?: Player;
+  //selectedPlayer?: Player;
   displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
-  constructor(private apiDataService: ApiDataService,
-    public appComponent: AppComponent) { 
+  constructor(private apiDataService: ApiDataService, public appState: AppStateService) { 
     this.dsTable = new MatTableDataSource<Player>();
-    //console.info('In constructor')
+    console.info('In players-component constructor')
   }
 
   ngOnInit(): void {
     //console.info('In ngOnInit')
 
-    // this is api data:
+    // get api data:
     this.apiDataService.getPlayerList()
     .subscribe((data) => {    
       this.dsTable.data = data;
@@ -40,10 +37,7 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     this.dsTable.paginator = this.paginator;
   }
   onSelect(player: Player): void {
-    this.selectedPlayer = player;
-  }
-  showAlert(player: Player) {
-    //alert(player.FirstName)
-    this.appComponent.playerDetailVisible = !this.appComponent.playerDetailVisible;
+    this.appState.selectedPlayer = player;
+    console.info('In onSelect')
   }
 }
