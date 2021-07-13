@@ -3,7 +3,6 @@ import { Player } from '../player';
 import { ApiDataService } from '../apiData/api.data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AppStateService } from '../app-state';
 
 @Component({
   selector: 'app-players',
@@ -13,13 +12,13 @@ import { AppStateService } from '../app-state';
 export class PlayersComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  selectedPlayer?: Player;
   players: Player[] = new Array<Player>();
   dsTable: MatTableDataSource<Player>;
   //selectedPlayer?: Player;
   displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
-  constructor(private apiDataService: ApiDataService, public appState: AppStateService) { 
+  constructor(private apiDataService: ApiDataService) { 
     this.dsTable = new MatTableDataSource<Player>();
     console.info('In players-component constructor')
   }
@@ -37,7 +36,8 @@ export class PlayersComponent implements OnInit, AfterViewInit {
     this.dsTable.paginator = this.paginator;
   }
   onSelect(player: Player): void {
-    this.appState.selectedPlayer = player;
+    //this.appState.selectedPlayer = player;
+    this.selectedPlayer = player;
     console.info('In onSelect')
   }
 }
