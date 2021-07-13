@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Team } from '../team';
 import { TEAM } from '../mock-team';
 import { Kvp } from '../kvp';
@@ -10,9 +10,9 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
-
-  team: Team = TEAM;
+export class TeamComponent implements OnInit, OnChanges {
+  @Input() selectedTeam?: Team;
+  //team: Team = TEAM;
   //team: Team | undefined 
   dsTable: MatTableDataSource<Kvp>;
   tableData: Kvp[] | undefined;
@@ -24,32 +24,36 @@ export class TeamComponent implements OnInit {
     this.dsTable = new MatTableDataSource<Kvp>();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
     // this is mock data:
     //this.team = TEAM;
 
     // this is api data:
-    this.apiDataService.getTeam('ATL')
-    .subscribe((data) => {    
-      this.team = data;
-
+    //this.apiDataService.getTeam('ATL')
+    //.subscribe((data) => {    
+      //this.team = data;
+      ngOnChanges(changes: SimpleChanges) {
+        let team = changes['selectedTeam'].currentValue
+      if (team != undefined) {
+        console.info("in team-component ngOnChanges: selectedTeam not null");
       this.tableData = [
-        {Key: 'Abbreviation', Value: this.team.Abbreviation},
-        {Key: 'City', Value: this.team.City},
-        {Key: 'Conference', Value: this.team.Conference},
-        {Key: 'Division', Value: this.team.Division},
-        {Key: 'FullName', Value: this.team.FullName},
-        {Key: 'ID', Value: this.team.ID},
-        {Key: 'Name', Value: this.team.Name},
+        {Key: 'Abbreviation', Value: team.Abbreviation},
+        {Key: 'City', Value: team.City},
+        {Key: 'Conference', Value: team.Conference},
+        {Key: 'Division', Value: team.Division},
+        {Key: 'FullName', Value: team.FullName},
+        {Key: 'ID', Value: team.ID},
+        {Key: 'Name', Value: team.Name},
       ];
       this.dsTable.data = this.tableData;
-    });
+    }
+    else {
+      console.info("in player-component ngOnChanges: selectedTeam null");
+    }   
   }
+}
 
   // onSelect(team: Team): void {
   //   this.selectedTeam = team;
   // }
-
-}
-
 

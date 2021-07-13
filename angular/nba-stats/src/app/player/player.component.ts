@@ -11,8 +11,6 @@ export class PlayerComponent implements OnInit, OnChanges {
   @Input() selectedPlayer?: Player;
   dsTable: MatTableDataSource<Kvp>;
   tableData: Kvp[] | undefined;
-
-  //selectedTeam?: Team;
   displayedColumns  :  string[] = ['Key', 'Value'] 
 
   constructor() {
