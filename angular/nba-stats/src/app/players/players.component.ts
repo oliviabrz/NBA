@@ -16,7 +16,7 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   players: Player[] = new Array<Player>();
   dsTable: MatTableDataSource<Player>;
   //selectedPlayer?: Player;
-  displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
+  displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName']; // 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
   constructor(private apiDataService: ApiDataService) { 
     this.dsTable = new MatTableDataSource<Player>();

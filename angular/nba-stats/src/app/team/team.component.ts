@@ -37,13 +37,12 @@ export class TeamComponent implements OnInit, OnChanges {
       if (team != undefined) {
         console.info("in team-component ngOnChanges: selectedTeam not null");
       this.tableData = [
+        {Key: 'FullName', Value: team.FullName},
         {Key: 'Abbreviation', Value: team.Abbreviation},
+        {Key: 'Name', Value: team.Name},
         {Key: 'City', Value: team.City},
         {Key: 'Conference', Value: team.Conference},
         {Key: 'Division', Value: team.Division},
-        {Key: 'FullName', Value: team.FullName},
-        {Key: 'ID', Value: team.ID},
-        {Key: 'Name', Value: team.Name},
       ];
       this.dsTable.data = this.tableData;
     }

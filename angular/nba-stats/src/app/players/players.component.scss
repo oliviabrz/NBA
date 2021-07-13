@@ -1,4 +1,4 @@
-.players {
+  .players {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -51,12 +51,19 @@
   }
 
   table {
-    width: 100%;
-    margin: auto;
+    width: 50%;
+    margin-left: 0%;
   }
 
   .mat-column-id {
     color: blue;
     font-size: medium;
     text-decoration: underline;
+  }
+
+  mat-paginator {
+    position: absolute;
+    margin-left: 50%;
+  //   text-align: center;
+  //   margin: 0;
   }

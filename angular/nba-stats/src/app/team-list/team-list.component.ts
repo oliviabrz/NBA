@@ -17,7 +17,7 @@ export class TeamListComponent implements OnInit, AfterViewInit {
   teams: Team[] = new Array<Team>();
   dsTable: MatTableDataSource<Team>;
   selectedTeam?: Team;
-  displayedColumns  :  string[] = ['id', 'fullName', 'name', 'abbreviation', 'city', 'conference', 'division'];
+  displayedColumns  :  string[] = ['id', 'fullName'] //'name', 'abbreviation', 'city', 'conference', 'division'];
   
   constructor(private apiDataService: ApiDataService) { 
     this.dsTable = new MatTableDataSource<Team>();
