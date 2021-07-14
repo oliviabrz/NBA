@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Game } from '../game';
+import { GAMES } from '../mock-games';
+import { ApiDataService } from '../apiData/api.data.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Kvp } from '../kvp';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  games: Game[] = new Array<Game>();
+  dsTable: MatTableDataSource<Game>;
+  displayedColumns  :  string[] = ['gameDate', 'season', 'homeTeamFullName', 'homeTeamScore', 'visitorTeamFullName', 'visitorTeamscore']
+
+  constructor(private apiDataService: ApiDataService) {
+    this.dsTable = new MatTableDataSource<Game>();
+    //console.info('In constructor')
+   }
 
   ngOnInit(): void {
+    // this is api data:
+    this.apiDataService.getGameList()
+    .subscribe((data) => {    
+    this.dsTable.data = data
+    });
+    
+  }
+  ngAfterViewInit() {
+    this.dsTable.paginator = this.paginator;
   }
 
 }

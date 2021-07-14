@@ -1,1 +1,105 @@
-<p>game-list works!</p>
+<h2>Game List</h2>
+
+<div>
+<table mat-table [dataSource]="dsTable">
+  <!-- Game ID Column -->
+  <ng-container  matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let game"> {{game.ID}}
+    </td>
+  </ng-container>
+
+  <!-- Game Date Column -->
+  <ng-container  matColumnDef="gameDate">
+    <th mat-header-cell *matHeaderCellDef>Game Date</th>
+    <td mat-cell *matCellDef="let game">{{game.GameDate}}</td>
+  </ng-container>
+
+  <!-- Game Time Column -->
+  <ng-container  matColumnDef="gameTime">
+    <th mat-header-cell *matHeaderCellDef>Game Time</th>
+    <td mat-cell *matCellDef="let game">{{game.GameTime}}</td>
+  </ng-container>
+
+  <!-- Game Home Team Abbr Column -->
+  <ng-container  matColumnDef="homeTeamAbbr">
+    <th mat-header-cell *matHeaderCellDef>Home Team Abbreviation</th>
+    <td mat-cell *matCellDef="let game">{{game.HomeTeamAbbr}}</td>
+  </ng-container>
+
+  <!-- Game Home Team Full Name Column -->
+  <ng-container  matColumnDef="homeTeamFullName">
+    <th mat-header-cell *matHeaderCellDef>Home Team Full Name</th>
+    <td mat-cell *matCellDef="let game">{{game.HomeTeamFullName}}</td>
+  </ng-container>
+
+  <!-- Game Home Team ID Column -->
+  <ng-container  matColumnDef="homeTeamID">
+    <th mat-header-cell *matHeaderCellDef>Home Team ID</th>
+    <td mat-cell *matCellDef="let game">{{game.HomeTeamID}}</td>
+  </ng-container>
+
+  <!-- Home Team Score Column -->
+  <ng-container  matColumnDef="homeTeamScore">
+    <th mat-header-cell *matHeaderCellDef>Home Team Score</th>
+    <td mat-cell *matCellDef="let game">{{game.HomeTeamScore}}</td>
+  </ng-container>
+
+  <!-- Game Period Column -->
+  <ng-container  matColumnDef="period">
+    <th mat-header-cell *matHeaderCellDef>Period</th>
+    <td mat-cell *matCellDef="let game">{{game.Period}}</td>
+  </ng-container>
+
+  <!-- Game Post Season Column -->
+  <ng-container  matColumnDef="postSeason">
+    <th mat-header-cell *matHeaderCellDef>Postseason</th>
+    <td mat-cell *matCellDef="let game">{{game.PostSeason}}</td>
+  </ng-container>
+
+  <!-- Game Season Column -->
+  <ng-container  matColumnDef="season">
+    <th mat-header-cell *matHeaderCellDef>Season</th>
+    <td mat-cell *matCellDef="let game">{{game.Season}}</td>
+  </ng-container>
+
+  <!-- Game Status Column -->
+  <ng-container  matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let game">{{game.Status}}</td>
+  </ng-container>
+
+  <!-- Game Visitor Team Abbr Column -->
+  <ng-container  matColumnDef="visitorTeamAbbr">
+    <th mat-header-cell *matHeaderCellDef>Visitor Team Abbreviation</th>
+    <td mat-cell *matCellDef="let game">{{game.VisitorTeamAbbr}}</td>
+  </ng-container>
+
+  <!-- Game Visitor Team Full NameColumn -->
+  <ng-container  matColumnDef="visitorTeamFullName">
+    <th mat-header-cell *matHeaderCellDef>Visitor Team Full Name</th>
+    <td mat-cell *matCellDef="let game">{{game.VisitorTeamFullName}}</td>
+  </ng-container>
+
+  <!-- Game Visitor Team ID -->
+  <ng-container  matColumnDef="visitorTeamID">
+    <th mat-header-cell *matHeaderCellDef>Visitor Team ID</th>
+    <td mat-cell *matCellDef="let game">{{game.visitorTeamID}}</td>
+  </ng-container>
+
+  <!-- Game Visitor Team Score Column -->
+  <ng-container  matColumnDef="visitorTeamScore">
+    <th mat-header-cell *matHeaderCellDef>Visitor Team Score</th>
+    <td mat-cell *matCellDef="let game">{{game.VisitorTeamScore}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator 
+#paginator
+[pageSize]="5" 
+[pageSizeOptions]="[5, 10, 25, 100]"
+showFirstLastButtons>
+</mat-paginator>
+</div>

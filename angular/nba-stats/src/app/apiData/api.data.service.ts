@@ -7,6 +7,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Team } from '../team';
 import { Player } from '../player';
+import { Game } from '../game';
+import { GAMES } from '../mock-games';
 //import { PLAYER } from '../mock-player';
 //import { PLAYERS } from '../mock-players';
 //import { TEAM } from '../mock-team';
@@ -22,6 +24,7 @@ export class ApiDataService {
   playerApi = 'api/nba/player';
   teamListApi = 'api/nba/team/list';
   teamApi =  'api/nba/team'
+  gameListApi = 'api/nba/game/list'
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +37,6 @@ export class ApiDataService {
     catchError(this.handleError)
     );
   }
-
 
   getPlayer(first_name:string, last_name:string): Observable<Player> { 
     // return observable of mock data
@@ -64,6 +66,17 @@ export class ApiDataService {
     catchError(this.handleError)
     );
   }
+
+  getGameList(): Observable<Game[]> {
+    //return observable of mock data
+    return of(GAMES);
+
+    //let url = this.baseUrl + this.gameListApi
+    //return this.http.get<Game[]>(url).pipe(
+    //catchError(this.handleError)
+    //);
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
