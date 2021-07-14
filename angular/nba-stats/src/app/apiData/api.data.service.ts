@@ -7,10 +7,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Team } from '../team';
 import { Player } from '../player';
-import { PLAYER } from '../mock-player';
-import { PLAYERS } from '../mock-players';
-import { TEAM } from '../mock-team';
-import { TEAMS } from '../mock-teams';
+//import { PLAYER } from '../mock-player';
+//import { PLAYERS } from '../mock-players';
+//import { TEAM } from '../mock-team';
+//import { TEAMS } from '../mock-teams';
 
 
 @Injectable({
@@ -27,41 +27,42 @@ export class ApiDataService {
 
   getPlayerList(): Observable<Player[]> { 
     // return observable of mock data
-    return of(PLAYERS); 
+    //return of(PLAYERS); 
 
-    // let url = this.baseUrl + this.playerListApi
-    // return this.http.get<Player[]>(url).pipe(
-    //   catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.playerListApi
+    return this.http.get<Player[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
+
 
   getPlayer(first_name:string, last_name:string): Observable<Player> { 
     // return observable of mock data
-    return of(PLAYER); 
+    //return of(PLAYER); 
 
     // call api and return observable 
-    // let url = this.baseUrl + this.playerApi + '?first_name=' + first_name + '&last_name=' + last_name
-    // return this.http.get<Player>(url).pipe(
-    //   catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.playerApi + '?first_name=' + first_name + '&last_name=' + last_name
+    return this.http.get<Player>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   getTeamList(): Observable<Team[]> { 
-    return of(TEAMS);
+    //return of(TEAMS);
     
-    // let url = this.baseUrl + this.teamListApi
-    // return this.http.get<Team[]>(url).pipe(
-    //   catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.teamListApi
+    return this.http.get<Team[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   getTeam(abbreviation:string): Observable<Team> { 
-    return of(TEAM);
+    //return of(TEAM);
     
-    // let url = this.baseUrl + this.teamApi + '?abbreviation=' + abbreviation
-    // return this.http.get<Team>(url).pipe(
-    //   catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.teamApi + '?abbreviation=' + abbreviation
+    return this.http.get<Team>(url).pipe(
+    catchError(this.handleError)
+    );
   }
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

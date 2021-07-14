@@ -301,13 +301,17 @@ class GameRecord:
         self.GameTime = None
         self.VisitorTeamID = None
         self.VisitorTeamScore = None
+        self.HomeTeamAbbr = None
+        self.HomeTeamFullName = None
+        self.VisitorTeamAbbr = None
+        self.VisitorTeamFullName = None
 
 #----------  
     def insert(self, cn):
         insert_statement = f"""
         insert into NBA.Game
-        (ID, GameDate, HomeTeamID, HomeTeamScore, Period, PostSeason, Season, Status, GameTime, VisitorTeamID, 
-        VisitorTeamScore)
+        (ID, GameDate, HomeTeamID, HomeTeamScore, Period, PostSeason, Season, Status, 
+        GameTime, VisitorTeamID, VisitorTeamScore)
         values ({rnull(self.ID, None)}, '{rnull(self.GameDate, None)}', {rnull(self.HomeTeamID, None)},
         {rnull(self.HomeTeamScore, None)}, {rnull(self.Period, None)}, {rnull(self.PostSeason, None)},
         {rnull(self.Season, None)}, '{rnull(self.Status, None)}', '{rnull(self.GameTime, None)}', 
@@ -318,6 +322,48 @@ class GameRecord:
             cn.connection().commit()
         except Exception as e:
             print (f"An exception occurred [{e}]")
+
+    def get_game_list(self, cn):
+        game_list = []
+        select_statement = f"""
+        select g.ID, GameDate, HomeTeamID, ht.Abbreviation as HomeTeamAbbr,
+        ht.FullName as HomeTeamFullName, HomeTeamScore, VisitorTeamID,
+        vt.Abbreviation as VisitorTeamAbbr, vt.FullName as VisitorTeamFullName,
+        VisitorTeamScore, Period, PostSeason, Season, Status, GameTime	   
+        from Game g 
+        join Team ht 
+	        on g.HomeTeamID = ht.ID 
+        join Team vt
+	        on g.VisitorTeamID = vt.ID
+        order by g.ID
+        """
+        #print(select_statement)
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        for row in cursor.fetchall():
+            rec = GameRecord()
+        
+            rec.ID = row.ID
+            rec.GameDate= row.GameDate
+            rec.HomeTeamID = row.HomeTeamID
+            rec.HomeTeamScore = row.HomeTeamScore
+            rec.Period = row.Period
+            rec.PostSeason = row.PostSeason
+            rec.Season = row.Season
+            rec.Status = row.Status
+            rec.GameTime = row.GameTime
+            rec.VisitorTeamID = row.VisitorTeamID
+            rec.VisitorTeamScore = row.VisitorTeamScore
+            rec.HomeTeamAbbr = row.HomeTeamAbbr
+            rec.HomeTeamFullName = row.HomeTeamFullName
+            rec.VisitorTeamAbbr = row.VisitorTeamAbbr
+            rec.VisitorTeamFullName = row.VisitorTeamFullName
+            
+            game_list.append(rec)
+        
+        return game_list
 
 #---------- 
     def __str__(self):

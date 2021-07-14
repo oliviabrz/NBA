@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-from nba_db_record import PlayerRecord, TeamRecord
+from nba_db_record import PlayerRecord, TeamRecord, GameRecord
 from flask import Flask, request, jsonify
 import requests
 import pyodbc
@@ -105,6 +105,34 @@ def get_team_list():
     response.headers.add("Access-Control-Allow-Origin", "*")
 
     return response
+
+#------------------------
+# Game Api's
+#------------------------
+@app.route('/api/nba/game/list', methods=['GET'])
+def get_game_list():
+    game_rec = GameRecord()
+
+    cn = SqlConnection()
+
+    #get list of TeamRecord instances
+    game_list = game_rec.get_game_list(cn)
+
+    #list to hold TeamRecord dictionaries 
+    game_json_list = []
+
+    #iterate over each TeamRecord instance, convert it to a dictionary and
+    #add to dictionary list
+    for rec in game_list:
+        game_json_list.append(rec.__dict__)
+    
+    response = jsonify(game_json_list)
+    
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
+
+
 
 if __name__ == '__main__':
     app.run(port=5000)

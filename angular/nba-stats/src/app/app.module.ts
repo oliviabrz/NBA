@@ -14,6 +14,7 @@ import { TeamComponent } from './team/team.component';
 import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
 import { PlayerComponent } from './player/player.component';
 import { TeamListComponent } from './team-list/team-list.component';
+import { GameListComponent } from './game-list/game-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TeamListComponent } from './team-list/team-list.component';
     TeamComponent,
     KeyValuePipeComponent,
     PlayerComponent,
-    TeamListComponent
+    TeamListComponent,
+    GameListComponent
   ],
   imports: [
     BrowserModule,
