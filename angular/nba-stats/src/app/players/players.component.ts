@@ -1,35 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Player } from '../player';
-import { PLAYERS } from '../mock-players';
 import { ApiDataService } from '../apiData/api.data.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss']
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent implements OnInit, AfterViewInit {
 
-  //players: Player[] = PLAYERS;
-  players: Player[] = new Array<Player>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   selectedPlayer?: Player;
-  displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName', 'position', 'heightFeet', 'heightInches', 'weightPounds'];
+  players: Player[] = new Array<Player>();
+  dsTable: MatTableDataSource<Player>;
+  //selectedPlayer?: Player;
+  displayedColumns  :  string[] = ['id', 'teamId', 'firstName', 'lastName']; // 'position', 'heightFeet', 'heightInches', 'weightPounds'];
   
   constructor(private apiDataService: ApiDataService) { 
-    //console.info('In constructor')
+    this.dsTable = new MatTableDataSource<Player>();
+    console.info('In players-component constructor')
   }
 
   ngOnInit(): void {
     //console.info('In ngOnInit')
-    //this.players = PLAYERS;
+
+    // get api data:
     this.apiDataService.getPlayerList()
     .subscribe((data) => {    
-      this.players = data
+      this.dsTable.data = data;
     });
   }
-
-  onSelect(player: Player): void {
-    this.selectedPlayer = player;
+  ngAfterViewInit() {
+    this.dsTable.paginator = this.paginator;
   }
-
+  onSelect(player: Player): void {
+    //this.appState.selectedPlayer = player;
+    this.selectedPlayer = player;
+    console.info('In onSelect')
+  }
 }

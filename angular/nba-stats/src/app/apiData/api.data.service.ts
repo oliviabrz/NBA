@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { of } from 'rxjs';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Team } from '../team';
 import { Player } from '../player';
+import { PLAYER } from '../mock-player';
+import { PLAYERS } from '../mock-players';
+import { TEAM } from '../mock-team';
+import { TEAMS } from '../mock-teams';
 
 
 @Injectable({
@@ -12,17 +18,51 @@ import { Player } from '../player';
 })
 export class ApiDataService {
   baseUrl = 'http://localhost:5000/';
-  playerListApi = 'api/nba/player/list'
+  playerListApi = 'api/nba/player/list';
+  playerApi = 'api/nba/player';
+  teamListApi = 'api/nba/team/list';
+  teamApi =  'api/nba/team'
 
   constructor(private http: HttpClient) { }
 
   getPlayerList(): Observable<Player[]> { 
-    let url = this.baseUrl + this.playerListApi
-    return this.http.get<Player[]>(url).pipe(
-      catchError(this.handleError)
-    );
+    // return observable of mock data
+    return of(PLAYERS); 
+
+    // let url = this.baseUrl + this.playerListApi
+    // return this.http.get<Player[]>(url).pipe(
+    //   catchError(this.handleError)
+    // );
   }
 
+  getPlayer(first_name:string, last_name:string): Observable<Player> { 
+    // return observable of mock data
+    return of(PLAYER); 
+
+    // call api and return observable 
+    // let url = this.baseUrl + this.playerApi + '?first_name=' + first_name + '&last_name=' + last_name
+    // return this.http.get<Player>(url).pipe(
+    //   catchError(this.handleError)
+    // );
+  }
+
+  getTeamList(): Observable<Team[]> { 
+    return of(TEAMS);
+    
+    // let url = this.baseUrl + this.teamListApi
+    // return this.http.get<Team[]>(url).pipe(
+    //   catchError(this.handleError)
+    // );
+  }
+
+  getTeam(abbreviation:string): Observable<Team> { 
+    return of(TEAM);
+    
+    // let url = this.baseUrl + this.teamApi + '?abbreviation=' + abbreviation
+    // return this.http.get<Team>(url).pipe(
+    //   catchError(this.handleError)
+    // );
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

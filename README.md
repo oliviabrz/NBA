@@ -40,6 +40,7 @@
 2. PKI (public key infrastructure)
     -public/private key
     -used to make https secure
+    -https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
 3. http server
 4. HTTP methods
     -GET, POST, PUT, DELETE
@@ -120,14 +121,16 @@ Things we've learned about:
 6. HttpClient service class
     -https://angular.io/guide/http
     -this is what we used to call our Restful api's
-7. Angular Client 
-    -ng 
+7. Angular Client (ng)
+    -https://angular.io/cli
     -scaffold new application
         -ng new 
     -build application
         -ng build
     -run application
         -ng serve
+8. MaterialTable (MatTable)
+    -https://stackblitz.com/edit/angular-kj6g7p?file=src%2Fapp%2Fcomponents-table%2Fcomponents-table.component.html
 
 ## Possible ideas for site functionality 
 1. Search player stats based on player name or team
