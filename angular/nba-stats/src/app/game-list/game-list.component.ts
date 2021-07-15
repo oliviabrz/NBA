@@ -16,7 +16,7 @@ export class GameListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   games: Game[] = new Array<Game>();
   dsTable: MatTableDataSource<Game>;
-  displayedColumns  :  string[] = ['gameDate', 'season', 'homeTeamFullName', 'homeTeamScore', 'visitorTeamFullName', 'visitorTeamscore']
+  displayedColumns  :  string[] = ['gameDate', 'season', 'homeTeamFullName', 'homeTeamScore', 'visitorTeamFullName', 'visitorTeamScore']
 
   constructor(private apiDataService: ApiDataService) {
     this.dsTable = new MatTableDataSource<Game>();
@@ -27,12 +27,11 @@ export class GameListComponent implements OnInit, AfterViewInit {
     // this is api data:
     this.apiDataService.getGameList()
     .subscribe((data) => {    
-    this.dsTable.data = data
+      this.dsTable.data = data
     });
-    
-  }
-  ngAfterViewInit() {
-    this.dsTable.paginator = this.paginator;
   }
 
+  ngAfterViewInit(): void {
+    this.dsTable.paginator = this.paginator;
+  }
 }

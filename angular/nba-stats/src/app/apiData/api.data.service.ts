@@ -10,9 +10,9 @@ import { Player } from '../player';
 import { Game } from '../game';
 import { GAMES } from '../mock-games';
 //import { PLAYER } from '../mock-player';
-//import { PLAYERS } from '../mock-players';
+import { PLAYERS } from '../mock-players';
 //import { TEAM } from '../mock-team';
-//import { TEAMS } from '../mock-teams';
+import { TEAMS } from '../mock-teams';
 
 
 @Injectable({
@@ -30,12 +30,12 @@ export class ApiDataService {
 
   getPlayerList(): Observable<Player[]> { 
     // return observable of mock data
-    //return of(PLAYERS); 
+    return of(PLAYERS); 
 
-    let url = this.baseUrl + this.playerListApi
-    return this.http.get<Player[]>(url).pipe(
-    catchError(this.handleError)
-    );
+    // let url = this.baseUrl + this.playerListApi
+    // return this.http.get<Player[]>(url).pipe(
+    // catchError(this.handleError)
+    // );
   }
 
   getPlayer(first_name:string, last_name:string): Observable<Player> { 
@@ -50,12 +50,12 @@ export class ApiDataService {
   }
 
   getTeamList(): Observable<Team[]> { 
-    //return of(TEAMS);
+    return of(TEAMS);
     
-    let url = this.baseUrl + this.teamListApi
-    return this.http.get<Team[]>(url).pipe(
-    catchError(this.handleError)
-    );
+    // let url = this.baseUrl + this.teamListApi
+    // return this.http.get<Team[]>(url).pipe(
+    // catchError(this.handleError)
+    // );
   }
 
   getTeam(abbreviation:string): Observable<Team> { 
