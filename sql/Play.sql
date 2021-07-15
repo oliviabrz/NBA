@@ -14,6 +14,8 @@ select * from NBA.Team
 
 select * from NBA.Player
 
+select * from NBA.Game
+
 select COUNT(*) from NBA.Player;
 
 select COUNT(*) from NBA.PlayerGameStats;
