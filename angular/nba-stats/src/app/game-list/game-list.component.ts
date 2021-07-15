@@ -11,8 +11,8 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })
-export class GameListComponent implements OnInit, AfterViewInit {
 
+export class GameListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   games: Game[] = new Array<Game>();
   dsTable: MatTableDataSource<Game>;

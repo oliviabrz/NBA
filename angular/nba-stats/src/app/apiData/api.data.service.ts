@@ -30,12 +30,12 @@ export class ApiDataService {
 
   getPlayerList(): Observable<Player[]> { 
     // return observable of mock data
-    return of(PLAYERS); 
+    //return of(PLAYERS); 
 
-    // let url = this.baseUrl + this.playerListApi
-    // return this.http.get<Player[]>(url).pipe(
-    // catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.playerListApi
+    return this.http.get<Player[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   getPlayer(first_name:string, last_name:string): Observable<Player> { 
@@ -50,12 +50,12 @@ export class ApiDataService {
   }
 
   getTeamList(): Observable<Team[]> { 
-    return of(TEAMS);
+    //return of(TEAMS);
     
-    // let url = this.baseUrl + this.teamListApi
-    // return this.http.get<Team[]>(url).pipe(
-    // catchError(this.handleError)
-    // );
+    let url = this.baseUrl + this.teamListApi
+    return this.http.get<Team[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   getTeam(abbreviation:string): Observable<Team> { 
@@ -69,12 +69,12 @@ export class ApiDataService {
 
   getGameList(): Observable<Game[]> {
     //return observable of mock data
-    return of(GAMES);
+    //return of(GAMES);
 
-    //let url = this.baseUrl + this.gameListApi
-    //return this.http.get<Game[]>(url).pipe(
-    //catchError(this.handleError)
-    //);
+    let url = this.baseUrl + this.gameListApi
+    return this.http.get<Game[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

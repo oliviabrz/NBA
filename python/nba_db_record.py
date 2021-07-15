@@ -2,6 +2,7 @@
 
 import pyodbc 
 import json
+import datetime
 
 def rnull(val, cmp):
     return val if val != cmp else 'NULL'
@@ -346,7 +347,7 @@ class GameRecord:
             rec = GameRecord()
         
             rec.ID = row.ID
-            rec.GameDate= row.GameDate
+            rec.GameDate= row.GameDate.strftime('%Y-%m-%d')
             rec.HomeTeamID = row.HomeTeamID
             rec.HomeTeamScore = row.HomeTeamScore
             rec.Period = row.Period
