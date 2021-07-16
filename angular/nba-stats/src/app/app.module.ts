@@ -6,17 +6,19 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule } from '@angular/material/menu'; 
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
+
 import { PlayersComponent } from './players/players.component';
 import { TeamComponent } from './team/team.component';
-import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
 import { PlayerComponent } from './player/player.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { GameListComponent } from './game-list/game-list.component';
+import { MenuComponent } from './menu/menu.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { GameListComponent } from './game-list/game-list.component';
     KeyValuePipeComponent,
     PlayerComponent,
     TeamListComponent,
-    GameListComponent
+    GameListComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +40,8 @@ import { GameListComponent } from './game-list/game-list.component';
     MatPaginatorModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatMenuModule,
     MatButtonModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
