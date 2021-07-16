@@ -37,6 +37,5 @@ export class PlayersComponent implements OnInit, AfterViewInit {
   onSelect(player: Player): void {
     //this.appState.selectedPlayer = player;
     this.selectedPlayer = player;
-    console.info('In onSelect')
   }
 }

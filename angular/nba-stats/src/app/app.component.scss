@@ -35,15 +35,20 @@ h1 {
 /* Control the left side */
 .left {
   left: 0;
-  width: 25%;
+  width: 13%;
   background-color:lightblue;
+  margin: 0;
+  padding-top: 20px;
 }
 
 /* Control the right side */
 .right {
   right: 0;
-  width: 75%;
-  //background-color: red;
+  padding-left: 30px;
+  width: 87%;
+  background-color:lightgreen;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 /* If you want the content centered horizontally and vertically */
@@ -55,8 +60,38 @@ h1 {
   text-align: center;
 }
 
-/* Style the image inside the centered container, if needed */
-.centered img {
-  width: 150px;
-  border-radius: 50%;
+.centered_horizontal {
+  position: absolute;
+  margin-top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  margin: 0px;
+}
+
+.component-title {
+  margin: 5px;
+}
+
+.button {
+  opacity: 5;
+  background-color: transparent;
+  border: none;
+  color: none;
+  padding: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  // cursor: pointer;
+}
+
+.component-display {
+  overflow: auto;
 }

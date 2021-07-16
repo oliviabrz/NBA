@@ -47,7 +47,7 @@ export class TeamComponent implements OnInit, OnChanges {
       this.dsTable.data = this.tableData;
     }
     else {
-      console.info("in player-component ngOnChanges: selectedTeam null");
+      console.info("in team-component ngOnChanges: selectedTeam null");
     }   
   }
 }

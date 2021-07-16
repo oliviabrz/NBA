@@ -1,17 +1,35 @@
-<h1>{{title}}</h1>
+<div>
+  <h1 class='title'>{{title}}</h1>
+</div>
 
 <div class="split left">
-    <div>
-        <app-menu></app-menu>
+    <div class='centered_horizontal'>
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <button class="button" (click)="LoadComponent('Players');">Players</button>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <button class="button" (click)="LoadComponent('Teams');">Teams</button>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <button class="button" (click)="LoadComponent('Games');">Games</button>
+            </mat-toolbar-row>
+        </mat-toolbar>        
     </div>
-  </div>
-  
-  <div class="split right">
-    <div>
-        
-    </div>
-  </div>
+</div>
 
-<!-- <app-players></app-players> -->
-<!-- <app-team-list></app-team-list> -->
-<!-- <app-game-list></app-game-list>  -->
+<div class="split right">
+
+    <div *ngIf= 'loadPlayersComponent'>
+        <app-players></app-players>
+    </div>
+
+    <div *ngIf= 'loadTeamsComponent'>
+        <app-team-list></app-team-list>
+    </div>
+
+    <div *ngIf= 'loadGamesComponent'>
+        <app-game-list></app-game-list>
+    </div>
+
+</div>
