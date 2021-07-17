@@ -289,26 +289,25 @@ class PlayerGameStatsRecord:
         for row in cursor.fetchall():
             rec = PlayerGameStatsRecord()
         
-            rec.ID = row.ID
-            rec.Min= row.Min
-            rec.Ast= row.Ast
-            rec.Blk = row.Blk
-            rec.Dreb = row.Dreb
-            rec.Fg3a = row.Fg3a
-            rec.Fg3m = row.Fg3m
-            rec.Fg3Pct= row.Fg3Pct
-            rec.Fga= row.Fga
-            rec.Fgm= row.Fgm
-            rec.FgPct = row.FgPct
-            rec.Fta= row.Fta
-            rec.Ftm = row.Ftm
-            rec.FtPct = row.FtPct
-            rec.Oreb = row.Oreb
-            rec.Pf = row.Pf
-            rec.Pts = row.Pts
-            rec.Reb = row.Reb
-            rec.Stl = row.Stl
-            rec.Turnover = row.Turnover
+            rec.Min= str(row.Min)
+            rec.Ast= str(row.Ast)
+            rec.Blk = str(row.Blk)
+            rec.Dreb = str(row.Dreb)
+            rec.Fg3a = str(row.Fg3a)
+            rec.Fg3m = str(row.Fg3m)
+            rec.Fg3Pct= str(row.Fg3Pct)
+            rec.Fga= str(row.Fga)
+            rec.Fgm= str(row.Fgm)
+            rec.FgPct = str(row.FgPct)
+            rec.Fta= str(row.Fta)
+            rec.Ftm = str(row.Ftm)
+            rec.FtPct = str(row.FtPct)
+            rec.Oreb = str(row.Oreb)
+            rec.Pf = str(row.Pf)
+            rec.Pts = str(row.Pts)
+            rec.Reb = str(row.Reb)
+            rec.Stl = str(row.Stl)
+            rec.Turnover = str(row.Turnover)
             
             game_stats_list.append(rec)
         

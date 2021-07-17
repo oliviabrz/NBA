@@ -139,6 +139,8 @@ def get_game_list():
 def get_game_stats_list():
     #get query string parameter from the Flask request object
     season = request.args.get('season')
+    if season is None:
+        season = 2020
 
     game_stats_rec = PlayerGameStatsRecord()
 
