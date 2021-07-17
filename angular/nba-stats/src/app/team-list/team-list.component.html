@@ -56,7 +56,7 @@ showFirstLastButtons>
 </mat-paginator>
 </div>
 <div>
-  <app-team [selectedTeam]="selectedTeam"></app-team>
+  <app-team *ngIf= 'selectedTeam' [selectedTeam]="selectedTeam"></app-team>
 </div>
 
 

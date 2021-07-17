@@ -63,6 +63,6 @@
 </div>
 
 <div>
-  <app-player [selectedPlayer]="selectedPlayer"></app-player>
+  <app-player *ngIf= 'selectedPlayer' [selectedPlayer]="selectedPlayer"></app-player>
 </div>
 
