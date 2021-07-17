@@ -13,6 +13,8 @@ import { GAMES } from '../mock-games';
 import { PLAYERS } from '../mock-players';
 //import { TEAM } from '../mock-team';
 import { TEAMS } from '../mock-teams';
+import { GameStats } from '../game-stats';
+import { GAMESTATS } from '../mock-game-stats';
 
 
 @Injectable({
@@ -23,8 +25,9 @@ export class ApiDataService {
   playerListApi = 'api/nba/player/list';
   playerApi = 'api/nba/player';
   teamListApi = 'api/nba/team/list';
-  teamApi =  'api/nba/team'
-  gameListApi = 'api/nba/game/list'
+  teamApi =  'api/nba/team';
+  gameListApi = 'api/nba/game/list';
+  gameStatsApi = 'api/nba/game/stats/list';
 
   constructor(private http: HttpClient) { }
 
@@ -75,6 +78,15 @@ export class ApiDataService {
     return this.http.get<Game[]>(url).pipe(
     catchError(this.handleError)
     );
+  }
+
+  getGameStats(): Observable<GameStats[]> { 
+    return of(GAMESTATS);
+    
+    // let url = this.baseUrl + this.gameStatsApi
+    // return this.http.get<GameStats[]>(url).pipe(
+    // catchError(this.handleError)
+    // );
   }
 
   private handleError(error: HttpErrorResponse) {
