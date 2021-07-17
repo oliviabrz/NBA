@@ -29,7 +29,7 @@ h1 {
   z-index: 1;
   top: 10;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 /* Control the left side */
@@ -38,7 +38,7 @@ h1 {
   width: 13%;
   background-color:lightblue;
   margin: 0;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 /* Control the right side */
@@ -75,6 +75,7 @@ h1 {
 
 .component-title {
   margin: 5px;
+  text-align: center;
 }
 
 .button {

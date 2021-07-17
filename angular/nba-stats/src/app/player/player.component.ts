@@ -25,12 +25,12 @@ export class PlayerComponent implements OnInit, OnChanges {
       if (player != undefined) {
         console.info("in player-component ngOnChanges: selectedPlayer not null");
         this.tableData = [
-          {Key: 'FirstName', Value: player.FirstName},
-          {Key: 'LastName', Value: player.LastName},
+          {Key: 'First Name', Value: player.FirstName},
+          {Key: 'Last Name', Value: player.LastName},
           {Key: 'Position', Value: player.Position},
-          {Key: 'WeightPounds', Value: player.WeightPounds},
-          {Key: 'HeightFeet', Value: player.HeightFeet},
-          {Key: 'HeightInches', Value: player.HeightInches},
+          {Key: 'Weight (lbs)', Value: player.WeightPounds},
+          {Key: 'Height (ft)', Value: player.HeightFeet},
+          {Key: 'Height (in)', Value: player.HeightInches},
   
         ];
         this.dsTable.data = this.tableData;

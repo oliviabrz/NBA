@@ -1,13 +1,18 @@
-<h2>Team Detail</h2>
+<div style='margin-top:5%'>
 
-<table mat-table [dataSource]="dsTable">
-  <ng-container  matColumnDef="Key">
-    <td mat-cell *matCellDef="let item"> {{item.Key}}</td>
-  </ng-container>
+  <div>
+    <h2 class='component-title'>Team Detail</h2>
+  </div>
 
-  <ng-container  matColumnDef="Value">
-    <td mat-cell *matCellDef="let item">{{item.Value}}</td>
-  </ng-container>
+  <table mat-table [dataSource]="dsTable">
+    <ng-container matColumnDef="Key">
+      <td mat-cell *matCellDef="let item"> {{item.Key}}</td>
+    </ng-container>
 
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+    <ng-container matColumnDef="Value">
+      <td mat-cell *matCellDef="let item">{{item.Value}}</td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

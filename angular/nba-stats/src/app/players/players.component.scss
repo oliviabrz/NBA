@@ -55,6 +55,10 @@
     margin-left: 0%;
   }
 
+  tr.mat-row, tr.mat-footer-row {
+    height: 35px;
+  }
+
   .mat-column-id {
     color: blue;
     font-size: medium;
@@ -71,3 +75,8 @@
   .component-display {
     overflow: auto;
   }
+
+  .component-title {
+    margin: 0px;
+  }
+  
