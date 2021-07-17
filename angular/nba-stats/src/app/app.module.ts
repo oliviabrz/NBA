@@ -18,6 +18,7 @@ import { PlayerComponent } from './player/player.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { MenuComponent } from './menu/menu.component';
+import { GameStatsComponent } from './game-stats/game-stats.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MenuComponent } from './menu/menu.component';
     PlayerComponent,
     TeamListComponent,
     GameListComponent,
-    MenuComponent
+    MenuComponent,
+    GameStatsComponent
   ],
   imports: [
     BrowserModule,
