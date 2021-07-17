@@ -16,11 +16,14 @@ select * from NBA.Player
 
 select * from NBA.Game
 
+select * from NBA.PlayerGameStats 
+
 select COUNT(*) from NBA.Player;
 
 select COUNT(*) from NBA.PlayerGameStats;
 
-select COUNT(*) from NBA.Game;
+select COUNT(*) from NBA.Game
+where PostSeason = 0
 
 select * from NBA.Game where ID = '444934';
 
@@ -91,3 +94,11 @@ SHOW SESSION VARIABLES LIKE 'collation\_%';
 select ID, Abbreviation, City, Conference, Division, FullName, Name
 from NBA.Team t
 where t.Abbreviation = 'LAC'
+
+SELECT Min, Fgm, Fg3m, Fga, Fg3a, Ftm, Fta, Oreb, Dreb, Reb, Ast, Stl, Blk,
+	   Turnover, Pf, Pts, FgPct, FtPct, Fg3Pct, g.GameDate, g.Season, g.PostSeason 
+FROM NBA.PlayerGameStats pgs 
+join NBA.Game g 
+	on pgs.GameID = g.ID 
+where g.Season >= 2018
+--select COUNT(*)

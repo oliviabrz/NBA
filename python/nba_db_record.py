@@ -270,6 +270,49 @@ class PlayerGameStatsRecord:
 
         cn.cursor().execute(insert_statement)
         cn.connection().commit()
+    
+    def get_game_stats_list(self, cn, season):
+        game_stats_list = []
+        select_statement = f"""
+        SELECT Min, Fgm, Fg3m, Fga, Fg3a, Ftm, Fta, Oreb, Dreb, Reb, Ast, Stl, Blk,
+	           Turnover, Pf, Pts, FgPct, FtPct, Fg3Pct, g.GameDate, g.Season, g.PostSeason 
+        FROM NBA.PlayerGameStats pgs 
+        join NBA.Game g 
+	        on pgs.GameID = g.ID 
+        where g.Season >= {season}
+        """
+        #print(select_statement)
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+        
+        for row in cursor.fetchall():
+            rec = PlayerGameStatsRecord()
+        
+            rec.ID = row.ID
+            rec.Min= row.Min
+            rec.Ast= row.Ast
+            rec.Blk = row.Blk
+            rec.Dreb = row.Dreb
+            rec.Fg3a = row.Fg3a
+            rec.Fg3m = row.Fg3m
+            rec.Fg3Pct= row.Fg3Pct
+            rec.Fga= row.Fga
+            rec.Fgm= row.Fgm
+            rec.FgPct = row.FgPct
+            rec.Fta= row.Fta
+            rec.Ftm = row.Ftm
+            rec.FtPct = row.FtPct
+            rec.Oreb = row.Oreb
+            rec.Pf = row.Pf
+            rec.Pts = row.Pts
+            rec.Reb = row.Reb
+            rec.Stl = row.Stl
+            rec.Turnover = row.Turnover
+            
+            game_stats_list.append(rec)
+        
+        return game_stats_list
 
 #----------
     def __str__(self):
@@ -306,6 +349,7 @@ class GameRecord:
         self.HomeTeamFullName = None
         self.VisitorTeamAbbr = None
         self.VisitorTeamFullName = None
+
 
 #----------  
     def insert(self, cn):
