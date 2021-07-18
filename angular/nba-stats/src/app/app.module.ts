@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
+//import { MatInputModule } from '@angular/material/input';
 
 import { PlayersComponent } from './players/players.component';
 import { TeamComponent } from './team/team.component';
@@ -19,6 +20,7 @@ import { TeamListComponent } from './team-list/team-list.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
+
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { GameStatsComponent } from './game-stats/game-stats.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
+    //MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

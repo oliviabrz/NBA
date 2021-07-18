@@ -2,12 +2,23 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { GameStats } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 import { ApiDataService } from '../apiData/api.data.service';
+
+interface Season {
+  value : number;
+  viewValue: string;
+}
 @Component({
   selector: 'app-game-stats',
   templateUrl: './game-stats.component.html',
   styleUrls: ['./game-stats.component.scss']
 })
 export class GameStatsComponent implements OnInit, AfterViewInit {
+  selectedSeason: number | undefined
+  seasons: Season[] = [
+    {value: 2018, viewValue: '2018'},
+    {value: 2019, viewValue: '2019'},
+    {value: 2020, viewValue: '2020'}
+  ];
 
   gameStats: GameStats[] = new Array<GameStats>();
   

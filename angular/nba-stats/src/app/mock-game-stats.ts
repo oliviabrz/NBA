@@ -5,7 +5,7 @@ export const GAMESTATS: GameStatsJson[] = [
         "Ast": "1.0000",
         "Blk": "1.0000",
         "Dreb": "2.0000",
-        "Fg3Pct": "33.3000",
+        "Fg3Pct": ".0742",
         "Fg3a": "6.0000",
         "Fg3m": "2.0000",
         "FgPct": "25.0000",

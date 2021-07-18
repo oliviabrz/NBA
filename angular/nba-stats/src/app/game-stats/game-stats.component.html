@@ -1,1 +1,39 @@
-<p>game-stats works!</p>
+<p> Selected season: {{selectedSeason}} </p>
+<mat-form-field appearance="fill">
+  <mat-label>Season</mat-label>
+  <select matNativeControl [(ngModel)]="selectedSeason" name="season">
+    <option value="" selected></option>
+    <option *ngFor="let season of seasons" [value]="season.value">
+      {{season.viewValue}}
+    </option>
+  </select>
+</mat-form-field>
+
+<!-- <div class="container">
+    
+    <table class="table table-striped">
+      <tbody>
+        <tr *ngFor="let game of gameStats">
+          <td>{{ game.Ast }}</td>
+          <td>{{ game.Blk }}</td>
+          <td>{{ game.Dreb }}</td>
+          <td>{{ game.Fg3Pct }}</td>
+          <td>{{ game.Fg3a }}</td>
+          <td>{{ game.Fg3m }}</td>
+          <td>{{ game.FgPct }}</td>
+          <td>{{ game.Fga }}</td>
+          <td>{{ game.Fgm }}</td>
+          <td>{{ game.FtPct }}</td>
+          <td>{{ game.Fta }}</td>
+          <td>{{ game.Ftm }}</td>
+          <td>{{ game.Min }}</td>
+          <td>{{ game.Oreb }}</td>
+          <td>{{ game.Pf }}</td>
+          <td>{{ game.Pts }}</td>
+          <td>{{ game.Reb }}</td>
+          <td>{{ game.Stl }}</td>
+          <td>{{ game.Turnover }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
