@@ -13,7 +13,7 @@ import { GAMES } from '../mock-games';
 import { PLAYERS } from '../mock-players';
 //import { TEAM } from '../mock-team';
 import { TEAMS } from '../mock-teams';
-import { GameStats } from '../game-stats';
+import { GameStats, GameStatsJson } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 
 
@@ -80,11 +80,11 @@ export class ApiDataService {
     );
   }
 
-  getGameStats(): Observable<GameStats[]> { 
+  getGameStats(): Observable<GameStatsJson[]> { 
     return of(GAMESTATS);
     
     // let url = this.baseUrl + this.gameStatsApi
-    // return this.http.get<GameStats[]>(url).pipe(
+    // return this.http.get<GameStatsJson[]>(url).pipe(
     // catchError(this.handleError)
     // );
   }

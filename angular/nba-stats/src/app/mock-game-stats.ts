@@ -1,6 +1,6 @@
-import { GameStats } from './game-stats';
+import { GameStatsJson } from './game-stats';
 
-export const GAMESTATS: GameStats[] = [
+export const GAMESTATS: GameStatsJson[] = [
     {
         "Ast": "1.0000",
         "Blk": "1.0000",

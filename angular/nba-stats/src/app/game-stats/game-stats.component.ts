@@ -2,10 +2,6 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { GameStats } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 import { ApiDataService } from '../apiData/api.data.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { Kvp } from '../kvp';
-import { MatPaginator } from '@angular/material/paginator';
-
 @Component({
   selector: 'app-game-stats',
   templateUrl: './game-stats.component.html',
@@ -13,25 +9,41 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class GameStatsComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   gameStats: GameStats[] = new Array<GameStats>();
-  dsTable: MatTableDataSource<GameStats>;
-  displayedColumns  :  string[] = ['id', 'fullName'] //'name', 'abbreviation', 'city', 'conference', 'division'];
   
-  constructor(private apiDataService: ApiDataService) { 
-    this.dsTable = new MatTableDataSource<GameStats>();
-    //console.info('In constructor')
-  }
+  constructor(private apiDataService: ApiDataService) { }
 
   ngOnInit(): void {
     // this is api data:
     this.apiDataService.getGameStats()
     .subscribe((data) => {    
-    this.dsTable.data = data
+      this.gameStats = data.map<GameStats>(obj => {
+        return <GameStats>
+        {
+          Ast : parseFloat(obj.Ast),
+          Blk : parseFloat(obj.Blk),
+          Dreb : parseFloat(obj.Dreb),
+          Fg3Pct : parseFloat(obj.Fg3Pct),
+          Fg3a : parseFloat(obj.Fg3a),
+          Fg3m : parseFloat(obj.Fg3m),
+          FgPct: parseFloat(obj.FgPct),
+          Fga : parseFloat(obj.Fga),
+          Fgm : parseFloat(obj.Fgm),
+          FtPct : parseFloat(obj.FtPct),
+          Fta : parseFloat(obj.Fta),
+          Ftm : parseFloat(obj.Ftm),
+          Min : parseFloat(obj.Min),
+          Oreb : parseFloat(obj.Oreb),
+          Pf : parseFloat(obj.Pf),
+          Pts : parseFloat(obj.Pts),
+          Reb : parseFloat(obj.Reb),
+          Stl : parseFloat(obj.Stl),
+          Turnover : parseFloat(obj.Turnover)
+        } 
+    });
     });
   }
-  
+
   ngAfterViewInit() {
-    this.dsTable.paginator = this.paginator;
   }
 }

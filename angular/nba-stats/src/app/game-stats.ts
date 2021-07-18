@@ -1,4 +1,25 @@
 export interface GameStats {
+    Ast: number;
+    Blk: number;
+    Dreb: number
+    Fg3Pct: number;
+    Fg3a: number;
+    Fg3m: number;
+    FgPct: number;
+    Fga: number;
+    Fgm: number;
+    FtPct: number;
+    Fta: number;
+    Ftm: number;
+    Min: number
+    Oreb: number;
+    Pf: number;
+    Pts: number;
+    Reb: number;
+    Stl: number;
+    Turnover: number;
+}
+export interface GameStatsJson {
     Ast: string;
     Blk: string;
     Dreb: string
