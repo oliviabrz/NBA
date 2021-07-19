@@ -18,7 +18,7 @@
         <p> Selected stat: {{selectedStat}} </p>
         <mat-form-field appearance="fill">
           <mat-label>Stats</mat-label>
-          <select matNativeControl [(ngModel)]="selectedStat" name="stat">
+          <select matNativeControl required [(ngModel)]="selectedStat" name="stat">
             <option value="" selected></option>
             <option *ngFor="let stat of statSelectionList" [value]="stat.value">
               {{stat.viewValue}}

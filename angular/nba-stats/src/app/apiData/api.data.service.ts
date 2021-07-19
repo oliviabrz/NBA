@@ -80,13 +80,13 @@ export class ApiDataService {
     );
   }
 
-  getGameStats(): Observable<GameStatsJson[]> { 
-    return of(GAMESTATS);
+  getGameStats(selectedSeason: number, selectedStat: string): Observable<GameStatsJson[]> { 
+    //return of(GAMESTATS);
     
-    // let url = this.baseUrl + this.gameStatsApi
-    // return this.http.get<GameStatsJson[]>(url).pipe(
-    // catchError(this.handleError)
-    // );
+    let url = `{this.baseUrl}{this.gameStatsApi}?season={selectedSeason}&stat={selectedStat}`
+    return this.http.get<GameStatsJson[]>(url).pipe(
+    catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -17,7 +17,7 @@ interface StatSelection {
   styleUrls: ['./game-stats.component.scss']
 })
 export class GameStatsComponent implements OnInit, AfterViewInit {
-  selectedSeason: number | undefined
+  selectedSeason: number = 2020;
   selectedStat: string | undefined
 
   seasonSelectionList: SeasonSelection[] = [
@@ -51,9 +51,17 @@ export class GameStatsComponent implements OnInit, AfterViewInit {
 
   constructor(private apiDataService: ApiDataService) { }
 
-  ngOnInit(): void {
+  onSubmit(): void {
+    //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
+    if (!this.selectedStat) {
+      alert('You must select a stat before submitting!');
+      return;
+    }
+
+    alert('we are here');
+
     // this is api data:
-    this.apiDataService.getGameStats()
+    this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
       .subscribe((data) => {
         this.gameStats = data.map<GameStats>(obj => {
           return <GameStats>
@@ -80,12 +88,11 @@ export class GameStatsComponent implements OnInit, AfterViewInit {
             }
         });
       });
+      //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
   }
+
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
-  }
-
-  onSubmit(): void {
-    alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
   }
 }

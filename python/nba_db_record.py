@@ -271,11 +271,10 @@ class PlayerGameStatsRecord:
         cn.cursor().execute(insert_statement)
         cn.connection().commit()
     
-    def get_game_stats_list(self, cn, season):
+    def get_game_stats_list(self, cn, season, stat):
         game_stats_list = []
         select_statement = f"""
-        SELECT Min, Fgm, Fg3m, Fga, Fg3a, Ftm, Fta, Oreb, Dreb, Reb, Ast, Stl, Blk,
-	           Turnover, Pf, Pts, FgPct, FtPct, Fg3Pct, g.GameDate, g.Season, g.PostSeason 
+        SELECT {stat}
         FROM NBA.PlayerGameStats pgs 
         join NBA.Game g 
 	        on pgs.GameID = g.ID 
@@ -289,25 +288,44 @@ class PlayerGameStatsRecord:
         for row in cursor.fetchall():
             rec = PlayerGameStatsRecord()
         
-            rec.Min= str(row.Min)
-            rec.Ast= str(row.Ast)
-            rec.Blk = str(row.Blk)
-            rec.Dreb = str(row.Dreb)
-            rec.Fg3a = str(row.Fg3a)
-            rec.Fg3m = str(row.Fg3m)
-            rec.Fg3Pct= str(row.Fg3Pct)
-            rec.Fga= str(row.Fga)
-            rec.Fgm= str(row.Fgm)
-            rec.FgPct = str(row.FgPct)
-            rec.Fta= str(row.Fta)
-            rec.Ftm = str(row.Ftm)
-            rec.FtPct = str(row.FtPct)
-            rec.Oreb = str(row.Oreb)
-            rec.Pf = str(row.Pf)
-            rec.Pts = str(row.Pts)
-            rec.Reb = str(row.Reb)
-            rec.Stl = str(row.Stl)
-            rec.Turnover = str(row.Turnover)
+            if stat == 'Min':
+                rec.Min= str(row.Min)
+            elif stat == 'Ast':
+                rec.Ast= str(row.Ast)
+            elif stat == 'Blk':
+                rec.Blk = str(row.Blk)
+            elif stat == 'Dreb':
+                rec.Dreb = str(row.Dreb)
+            elif stat == 'Fg3a':
+                rec.Fg3a = str(row.Fg3a)
+            elif stat == 'Fg3m':
+                rec.Fg3m = str(row.Fg3m)
+            elif stat == 'Fg3Pct':
+                rec.Fg3Pct= str(row.Fg3Pct)
+            elif stat == 'Fga':
+                rec.Fga= str(row.Fga)
+            elif stat == 'Fgm':
+                rec.Fgm= str(row.Fgm)
+            elif stat == 'FgPct':
+                rec.FgPct = str(row.FgPct)
+            elif stat == 'Fta':
+                rec.Fta= str(row.Fta)
+            elif stat == 'Ftm':
+                rec.Ftm = str(row.Ftm)
+            elif stat == 'FtPct':
+                rec.FtPct = str(row.FtPct)
+            elif stat == 'Oreb':
+                rec.Oreb = str(row.Oreb)
+            elif stat == 'Pf':
+                rec.Pf = str(row.Pf)
+            elif stat == 'Pts':
+                rec.Pts = str(row.Pts)
+            elif stat == 'Reb':
+                rec.Reb = str(row.Reb)
+            elif stat == 'Stl':
+                rec.Stl = str(row.Stl)
+            elif stat == 'Turnover':
+                rec.Turnover = str(row.Turnover)
             
             game_stats_list.append(rec)
         
