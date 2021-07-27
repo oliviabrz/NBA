@@ -21,7 +21,7 @@ import { GAMESTATS } from '../mock-game-stats';
   providedIn: 'root',
 })
 export class ApiDataService {
-  baseUrl = 'http://localhost:5000/';
+  baseUrl = 'http://localhost:5001/';
   playerListApi = 'api/nba/player/list';
   playerApi = 'api/nba/player';
   teamListApi = 'api/nba/team/list';
@@ -83,7 +83,8 @@ export class ApiDataService {
   getGameStats(selectedSeason: number, selectedStat: string): Observable<GameStatsJson[]> { 
     //return of(GAMESTATS);
     
-    let url = `{this.baseUrl}{this.gameStatsApi}?season={selectedSeason}&stat={selectedStat}`
+    let url = `${this.baseUrl}${this.gameStatsApi}?season=${selectedSeason}&stat=${selectedStat}`
+    //alert(url);
     return this.http.get<GameStatsJson[]>(url).pipe(
     catchError(this.handleError)
     );

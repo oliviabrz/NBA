@@ -1,62 +1,66 @@
 <div>
-  <table>
-    <tr>
-      <td>
-        <p> Selected season: {{selectedSeason}} </p>
-        <mat-form-field appearance="fill">
-          <mat-label>Season</mat-label>
-          <select matNativeControl [(ngModel)]="selectedSeason" name="season">
-            <option value="" selected></option>
-            <option *ngFor="let season of seasonSelectionList" [value]="season.value">
-              {{season.viewValue}}
-            </option>
-          </select>
-        </mat-form-field>
-      </td>
+  <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+    <div>
+      <table>
+        <tr>
+          <td>
+            <p> Selected season: {{selectedSeason}} </p>
+            <mat-form-field appearance="fill">
+              <mat-label>Season</mat-label>
+              <select matNativeControl [(ngModel)]="selectedSeason" name="season">
+                <option value="" selected></option>
+                <option *ngFor="let season of seasonSelectionList" [value]="season.value">
+                  {{season.viewValue}}
+                </option>
+              </select>
+            </mat-form-field>
+          </td>
 
-      <td>
-        <p> Selected stat: {{selectedStat}} </p>
-        <mat-form-field appearance="fill">
-          <mat-label>Stats</mat-label>
-          <select matNativeControl required [(ngModel)]="selectedStat" name="stat">
-            <option value="" selected></option>
-            <option *ngFor="let stat of statSelectionList" [value]="stat.value">
-              {{stat.viewValue}}
-            </option>
-          </select>
-        </mat-form-field>
-      </td>
-      <td> 
-          <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-      </td>
-    </tr>
-  </table>
-</div>
-<!-- <div class="container">
-    
-    <table class="table table-striped">
-      <tbody>
-        <tr *ngFor="let game of gameStats">
-          <td>{{ game.Ast }}</td>
-          <td>{{ game.Blk }}</td>
-          <td>{{ game.Dreb }}</td>
-          <td>{{ game.Fg3Pct }}</td>
-          <td>{{ game.Fg3a }}</td>
-          <td>{{ game.Fg3m }}</td>
-          <td>{{ game.FgPct }}</td>
-          <td>{{ game.Fga }}</td>
-          <td>{{ game.Fgm }}</td>
-          <td>{{ game.FtPct }}</td>
-          <td>{{ game.Fta }}</td>
-          <td>{{ game.Ftm }}</td>
-          <td>{{ game.Min }}</td>
-          <td>{{ game.Oreb }}</td>
-          <td>{{ game.Pf }}</td>
-          <td>{{ game.Pts }}</td>
-          <td>{{ game.Reb }}</td>
-          <td>{{ game.Stl }}</td>
-          <td>{{ game.Turnover }}</td>
+          <td>
+            <p> Selected stat: {{selectedStat}} </p>
+            <mat-form-field appearance="fill">
+              <mat-label>Stats</mat-label>
+              <select matNativeControl required [(ngModel)]="selectedStat" name="stat">
+                <option value="" selected></option>
+                <option *ngFor="let stat of statSelectionList" [value]="stat.value">
+                  {{stat.viewValue}}
+                </option>
+              </select>
+            </mat-form-field>
+          </td>
+          <td>
+            <button type="submit" mat-raised-button color="primary">Submit</button>
+          </td>
         </tr>
-      </tbody>
-    </table>
-  </div> -->
+      </table>
+    </div>
+
+    <div>
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngFor="let game of (array$ | async)">
+            <td>{{ game.Ast }}</td>
+            <td>{{ game.Blk }}</td>
+            <td>{{ game.Dreb }}</td>
+            <td>{{ game.Fg3Pct }}</td>
+            <td>{{ game.Fg3a }}</td>
+            <td>{{ game.Fg3m }}</td>
+            <td>{{ game.FgPct }}</td>
+            <td>{{ game.Fga }}</td>
+            <td>{{ game.Fgm }}</td>
+            <td>{{ game.FtPct }}</td>
+            <td>{{ game.Fta }}</td>
+            <td>{{ game.Ftm }}</td>
+            <td>{{ game.Min }}</td>
+            <td>{{ game.Oreb }}</td>
+            <td>{{ game.Pf }}</td>
+            <td>{{ game.Pts }}</td>
+            <td>{{ game.Reb }}</td>
+            <td>{{ game.Stl }}</td>
+            <td>{{ game.Turnover }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>

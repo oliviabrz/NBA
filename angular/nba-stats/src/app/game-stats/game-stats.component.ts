@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { GameStats } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 import { ApiDataService } from '../apiData/api.data.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 interface SeasonSelection {
   value: number;
@@ -14,11 +15,18 @@ interface StatSelection {
 @Component({
   selector: 'app-game-stats',
   templateUrl: './game-stats.component.html',
-  styleUrls: ['./game-stats.component.scss']
+  styleUrls: ['./game-stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class GameStatsComponent implements OnInit, AfterViewInit {
+export class GameStatsComponent implements OnInit {
   selectedSeason: number = 2020;
   selectedStat: string | undefined
+  stats$: Observable<GameStats[]> | undefined;
+  array$ = new BehaviorSubject<GameStats[]>([]);//Declare your array
+  gameStats: GameStats[] = new Array<GameStats>();
+
+  constructor(private apiDataService: ApiDataService, 
+              private changeDetection: ChangeDetectorRef) { }
 
   seasonSelectionList: SeasonSelection[] = [
     { value: 2018, viewValue: '2018' },
@@ -47,52 +55,91 @@ export class GameStatsComponent implements OnInit, AfterViewInit {
     { value: "Turnover", viewValue: "turnover" }
   ];
 
-  gameStats: GameStats[] = new Array<GameStats>();
 
-  constructor(private apiDataService: ApiDataService) { }
-
-  onSubmit(): void {
-    //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
+  onSubmit(formObj: any): void {
     if (!this.selectedStat) {
       alert('You must select a stat before submitting!');
       return;
     }
 
-    alert('we are here');
-
-    // this is api data:
     this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
-      .subscribe((data) => {
-        this.gameStats = data.map<GameStats>(obj => {
-          return <GameStats>
-            {
-              Ast: parseFloat(obj.Ast),
-              Blk: parseFloat(obj.Blk),
-              Dreb: parseFloat(obj.Dreb),
-              Fg3Pct: parseFloat(obj.Fg3Pct),
-              Fg3a: parseFloat(obj.Fg3a),
-              Fg3m: parseFloat(obj.Fg3m),
-              FgPct: parseFloat(obj.FgPct),
-              Fga: parseFloat(obj.Fga),
-              Fgm: parseFloat(obj.Fgm),
-              FtPct: parseFloat(obj.FtPct),
-              Fta: parseFloat(obj.Fta),
-              Ftm: parseFloat(obj.Ftm),
-              Min: parseFloat(obj.Min),
-              Oreb: parseFloat(obj.Oreb),
-              Pf: parseFloat(obj.Pf),
-              Pts: parseFloat(obj.Pts),
-              Reb: parseFloat(obj.Reb),
-              Stl: parseFloat(obj.Stl),
-              Turnover: parseFloat(obj.Turnover)
-            }
-        });
+    .subscribe((data) => {
+      this.gameStats = data.map<GameStats>(obj => {
+        return <GameStats>
+          {
+            Ast: parseFloat(obj.Ast),
+            Blk: parseFloat(obj.Blk),
+            Dreb: parseFloat(obj.Dreb),
+            Fg3Pct: parseFloat(obj.Fg3Pct),
+            Fg3a: parseFloat(obj.Fg3a),
+            Fg3m: parseFloat(obj.Fg3m),
+            FgPct: parseFloat(obj.FgPct),
+            Fga: parseFloat(obj.Fga),
+            Fgm: parseFloat(obj.Fgm),
+            FtPct: parseFloat(obj.FtPct),
+            Fta: parseFloat(obj.Fta),
+            Ftm: parseFloat(obj.Ftm),
+            Min: parseFloat(obj.Min),
+            Oreb: parseFloat(obj.Oreb),
+            Pf: parseFloat(obj.Pf),
+            Pts: parseFloat(obj.Pts),
+            Reb: parseFloat(obj.Reb),
+            Stl: parseFloat(obj.Stl),
+            Turnover: parseFloat(obj.Turnover)
+          }
       });
-      //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
+
+      this.array$.next(this.gameStats);
+    });
+
+    //this is api data:
+    // this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
+    //   .subscribe((data) => {
+    //     this.gameStats = data.map<GameStats>(obj => {
+    //       return <GameStats>
+    // this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
+    //   .subscribe((jsonData) => {
+    //     this.stats$ = new Observable((observer) => {
+    //       observer.next (jsonData.map<GameStats>(obj => {
+    //       return <GameStats>
+    //         {
+    //           Ast: parseFloat(obj.Ast),
+    //           Blk: parseFloat(obj.Blk),
+    //           Dreb: parseFloat(obj.Dreb),
+    //           Fg3Pct: parseFloat(obj.Fg3Pct),
+    //           Fg3a: parseFloat(obj.Fg3a),
+    //           Fg3m: parseFloat(obj.Fg3m),
+    //           FgPct: parseFloat(obj.FgPct),
+    //           Fga: parseFloat(obj.Fga),
+    //           Fgm: parseFloat(obj.Fgm),
+    //           FtPct: parseFloat(obj.FtPct),
+    //           Fta: parseFloat(obj.Fta),
+    //           Ftm: parseFloat(obj.Ftm),
+    //           Min: parseFloat(obj.Min),
+    //           Oreb: parseFloat(obj.Oreb),
+    //           Pf: parseFloat(obj.Pf),
+    //           Pts: parseFloat(obj.Pts),
+    //           Reb: parseFloat(obj.Reb),
+    //           Stl: parseFloat(obj.Stl),
+    //           Turnover: parseFloat(obj.Turnover)
+    //         }
+    //       }));
+    //       //console.log('completed data.next')
+    //       observer.complete()
+    //       //alert('completed data.complete')
+    //     });
+    //   });
+    //   //alert(`onSubmit: ${this.gameStats.length}`)
+    //   //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
+    //   this.changeDetection.detectChanges();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    //alert(`ngOnInit: ${this.gameStats.length}`)
+  }
+
 
   ngAfterViewInit() {
+    //alert(`ngAfterViewInit: ${this.gameStats.length}`)
   }
 }

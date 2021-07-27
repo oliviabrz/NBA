@@ -219,4 +219,4 @@ def get_game_stats_list():
 
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=5001)
