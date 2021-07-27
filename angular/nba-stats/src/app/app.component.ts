@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   loadPlayersComponent: boolean = false;
   loadTeamsComponent: boolean = false;
   loadGamesComponent: boolean = false;
+  loadGameStatsComponent: boolean = false;
 
   constructor(public appState: AppStateService) {
     console.info('In app-component constructor')
@@ -24,16 +25,25 @@ export class AppComponent implements OnInit {
        this.loadPlayersComponent = true;
        this.loadTeamsComponent = false;
        this.loadGamesComponent = false;
+       this.loadGameStatsComponent = false;
       }
       else if (componentName == 'Teams') {
         this.loadPlayersComponent = false;
         this.loadTeamsComponent = true;
         this.loadGamesComponent = false;
+        this.loadGameStatsComponent = false;
        }
        else if (componentName == 'Games') {
         this.loadPlayersComponent = false;
         this.loadTeamsComponent = false;
         this.loadGamesComponent = true;
+        this.loadGameStatsComponent = false;
+       }
+       else if (componentName == 'GameStats') {
+        this.loadPlayersComponent = false;
+        this.loadTeamsComponent = false;
+        this.loadGamesComponent = false;
+        this.loadGameStatsComponent = true;
        }
   }   
 }

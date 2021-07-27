@@ -21,9 +21,10 @@ interface StatSelection {
 export class GameStatsComponent implements OnInit {
   selectedSeason: number = 2020;
   selectedStat: string | undefined
-  stats$: Observable<GameStats[]> | undefined;
-  array$ = new BehaviorSubject<GameStats[]>([]);//Declare your array
+  //stats$: Observable<GameStats[]> | undefined;
+  
   gameStats: GameStats[] = new Array<GameStats>();
+  array$ = new BehaviorSubject<GameStats[]>([]);//Declare your array
 
   constructor(private apiDataService: ApiDataService, 
               private changeDetection: ChangeDetectorRef) { }
