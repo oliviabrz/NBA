@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+//import { ChartsModule } from 'ng2-charts';
 //import { MatInputModule } from '@angular/material/input';
 
 import { PlayersComponent } from './players/players.component';
@@ -20,8 +22,6 @@ import { TeamListComponent } from './team-list/team-list.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
-
-
 
 @NgModule({
   declarations: [
@@ -46,6 +46,10 @@ import { GameStatsComponent } from './game-stats/game-stats.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    //ChartsModule
     //MatInputModule,
   ],
   providers: [],

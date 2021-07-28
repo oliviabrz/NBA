@@ -1,5 +1,5 @@
 <div>
-  <h1 class='title'>{{title}}</h1>
+    <h1 class='title'>{{title}}</h1>
 </div>
 
 <!-- our menu goes here -->
@@ -18,26 +18,26 @@
             <mat-toolbar-row>
                 <button class="button" (click)="LoadComponent('GameStats');">GameStats</button>
             </mat-toolbar-row>
-        </mat-toolbar>        
+        </mat-toolbar>
     </div>
 </div>
 
 <div class="split right">
 
-    <div *ngIf= 'loadPlayersComponent'>
+    <div *ngIf='loadPlayersComponent'>
         <app-players></app-players>
     </div>
 
-    <div *ngIf= 'loadTeamsComponent'>
+    <div *ngIf='loadTeamsComponent'>
         <app-team-list></app-team-list>
     </div>
 
-    <div *ngIf= 'loadGamesComponent'>
+    <div *ngIf='loadGamesComponent'>
         <app-game-list></app-game-list>
     </div>
 
-    <div *ngIf= 'loadGameStatsComponent'>
-    <app-game-stats></app-game-stats>
+    <div *ngIf='loadGameStatsComponent'>
+        <app-game-stats></app-game-stats>
     </div>
 
 </div>

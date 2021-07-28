@@ -3,6 +3,9 @@ import { GameStats } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 import { ApiDataService } from '../apiData/api.data.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { EChartsOption } from 'echarts';
+//import { ChartDataset, ChartOptions } from 'chart.js';
+//import { Color, Label } from 'ng2-charts';
 
 interface SeasonSelection {
   value: number;
@@ -22,9 +25,48 @@ export class GameStatsComponent implements OnInit {
   selectedSeason: number = 2020;
   selectedStat: string | undefined
   //stats$: Observable<GameStats[]> | undefined;
-  
+
   gameStats: GameStats[] = new Array<GameStats>();
   array$ = new BehaviorSubject<GameStats[]>([]);//Declare your array
+  echartsInstance: any;
+  
+  chartOption: EChartsOption = {
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+      },
+    ],
+  };
+  // config = {
+  //   type: 'line',
+  //   this.data,
+  //   options: {}
+  // };
+  // labels = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  // ];
+  // data = {
+  //   labels: this.labels,
+  //   datasets: [{
+  //     label: 'My First dataset',
+  //     backgroundColor: 'rgb(255, 99, 132)',
+  //     borderColor: 'rgb(255, 99, 132)',
+  //     data: [0, 10, 5, 2, 20, 30, 45],
+  //   }]
+  // };
 
   constructor(private apiDataService: ApiDataService, 
               private changeDetection: ChangeDetectorRef) { }
@@ -135,10 +177,14 @@ export class GameStatsComponent implements OnInit {
     //   this.changeDetection.detectChanges();
   }
 
+  onChartInit(ec: any) {
+    this.echartsInstance = ec;
+    //alert('in onChartInit')
+  }
+  
   ngOnInit(): void { 
     //alert(`ngOnInit: ${this.gameStats.length}`)
   }
-
 
   ngAfterViewInit() {
     //alert(`ngAfterViewInit: ${this.gameStats.length}`)
