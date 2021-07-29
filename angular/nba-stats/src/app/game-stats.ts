@@ -18,6 +18,8 @@ export interface GameStats {
     Reb: number;
     Stl: number;
     Turnover: number;
+    GameDate: Date;
+    PostSeason: Boolean;
 }
 export interface GameStatsJson {
     Ast: string;
@@ -38,5 +40,7 @@ export interface GameStatsJson {
     Pts: string;
     Reb: string;
     Stl: string;
-    Turnover: string
+    Turnover: string;
+    GameDate: string;
+    PostSeason: string;
 }

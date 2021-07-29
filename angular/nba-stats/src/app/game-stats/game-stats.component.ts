@@ -106,7 +106,9 @@ export class GameStatsComponent implements OnInit {
             Pts: parseFloat(obj.Pts),
             Reb: parseFloat(obj.Reb),
             Stl: parseFloat(obj.Stl),
-            Turnover: parseFloat(obj.Turnover)
+            Turnover: parseFloat(obj.Turnover),
+            GameDate: new Date(obj.GameDate),
+            PostSeason: parseInt(obj.PostSeason) == 1
           }
       });
 

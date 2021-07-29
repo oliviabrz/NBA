@@ -282,6 +282,7 @@ class PlayerGameStatsRecord:
         join NBA.Game g 
 	        on pgs.GameID = g.ID 
         where g.Season >= {season}
+        order by GameDate ASC
         """
         #print(select_statement)
 
