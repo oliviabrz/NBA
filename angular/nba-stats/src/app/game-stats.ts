@@ -19,7 +19,7 @@ export interface GameStats {
     Stl: number;
     Turnover: number;
     GameDate: Date;
-    PostSeason: Boolean;
+    PostSeason: boolean;
 }
 export interface GameStatsJson {
     Ast: string;
@@ -42,5 +42,5 @@ export interface GameStatsJson {
     Stl: string;
     Turnover: string;
     GameDate: string;
-    PostSeason: string;
+    PostSeason: boolean;
 }

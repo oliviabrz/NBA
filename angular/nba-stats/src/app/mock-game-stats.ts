@@ -20,7 +20,9 @@ export const GAMESTATS: GameStatsJson[] = [
         "Pts": "13.0000",
         "Reb": "2.0000",
         "Stl": "0.0000",
-        "Turnover": "4.0000"
+        "Turnover": "4.0000",
+        "GameDate": "2020-12-22",
+        "PostSeason": false
     },
     {
         "Ast": "0.0000",
@@ -41,6 +43,8 @@ export const GAMESTATS: GameStatsJson[] = [
         "Pts": "6.0000",
         "Reb": "1.0000",
         "Stl": "0.0000",
-        "Turnover": "0.0000"
+        "Turnover": "0.0000",
+        "GameDate": "2020-12-22",
+        "PostSeason": false
     }
 ]
