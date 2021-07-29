@@ -234,6 +234,9 @@ class PlayerGameStatsRecord:
         self.Stl = None
         self.Turnover = None
 
+        self.GameDate = None
+        self.PostSeason = None
+
 #----------
     def build_sql_values(self):
         sql = f"""{rnull(self.Ast, None)}, {rnull(self.Blk, None)}, {rnull(self.Dreb, None)},
@@ -274,7 +277,7 @@ class PlayerGameStatsRecord:
     def get_game_stats_list(self, cn, season, stat):
         game_stats_list = []
         select_statement = f"""
-        SELECT {stat}
+        SELECT {stat}, GameDate, PostSeason
         FROM NBA.PlayerGameStats pgs 
         join NBA.Game g 
 	        on pgs.GameID = g.ID 
@@ -287,7 +290,12 @@ class PlayerGameStatsRecord:
         
         for row in cursor.fetchall():
             rec = PlayerGameStatsRecord()
-        
+
+            self.GameDate = rec.GameDate
+            rec.GameDate= row.GameDate.strftime('%Y-%m-%d')
+            self.PostSeason = rec.PostSeason
+            rec.PostSeason = bool(row.PostSeason)
+
             if stat == 'Min':
                 rec.Min= str(row.Min)
             elif stat == 'Ast':

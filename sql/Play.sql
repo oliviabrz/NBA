@@ -18,6 +18,8 @@ select * from NBA.Game
 
 select * from NBA.PlayerGameStats 
 
+select * from NBA.StatsAbbreviations 
+
 select COUNT(*) from NBA.Player;
 
 select COUNT(*) from NBA.PlayerGameStats;

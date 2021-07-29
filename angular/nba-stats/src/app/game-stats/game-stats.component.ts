@@ -45,28 +45,6 @@ export class GameStatsComponent implements OnInit {
       },
     ],
   };
-  // config = {
-  //   type: 'line',
-  //   this.data,
-  //   options: {}
-  // };
-  // labels = [
-  //   'January',
-  //   'February',
-  //   'March',
-  //   'April',
-  //   'May',
-  //   'June',
-  // ];
-  // data = {
-  //   labels: this.labels,
-  //   datasets: [{
-  //     label: 'My First dataset',
-  //     backgroundColor: 'rgb(255, 99, 132)',
-  //     borderColor: 'rgb(255, 99, 132)',
-  //     data: [0, 10, 5, 2, 20, 30, 45],
-  //   }]
-  // };
 
   constructor(private apiDataService: ApiDataService, 
               private changeDetection: ChangeDetectorRef) { }
@@ -134,47 +112,6 @@ export class GameStatsComponent implements OnInit {
 
       this.array$.next(this.gameStats);
     });
-
-    //this is api data:
-    // this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
-    //   .subscribe((data) => {
-    //     this.gameStats = data.map<GameStats>(obj => {
-    //       return <GameStats>
-    // this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
-    //   .subscribe((jsonData) => {
-    //     this.stats$ = new Observable((observer) => {
-    //       observer.next (jsonData.map<GameStats>(obj => {
-    //       return <GameStats>
-    //         {
-    //           Ast: parseFloat(obj.Ast),
-    //           Blk: parseFloat(obj.Blk),
-    //           Dreb: parseFloat(obj.Dreb),
-    //           Fg3Pct: parseFloat(obj.Fg3Pct),
-    //           Fg3a: parseFloat(obj.Fg3a),
-    //           Fg3m: parseFloat(obj.Fg3m),
-    //           FgPct: parseFloat(obj.FgPct),
-    //           Fga: parseFloat(obj.Fga),
-    //           Fgm: parseFloat(obj.Fgm),
-    //           FtPct: parseFloat(obj.FtPct),
-    //           Fta: parseFloat(obj.Fta),
-    //           Ftm: parseFloat(obj.Ftm),
-    //           Min: parseFloat(obj.Min),
-    //           Oreb: parseFloat(obj.Oreb),
-    //           Pf: parseFloat(obj.Pf),
-    //           Pts: parseFloat(obj.Pts),
-    //           Reb: parseFloat(obj.Reb),
-    //           Stl: parseFloat(obj.Stl),
-    //           Turnover: parseFloat(obj.Turnover)
-    //         }
-    //       }));
-    //       //console.log('completed data.next')
-    //       observer.complete()
-    //       //alert('completed data.complete')
-    //     });
-    //   });
-    //   //alert(`onSubmit: ${this.gameStats.length}`)
-    //   //alert(`you selected season = [${this.selectedSeason}], stat = [${this.selectedStat}]`);
-    //   this.changeDetection.detectChanges();
   }
 
   onChartInit(ec: any) {

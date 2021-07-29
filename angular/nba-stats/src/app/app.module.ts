@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { KeyValuePipeComponent } from './keyvalue-pipe/keyvalue-pipe.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 //import { ChartsModule } from 'ng2-charts';
-//import { MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 import { PlayersComponent } from './players/players.component';
 import { TeamComponent } from './team/team.component';
@@ -50,7 +50,7 @@ import { GameStatsComponent } from './game-stats/game-stats.component';
       echarts: () => import('echarts'),
     }),
     //ChartsModule
-    //MatInputModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

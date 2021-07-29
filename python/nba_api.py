@@ -171,44 +171,64 @@ def get_game_stats_list():
     # iterate over each TeamRecord instance, convert it to a dictionary and
     # add to dictionary list
     for rec in game_stats_list:
+        new_dict = {'GameDate': rec.GameDate, 'PostSeason': rec.PostSeason}
         if stat == 'Min':
-            game_stats_json_list.append({'Min': rec.Min})
+            new_dict['Min'] = rec.Min
+            game_stats_json_list.append(new_dict)
         elif stat == 'Ast':
-            game_stats_json_list.append({'Ast': rec.Ast})
+            new_dict['Ast'] = rec.Ast
+            game_stats_json_list.append(new_dict)
         elif stat == 'Blk':
-            game_stats_json_list.append({'Blk': rec.Blk})
+            new_dict['Blk'] = rec.Blk
+            game_stats_json_list.append(new_dict)
         elif stat == 'Dreb':
-            game_stats_json_list.append({'Dreb': rec.Dreb})
+            new_dict['Dreb'] = rec.Dreb
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fg3a':
-            game_stats_json_list.append({'Fg3a': rec.Fg3a})
+            new_dict['Fg3a'] = rec.Fg3a
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fg3m':
-            game_stats_json_list.append({'Fg3m': rec.Fg3m})
+            new_dict['Fg3m'] = rec.Fg3m
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fg3Pct':
-            game_stats_json_list.append({'Fg3Pct': rec.Fg3Pct})
+            new_dict['Fg3Pct'] = rec.Fg3Pct
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fga':
-            game_stats_json_list.append({'Fga': rec.Fga})
+            new_dict['Fga'] = rec.Fga
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fgm':
-            game_stats_json_list.append({'Fgm': rec.Fgm})
+            new_dict['Fgm'] = rec.Fgm
+            game_stats_json_list.append(new_dict)
         elif stat == 'FgPct':
-            game_stats_json_list.append({'FgPct': rec.FgPct})
+            new_dict['FgPct'] = rec.FgPct
+            game_stats_json_list.append(new_dict)
         elif stat == 'Fta':
-            game_stats_json_list.append({'Fta': rec.Fta})
+            new_dict['Fta'] = rec.Fta
+            game_stats_json_list.append(new_dict)
         elif stat == 'Ftm':
-            game_stats_json_list.append({'Ftm': rec.Ftm})
+            new_dict['Ftm'] = rec.Ftm
+            game_stats_json_list.append(new_dict)
         elif stat == 'FtPct':
-            game_stats_json_list.append({'FtPct': rec.FtPct})
+            new_dict['FtPct'] = rec.FtPct
+            game_stats_json_list.append(new_dict)
         elif stat == 'Oreb':
-            game_stats_json_list.append({'Oreb': rec.Oreb})
+            new_dict['Oreb'] = rec.Oreb
+            game_stats_json_list.append(new_dict)
         elif stat == 'Pf':
-            game_stats_json_list.append({'Pf': rec.Pf})
+            new_dict['Pf'] = rec.Pf
+            game_stats_json_list.append(new_dict)
         elif stat == 'Pts':
-            game_stats_json_list.append({'Pts': rec.Pts})
+            new_dict['Pts'] = rec.Pts
+            game_stats_json_list.append(new_dict)
         elif stat == 'Reb':
-            game_stats_json_list.append({'Reb': rec.Reb})
+            new_dict['Reb'] = rec.Reb
+            game_stats_json_list.append(new_dict)
         elif stat == 'Stl':
-            game_stats_json_list.append({'Stl': rec.Stl})
+            new_dict['Stl'] = rec.Stl
+            game_stats_json_list.append(new_dict)
         elif stat == 'Turnover':
-            game_stats_json_list.append({'Turnover': rec.Turnover})
+            new_dict['Turnover'] = rec.Turnover
+            game_stats_json_list.append(new_dict)
         # game_stats_json_list.append(rec.__dict__)
 
     response = jsonify(game_stats_json_list)
