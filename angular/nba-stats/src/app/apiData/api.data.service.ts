@@ -13,7 +13,7 @@ import { GAMES } from '../mock-games';
 import { PLAYERS } from '../mock-players';
 //import { TEAM } from '../mock-team';
 import { TEAMS } from '../mock-teams';
-import { GameStats, GameStatsJson } from '../game-stats';
+import { GameStats, GameStatsAggregateJson, GameStatsJson } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 
 
@@ -27,7 +27,7 @@ export class ApiDataService {
   teamListApi = 'api/nba/team/list';
   teamApi =  'api/nba/team';
   gameListApi = 'api/nba/game/list';
-  gameStatsApi = 'api/nba/game/stats/list';
+  gameStatsApi = 'api/nba/game/stats/aggregate';
 
   constructor(private http: HttpClient) { }
 
@@ -80,16 +80,16 @@ export class ApiDataService {
     );
   }
 
-  getGameStats(selectedSeason: number, selectedStat: string): Observable<GameStatsJson[]> { 
+  getGameStats(selectedSeason: number, selectedStat: string): Observable<GameStatsAggregateJson[]> { 
     //return of(GAMESTATS);
     
     let url = `${this.baseUrl}${this.gameStatsApi}?season=${selectedSeason}&stat=${selectedStat}`
     //alert(url);
-    return this.http.get<GameStatsJson[]>(url).pipe(
+    return this.http.get<GameStatsAggregateJson[]>(url).pipe(
     catchError(this.handleError)
     );
   }
-
+  
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

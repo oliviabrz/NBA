@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { GameStats } from '../game-stats';
+import { GameStats, GameStatsAggregate } from '../game-stats';
 import { GAMESTATS } from '../mock-game-stats';
 import { ApiDataService } from '../apiData/api.data.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { EChartsOption } from 'echarts';
+import { DatePipe } from '@angular/common';
+import { ChartOptions } from './echart';
 //import { ChartDataset, ChartOptions } from 'chart.js';
 //import { Color, Label } from 'ng2-charts';
 
@@ -26,28 +28,16 @@ export class GameStatsComponent implements OnInit {
   selectedStat: string | undefined
   //stats$: Observable<GameStats[]> | undefined;
 
-  gameStats: GameStats[] = new Array<GameStats>();
-  array$ = new BehaviorSubject<GameStats[]>([]);//Declare your array
+  //gameStats: GameStats[] = new Array<GameStats>();
+  statsAggregate: GameStatsAggregate[] = new Array<GameStatsAggregate>();
+  array$ = new BehaviorSubject<GameStatsAggregate[]>([]);//Declare your array
   echartsInstance: any;
-  
-  chartOption: EChartsOption = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
-      },
-    ],
-  };
 
+  chartOption: EChartsOption = {};
+ 
   constructor(private apiDataService: ApiDataService, 
-              private changeDetection: ChangeDetectorRef) { }
+              private changeDetection: ChangeDetectorRef, 
+              public datepipe: DatePipe) { }
 
   seasonSelectionList: SeasonSelection[] = [
     { value: 2018, viewValue: '2018' },
@@ -76,7 +66,6 @@ export class GameStatsComponent implements OnInit {
     { value: "Turnover", viewValue: "turnover" }
   ];
 
-
   onSubmit(formObj: any): void {
     if (!this.selectedStat) {
       alert('You must select a stat before submitting!');
@@ -85,34 +74,34 @@ export class GameStatsComponent implements OnInit {
 
     this.apiDataService.getGameStats(this.selectedSeason, this.selectedStat)
     .subscribe((data) => {
-      this.gameStats = data.map<GameStats>(obj => {
-        return <GameStats>
+      this.statsAggregate = data.map<GameStatsAggregate>(obj => {
+
+        let year = Number(obj.StatDate.slice(3,7));
+        let month = Number(obj.StatDate.slice(0, 2));
+        console.log(`month=${month}, year=${year}`)
+        return <GameStatsAggregate>
           {
-            Ast: parseFloat(obj.Ast),
-            Blk: parseFloat(obj.Blk),
-            Dreb: parseFloat(obj.Dreb),
-            Fg3Pct: parseFloat(obj.Fg3Pct),
-            Fg3a: parseFloat(obj.Fg3a),
-            Fg3m: parseFloat(obj.Fg3m),
-            FgPct: parseFloat(obj.FgPct),
-            Fga: parseFloat(obj.Fga),
-            Fgm: parseFloat(obj.Fgm),
-            FtPct: parseFloat(obj.FtPct),
-            Fta: parseFloat(obj.Fta),
-            Ftm: parseFloat(obj.Ftm),
-            Min: parseFloat(obj.Min),
-            Oreb: parseFloat(obj.Oreb),
-            Pf: parseFloat(obj.Pf),
-            Pts: parseFloat(obj.Pts),
-            Reb: parseFloat(obj.Reb),
-            Stl: parseFloat(obj.Stl),
-            Turnover: parseFloat(obj.Turnover),
-            GameDate: new Date(obj.GameDate),
-            PostSeason: obj.PostSeason
+            StatAvg: parseFloat(obj.StatAvg),
+            StatMax: parseFloat(obj.StatMax),
+            StatDate: new Date(year, month),
+            StatName: obj.StatName
           }
       });
 
-      this.array$.next(this.gameStats);
+      let newChartOptions = new ChartOptions();
+    
+      // build x and y axis data arrays
+      for (let stat of this.statsAggregate) {
+        // build x-axis
+        let formattedDate = this.datepipe.transform(stat.StatDate, 'MM-yyyy');
+        //console.log(`StatDate=${stat.StatDate}, formattedDate=${formattedDate}`)
+        newChartOptions.xAxis.data.push(formattedDate ? formattedDate : '');
+      
+        // build y-axis
+        newChartOptions.series.data.push(stat.StatAvg);
+      }
+
+      this.chartOption = newChartOptions.ToObject() as EChartsOption;
     });
   }
 
@@ -129,3 +118,5 @@ export class GameStatsComponent implements OnInit {
     //alert(`ngAfterViewInit: ${this.gameStats.length}`)
   }
 }
+
+

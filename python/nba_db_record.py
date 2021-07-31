@@ -376,7 +376,6 @@ class GameRecord:
         self.VisitorTeamAbbr = None
         self.VisitorTeamFullName = None
 
-
 #----------  
     def insert(self, cn):
         insert_statement = f"""
@@ -452,3 +451,44 @@ class GameRecord:
         VisitorTeamScore: {self.VisitorTeamScore}\n"""
         return string
 
+class StatAggregateRecord:
+    def __init__(self):
+        self.StatName = None
+        self.StatDate = None
+        self.StatAvg = None
+        self.StatMax = None
+    
+    def get_stat_aggregate(self,cn, season, stat):
+        stat_aggregate_list = []
+        select_statement = f"""
+        SELECT DATE_FORMAT(GameDate, '%m-%Y') as StatDate, AVG({stat}) as StatAvg, Max({stat}) as StatMax
+        FROM  NBA.PlayerGameStats pgs 
+        join NBA.Game g 
+	        on pgs.GameID = g.ID 
+        where g.Season = {season}
+        GROUP BY DATE_FORMAT(GameDate, '%m-%Y')"""
+
+        cursor = cn.cursor()
+        cursor.execute(select_statement)
+
+        for row in cursor.fetchall():
+            rec = StatAggregateRecord()
+        
+            rec.StatName= stat
+            rec.StatDate = row.StatDate
+            rec.StatAvg = str(row.StatAvg)
+            rec.StatMax = str(row.StatMax)
+            
+            stat_aggregate_list.append(rec)
+        
+        return stat_aggregate_list
+
+    def __str__(self):
+        string = f"""StatName: {self.StatName}, StatDate: {self.StatDate}, StatAvg: {self.StatAvg}, 
+        StatMax: {self.StatMax}\n"""
+        return string
+
+    def __repr__(self):
+        string = f"""StatName: {self.StatName}, StatDate: {self.StatDate}, StatAvg: {self.StatAvg}, 
+        StatMax: {self.StatMax}\n"""
+        return string

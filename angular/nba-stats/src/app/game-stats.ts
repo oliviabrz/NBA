@@ -44,3 +44,17 @@ export interface GameStatsJson {
     GameDate: string;
     PostSeason: boolean;
 }
+
+export interface GameStatsAggregate {
+    StatAvg: number;
+    StatMax: number;
+    StatDate: Date;
+    StatName: string
+}
+
+export interface GameStatsAggregateJson {
+    StatAvg: string;
+    StatMax: string;
+    StatDate: string;
+    StatName: string
+}

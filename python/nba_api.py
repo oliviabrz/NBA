@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-from nba_db_record import PlayerGameStatsRecord, PlayerRecord, TeamRecord, GameRecord
+from nba_db_record import PlayerGameStatsRecord, PlayerRecord, TeamRecord, GameRecord, StatAggregateRecord
 from flask import Flask, request, jsonify
 import requests
 import pyodbc
@@ -237,6 +237,36 @@ def get_game_stats_list():
 
     return response
 
+@app.route('/api/nba/game/stats/aggregate', methods=['GET'])
+def get_stat_aggregate_list():
+    response = {}
+
+    # get query string parameter from the Flask request object
+    season = request.args.get('season')
+    if season is None:
+        season = 2020
+
+    stat = request.args.get('stat')
+    if stat is None:
+        return response
+
+    stat_aggregate_rec = StatAggregateRecord()
+
+    cn = SqlConnection()
+
+    stat_aggregate_list = stat_aggregate_rec.get_stat_aggregate(cn, season, stat)
+
+    stat_aggregate_json_list = []
+
+    for rec in stat_aggregate_list:
+        new_dict = {'StatName': rec.StatName, 'StatDate': rec.StatDate, 'StatAvg': rec.StatAvg, 'StatMax': rec.StatAvg}
+        stat_aggregate_json_list.append(rec.__dict__)
+
+    response = jsonify(stat_aggregate_json_list)
+
+    response.headers.add("Access-Control-Allow-Origin", "*")
+
+    return response
 
 if __name__ == '__main__':
     app.run(port=5001)

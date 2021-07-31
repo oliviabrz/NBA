@@ -22,6 +22,7 @@ import { TeamListComponent } from './team-list/team-list.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { GameStatsComponent } from './game-stats/game-stats.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { GameStatsComponent } from './game-stats/game-stats.component';
     //ChartsModule
     MatInputModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
