@@ -78,7 +78,10 @@ export class GameStatsComponent implements OnInit {
 
         let year = Number(obj.StatDate.slice(3,7));
         let month = Number(obj.StatDate.slice(0, 2));
-        console.log(`month=${month}, year=${year}`)
+
+        // NOTE: month is 0 based, decrement month by 1
+        month = month > 0 ? month -1 : month;
+        //console.log(`month=${month}, year=${year}`)
         return <GameStatsAggregate>
           {
             StatAvg: parseFloat(obj.StatAvg),

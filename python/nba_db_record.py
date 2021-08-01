@@ -465,7 +465,7 @@ class StatAggregateRecord:
         FROM  NBA.PlayerGameStats pgs 
         join NBA.Game g 
 	        on pgs.GameID = g.ID 
-        where g.Season = {season}
+        where g.Season >= {season}
         GROUP BY DATE_FORMAT(GameDate, '%m-%Y')"""
 
         cursor = cn.cursor()

@@ -104,3 +104,26 @@ join NBA.Game g
 	on pgs.GameID = g.ID 
 where g.Season >= 2018
 --select COUNT(*)
+
+SELECT Blk, GameDate, PostSeason
+        FROM NBA.PlayerGameStats pgs 
+        join NBA.Game g 
+	        on pgs.GameID = g.ID 
+        where g.Season >= 2020
+        order by GameDate DESC 
+        
+SELECT Count(*)
+        FROM NBA.PlayerGameStats pgs 
+        join NBA.Game g 
+	        on pgs.GameID = g.ID 
+        where g.Season >= 2020
+        order by GameDate DESC 
+        
+SELECT DATE_FORMAT(GameDate, '%m-%Y') as StatDate, AVG(Pts) as StateAvg, Max(Pts) as StatMax
+FROM  NBA.PlayerGameStats pgs 
+        join NBA.Game g 
+	        on pgs.GameID = g.ID 
+        where g.Season = 2019
+GROUP BY DATE_FORMAT(GameDate, '%m-%Y')
+
+
