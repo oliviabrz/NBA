@@ -3,6 +3,7 @@ h1 {
     color: #369;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
+    padding-bottom: 10px;
   }
   h2, h3 {
     color: #444;
@@ -29,7 +30,7 @@ h1 {
   z-index: 1;
   top: 10;
   overflow-x: hidden;
-  padding-top: 15px;
+  padding-top: 4px;
 }
 
 /* Control the left side */
@@ -38,7 +39,7 @@ h1 {
   width: 15%;
   background-color:lightblue;
   margin: 0;
-  padding-top: 15px;
+  padding-top: 25px;
 }
 
 /* Control the right side */
@@ -46,7 +47,7 @@ h1 {
   right: 0;
   padding-left: 30px;
   width: 85%;
-  background-color:lightgreen;
+  background-color: white;
   overflow: auto;
   white-space: nowrap;
 }

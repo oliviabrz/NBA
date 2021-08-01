@@ -1,3 +1,25 @@
 .demo-chart {
     height: 400px;
   }
+
+  table {
+    table-layout: fixed ;
+    width: 100% ;
+    border: 1px black solid ;
+    background-color: lavender
+  }
+  th {
+    text-align: left;
+    padding-left: 0px;
+  }
+  td {
+    width: 25% ;
+    border: 0px black;
+    text-align: left;
+    vertical-align: top;
+    padding-left: 0px;
+  }
+
+  select {
+    text-align: left;
+  }

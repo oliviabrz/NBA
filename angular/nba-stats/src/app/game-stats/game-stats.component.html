@@ -1,12 +1,20 @@
 <div>
   <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
     <div>
-      <table>
+      <table> 
+        <th>
+          Selected season: {{selectedSeason}}
+        </th>
+        <th>
+          Selected stat: {{selectedStat}}
+        </th>
+        <th></th>
         <tr>
           <td>
-            <p> Selected season: {{selectedSeason}} </p>
             <mat-form-field appearance="fill">
-              <mat-label>Season</mat-label>
+              <div>
+                <mat-label>Season</mat-label>
+              </div>
               <select matNativeControl [(ngModel)]="selectedSeason" name="season">
                 <option value="" selected></option>
                 <option *ngFor="let season of seasonSelectionList" [value]="season.value">
@@ -17,9 +25,10 @@
           </td>
 
           <td>
-            <p> Selected stat: {{selectedStat}} </p>
-            <mat-form-field appearance="fill">
-              <mat-label>Stats</mat-label>
+            <mat-form-field appearance="fill" hideRequiredMarker>
+              <div>
+                <mat-label>Stats</mat-label>
+              </div>
               <select matNativeControl required [(ngModel)]="selectedStat" name="stat">
                 <option value="" selected></option>
                 <option *ngFor="let stat of statSelectionList" [value]="stat.value">
