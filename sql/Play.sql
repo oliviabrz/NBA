@@ -119,7 +119,7 @@ SELECT Count(*)
         where g.Season >= 2020
         order by GameDate DESC 
         
-SELECT DATE_FORMAT(GameDate, '%m-%Y') as StatDate, AVG(Pts) as StateAvg, Max(Pts) as StatMax
+SELECT DATE_FORMAT(GameDate, '%m-%Y') as StatDate, AVG(Min) as StatAvg
 FROM  NBA.PlayerGameStats pgs 
         join NBA.Game g 
 	        on pgs.GameID = g.ID 
