@@ -158,3 +158,10 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
     We chose HTTP Practical Demonstration. This process is as follows:
         - In GoDaddy, add an `A` record that points to the IP Address of our VM
             - To verify domain IP, run `nslookup olib.cloud` and verify the IP address is correct
+        - In RapidSSL, choose HTTP file verification method
+            - You will be given a .txt file to download 
+            - You will be given the verification URL to pull the file from your VM
+        - On your VM, do the following:
+            - Copy .txt file to a local directory given in the verification URL 
+            - Run `sudo python3 -m  http.server 80` from the root of the path in the verification URL
+            - Verify you can pull the .txt file using the verification URL
