@@ -17,6 +17,7 @@
 ## Relational Database
 1. sql language
 2. mysql
+    -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
 3. first, second, third normal form
 4. dbeaver 
     -client tool used on a mac
@@ -44,6 +45,7 @@
 3. http server
 4. HTTP methods
     -GET, POST, PUT, DELETE
+5. https://developer.mozilla.org/en-US/docs/Web/HTTP
 
 ## Chrome debugger
 ## Network Concepts
@@ -136,3 +138,23 @@ Things we've learned about:
 1. Search player stats based on player name or team
 2. Try to find how many 3 pointers a team has to shoot to get to expected total points x
 3. How many guards are on a team where the team shoots above average the 3 point percentage? Plot the teams 3 point percentage to the number of guards
+
+## SSL Certification
+In order to run our Angular NBA app on our azure VM, we had to secure it with an SSL certificate. The following is the process we used to get our certificate:
+
+1. Purchased `olib.cloud` domain from GoDaddy.com, a domain registrar
+2. Purchased SSL certificate from RapidSSLOnline.com, a Certificate Authority (CA)
+3. Create Certificate Signing Request (CSR) as follows:
+    ### Creating CSR
+    - generate CSR here: https://www.digicert.com/easy-csr/openssl.htm
+    - this generates the openSSL command to generate the CSR and private key
+    > openssl req -new -newkey rsa:2048 -nodes -out junk.csr -keyout junk.key -subj "/C=US/ST=KS/
+    > L=your city/O=junk/CN=junk"
+    - copy generated CSR and paste into RapidSSL CSR screen
+    ### Domain Control Verification (DCV)
+    See: https://docs.digicert.com/manage-certificates/demonstrate-control-over-domains-pending-certificate-order/use-http-practical-demonstration-validation-method-verify-domain-control/
+    Before a certificate can be issued to a domain, you must prove to the CA that you control the domain.
+    There are numerous methods for DCV such as email and HTTP Practical Demonstration.
+    We chose HTTP Practical Demonstration. This process is as follows:
+        - In GoDaddy, add an `A` record that points to the IP Address of our VM
+            - To verify domain IP, run `nslookup olib.cloud` and verify the IP address is correct
