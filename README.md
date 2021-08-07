@@ -172,9 +172,14 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
 ## Linux
 
 ~/NBA/run/python
-~/NBA/run/angular
+/var/www/olib.cloud/html/
+/etc/nginx/sites-available
+www_olib_cloud.key
+www_olib_cloud.pem
+
 ### NGINX
 https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
 sudo mkdir -p /var/www/olib.cloud/html
 sudo chown -R $USER:$USER /var/www/olib.cloud/html
 sudo chmod -R 755 /var/www/olib.cloud
@@ -182,6 +187,8 @@ nano /var/www/olib.cloud/html/index.html
 sudo nano /etc/nginx/sites-available/olib.cloud
 sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
 sudo nano /etc/nginx/nginx.conf
+sudo systemctl restart nginx
+
 
 
 

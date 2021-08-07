@@ -38,7 +38,7 @@ sudo myodbc-installer -a -d -n "MySQL ODBC 8.0 ANSI Driver" -t "Driver=/usr/loca
 flask:
     pip install Flask
 
-curl --location --request GET 'http://localhost:5001/api/nba/game/stats/list?season=2020&stat=FgPct'
+curl --location --request GET 'http://olib.cloud:5001/api/nba/game/stats/list?season=2020&stat=FgPct'
 
 Angular:
 npm install -g @angular/cli
