@@ -21,7 +21,7 @@ import { GAMESTATS } from '../mock-game-stats';
   providedIn: 'root',
 })
 export class ApiDataService {
-  baseUrl = 'http://localhost:5001/';
+  baseUrl = 'http://olib.cloud:5001/';
   playerListApi = 'api/nba/player/list';
   playerApi = 'api/nba/player';
   teamListApi = 'api/nba/team/list';
