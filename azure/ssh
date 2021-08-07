@@ -1,4 +1,4 @@
-ssh -i ~/.ssh/nba-server-key.pem oliviabrz@20.39.55.5
+ssh -i ~/.ssh/nba-server-key.pem oliviabrz@52.168.133.223
 
 sudo mysql -u nba -p
 password: BigJay1@
@@ -62,3 +62,9 @@ https://stackoverflow.com/questions/43492354/how-to-allow-access-outside-localho
 
 2600:1700:2950:6630:ec01:f8aa:9f6c:ea4f
 https://whatismyipaddress.com/
+
+keyvault_name=olibkeyvault
+az keyvault create \
+    --resource-group NBA \
+    --name $keyvault_name \
+    --enabled-for-deployment

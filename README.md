@@ -165,3 +165,27 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
             - Copy .txt file to a local directory given in the verification URL 
             - Run `sudo python3 -m  http.server 80` from the root of the path in the verification URL
             - Verify you can pull the .txt file using the verification URL
+
+## Azure
+
+
+## Linux
+
+~/NBA/run/python
+~/NBA/run/angular
+### NGINX
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+sudo mkdir -p /var/www/olib.cloud/html
+sudo chown -R $USER:$USER /var/www/olib.cloud/html
+sudo chmod -R 755 /var/www/olib.cloud
+nano /var/www/olib.cloud/html/index.html
+sudo nano /etc/nginx/sites-available/olib.cloud
+sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
+sudo nano /etc/nginx/nginx.conf
+
+
+
+
+
+
+
