@@ -14,6 +14,10 @@
 6. Flask
 7. Api
 
+sudo -H pip install Flask
+sudo -H pip install pyodbc
+sudo -H pip install waitress
+
 ## Relational Database
 1. sql language
 2. mysql
@@ -170,6 +174,14 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
 
 
 ## Linux
+### Setup Python Flask Api as a service 
+https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
+sudo nano /etc/systemd/system/api.service
+copy/paste contents of systemd.txt
+sudo systemctl daemon-reload
+sudo systemctl enable api.service
+sudo systemctl start api.service
+sudo systemctl status api.service
 
 ~/NBA/run/python
 /var/www/olib.cloud/html/
@@ -180,6 +192,7 @@ www_olib_cloud.pem
 ### NGINX
 https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
 https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
+https://medium.com/@anasecn/how-to-serve-an-angular-app-with-node-js-api-on-a-nginx-server-ca59de51850
 sudo mkdir -p /var/www/olib.cloud/html
 sudo chown -R $USER:$USER /var/www/olib.cloud/html
 sudo chmod -R 755 /var/www/olib.cloud
