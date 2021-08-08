@@ -270,4 +270,4 @@ def get_stat_aggregate_list():
 
 if __name__ == '__main__':
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5001)
+    serve(app, host="localhost", port=5001)
