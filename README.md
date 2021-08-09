@@ -1,7 +1,7 @@
 # About The Process
 This README documents my learning process to obtain the skills required for a career in Software Development. It began with successfully completing Coursera's [**Google IT Automation with Python**](https://www.coursera.org/professional-certificates/google-it-automation?utm_source=gg&utm_medium=sem&utm_campaign=11-GoogleITwithPython-US&utm_content=11-GoogleITwithPython-US&campaignid=8986236679&adgroupid=119480419197&device=c&keyword=&matchtype=b&network=g&devicemodel=&adpostion=&creativeid=506915205324&hide_mobile_promo&gclid=CjwKCAjwpMOIBhBAEiwAy5M6YC58jIqHwDL-Nn4oPzbaQXaImQMMyW30OKlaNC2EtrXvSsRVKHdxehoCvroQAvD_BwE) course and receiving a certificate of completion. After completion of the course, my mentor felt it was essential to learn about Full Stack Development. We decided to build an Angular web application called [**NBA**](https://www.olib.cloud/) to display various NBA statistics. The application is built using Angular for the front end, Python Flask scripts for the Api's, and MySQL for the database. The site itself is hosted in Azure Cloud on a Ubuntu Linux VM. 
 
-This entire process, from start to finish, took me approximately 8 months. I will be honest, this process was quite challenging because my professional background in higher education/college athletics did not come with the hard skills necessary in IT. My motivation to change careers came during the pandemic when I realized the IT world would allow me to explore different industries. My mentor, who has 30 years of experience as a software developer, guided me through the entire process. Looking back, what got me through was dedicating as much time as possible 7 days a week and keeping an open mind, despite the many challenges I faced. 
+This entire process, from start to finish, took me approximately 8 months. I will be honest, this journey was quite challenging because my professional background in higher education/college athletics did not come with the hard skills necessary in IT. My motivation to change careers came during the pandemic when I realized the IT world would allow me to explore different industries. My mentor, who has 30 years of experience as a software developer, guided me through the entire process. Looking back, what got me through was dedicating as much time as possible 7 days a week and keeping an open mind, despite the many challenges I faced. 
 
 The content below highlights the various technologies and concepts I learned.
 
@@ -46,58 +46,57 @@ sudo -H pip install pyodbc
 sudo -H pip install waitress
 ## NBA
 
-## Git
-1. 
+## Git 
 
 ## Relational Database
-1. sql language
-2. mysql
+- sql language
+- mysql
     -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
-3. first, second, third normal form
-4. dbeaver 
+- first, second, third normal form
+- dbeaver 
     -client tool used on a mac
-5. ODBC
+- ODBC
     -we used pyodbc module for the odbc implentation
-6. primary and foreign keys
-7. CRUD
+- primary and foreign keys
+- CRUD
     -Create, Read, Update, Delete
 
 ## Restful API
-1. JSON
-2. Media Type
-3. URL (Uniform Resource Locator)
+- JSON
+- Media Type
+- URL (Uniform Resource Locator)
     -the path to a unique resource on the Web
     -breakdown https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL
 
 ## Http (hypertext transmission protocol)
-1. http vs https 
+- http vs https 
     -http is insecure
     -https is secured by a certificate on a server that tells clients that they are talking to the domain they intended to talk to 
-2. PKI (public key infrastructure)
+- PKI (public key infrastructure)
     -public/private key
     -used to make https secure
     -https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
-3. http server
-4. HTTP methods
+- http server
+- HTTP methods
     -GET, POST, PUT, DELETE
-5. https://developer.mozilla.org/en-US/docs/Web/HTTP
+- https://developer.mozilla.org/en-US/docs/Web/HTTP
 
 ## Chrome debugger
 ## Network Concepts
-1. localhost and 127.0.0.1
+- localhost and 127.0.0.1
     - /etc/hosts file
-2. DNS (domain name system)
+- DNS (domain name system)
     - maps domain name to an IP address
     - domain name 
         -
-3. port numbers 
+- port numbers 
     -as an example, think of IP address as an apartment building street address, and port number as a
     specific apartment number
 
 ## Setup ODBC for module pyodbc (unixODBC)
 1. Download the driver for your specific database
-1. Open terminal
-2. Run `odbcinst -j`
+2. Open terminal
+3. Run `odbcinst -j`
 You should see something like
 `
 unixODBC 2.3.9
@@ -109,15 +108,15 @@ SQLULEN Size.......: 8
 SQLLEN Size........: 8
 SQLSETPOSIROW Size.: 8
 `
-3. Open file to the right of `DRIVERS:`
-4. Enter your driver information something similiar to
+4. Open file to the right of `DRIVERS:`
+5. Enter your driver information something similiar to
 `
 [ODBC Driver 17 for SQL Server]
 Description=Microsoft ODBC Driver 17 for SQL Server
 Driver=/usr/local/lib/libmsodbcsql.17.dylib
 UsageCount=1
 `
-5. In your python code, use the string within the brackets for the 'Driver='
+6. In your python code, use the string within the brackets for the 'Driver='
 
 ## Pyodbc
 This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
@@ -131,34 +130,34 @@ The Fix:
 > kill -9 `<pid>`
 
 ## HTML
-1. Javascript basics 
+- Javascript basics 
     https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
-2. DOM basics 
+- DOM basics 
     https://www.digitalocean.com/community/tutorial_series/understanding-the-dom-document-object-model
 
 ## Angular
 https://angular.io/docs
 Things we've learned about:
-1. Components
-2. TypeScript(ts)
+- Components
+- TypeScript(ts)
     -Interfaces
         -user defined data type that describes data to create a data contract
         -data contract
             -a formal agreement that describes data to be exchanged 
         -strong typing
-3. Databinding
+- Databinding
     -ngModel
     -NgModule
-4. Structure
+- Structure
     -HTML
     -CSS
     -TypeScript (ts)
-5. app.module.ts
-6. HttpClient service class
+- app.module.ts
+- HttpClient service class
     -https://angular.io/guide/http
     -this is what we used to call our Restful api's
-7. Angular Client (ng)
+- Angular Client (ng)
     -https://angular.io/cli
     -scaffold new application
         -ng new 
@@ -166,13 +165,13 @@ Things we've learned about:
         -ng build
     -run application
         -ng serve
-8. MaterialTable (MatTable)
+- MaterialTable (MatTable)
     -https://stackblitz.com/edit/angular-kj6g7p?file=src%2Fapp%2Fcomponents-table%2Fcomponents-table.component.html
 
 ## Possible ideas for site functionality 
-1. Search player stats based on player name or team
-2. Try to find how many 3 pointers a team has to shoot to get to expected total points x
-3. How many guards are on a team where the team shoots above average the 3 point percentage? Plot the teams 3 point percentage to the number of guards
+- Search player stats based on player name or team
+- Try to find how many 3 pointers a team has to shoot to get to expected total points x
+- How many guards are on a team where the team shoots above average the 3 point percentage? Plot the teams 3 point percentage to the number of guards
 
 ## SSL Certification
 In order to run our Angular NBA app on our azure VM, we had to secure it with an SSL certificate. The following is the process we used to get our certificate:
