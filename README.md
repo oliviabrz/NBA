@@ -1,22 +1,52 @@
-# NBA
+# About The Process
+This README documents my learning process of obtaining the skills required for a career in Software Development. It began with successfully completing Coursera's [**Google IT Automation with Python**](https://www.coursera.org/professional-certificates/google-it-automation?utm_source=gg&utm_medium=sem&utm_campaign=11-GoogleITwithPython-US&utm_content=11-GoogleITwithPython-US&campaignid=8986236679&adgroupid=119480419197&device=c&keyword=&matchtype=b&network=g&devicemodel=&adpostion=&creativeid=506915205324&hide_mobile_promo&gclid=CjwKCAjwpMOIBhBAEiwAy5M6YC58jIqHwDL-Nn4oPzbaQXaImQMMyW30OKlaNC2EtrXvSsRVKHdxehoCvroQAvD_BwE) course and receiving a certificate of completion. After completion of the course, my mentor felt it was essential to learn about Full Stack Development. We decided to build an Angular application called [**NBA**](https://www.olib.cloud/) to display various NBA statistics. The application is built using Angular for the front end, Python/Flask scripts for the Api's, and MySql for the database. The site itself is hosted in Azure Cloud on a Ubuntu Linux VM. 
+This entire process, from start to finish, took me approximately 8 months. I will be honest, this process was quite challenging because my professional background in higher education/college athletics did not come with the hard skills necessary in IT. My motivation to change careers came during the pandemic when I realized the IT world would allow me to explore different industries. My mentor, who has 30 years of experience as a software developer, guided me through the entire process. Looking back, what got me through was dedicating as much time as possible 7 days a week and keeping an open mind, despite the many challenges I faced. 
 
-## Git
-1. 
+The content below highlights the various technologies and concepts I learned.
 
 ## Python
-1. Classes
+- Data Types
+    -string, integer, float, list, set, tuple, dictionary, bool
+- Variables
+    - a user declared name that points to a memory location containing data of some data type 
+- Loops
+    -for loop (iterate over a range)
+    -while loop (iterate while something is true)
+- Expressions 
+    - Expressions are made of operators and operands. An expression is like 2 + 3 
+- Operators 
+    - the symbols which tells the Python interpreter to do some mathematical or logical operation 
+- Conditionals
+    -if/elif/else statements 
+- Collections
+    -list (mutable, ordered, allows duplicates)
+    -tuple (immutable, ordered, allow duplicates)
+    -sets (mutable, unordered, no duplicates)
+    -dictionary(mutable, key/value)
+- Functions
+- Classes
     -SOC (separation of concerns)
-2. Functions
-3. Data Types
-4. Variables
-5. Flow control
-    -looping
-6. Flask
-7. Api
+- Interpreter
+    - A program that converts python scripts to an executable program that runs on a specific CPU/operating system (macOS, Linux, Windows)
+- Flask
+- Api
+
+## Compute Resources
+- CPU
+- Memory
+- Hard Drive
+
+## Binary
+- Bits/Bytes
+- Base-2
 
 sudo -H pip install Flask
 sudo -H pip install pyodbc
 sudo -H pip install waitress
+## NBA
+
+## Git
+1. 
 
 ## Relational Database
 1. sql language
