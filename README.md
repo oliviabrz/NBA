@@ -75,17 +75,9 @@ The content below highlights the various technologies and concepts I learned.
 - Remote vs Local
     - Local repository resides on the computer of the worker
     - Remote repositories are hosted on a server, such as GitHub
-
-
-## Troubleshooting and Debugging
-- Troubleshooting is a process that helps people identify issues or problems 
-- Debugging requires finding problems as they relate to computer code
-    -Involves fixing the code of teh software to eliminate errors or bugs 
-
-## Cloud Management 
 ## Concepts
 - SOC (separation of concerns)
-    # Network Concepts
+- ### Network Concepts
     - localhost and 127.0.0.1
         - /etc/hosts file
     - DNS (domain name system)
