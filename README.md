@@ -25,13 +25,51 @@ The content below highlights the various technologies and concepts I learned.
     - sets (mutable, unordered, no duplicates)
     - dictionary(mutable, key/value)
 - Functions
+    - A block of code that runs only when it's called
+    - Can accept parameters (variables) 
+    - Can return data 
+    - Makes code more modular by separating it into smaller, more specialized tasks 
 - Classes
-    - SOC (separation of concerns)
+    - Bundles data and functionality together 
+    - A class definition defines a new type of object, allowing new instances of that type to be made (see car example)
+    - Instances of a class represent:
+        - a location in **allocated memory** 
+        - Properties of the class exist in memory and have an **initial state**
+        - Example: An instance of class Car exists in memory and its property, current_speed == 0mph (initial state)
+        - The **dunder** __init__ is a specialized function (constructor) that gets called when a new instance is being created and allows   you to specify properties and their initial values 
 - Interpreter
     - A program that converts python scripts to an executable program that runs on a specific CPU/operating system (macOS, Linux, Windows)
-- Flask
-- Api
 
+## Operating System
+- Windows, MacOS, Linux
+- Reading and writing files
+- CSV files
+- Regular expressions
+    - https://help.relativity.com/9.3/Content/Relativity/Regular_expressions/Regular_expression_metacharacters.htm
+    - https://regex101.com/
+- Unit tests
+- Bash
+
+## Git 
+- Version Control System
+- Software that tracks changes in any set of files so you have a record of what's been done
+    - Can also revert to specific versions if you ever need to 
+- Used for collaborating and coordinating work among programmers 
+- https://training.github.com/downloads/github-git-cheat-sheet.pdf
+- file:///Users/oliviabrzozowski/Downloads/SWTM-2088_Atlassian-Git-Cheatsheet.pdf
+- GitHub is a widely used Git repository hosting service 
+- Remote vs Local
+    - Local repository resides on the computer of the worker
+    - Remote repositories are hosted on a server, such as GitHub
+
+## Troubleshooting and Debugging
+- Troubleshooting is a process that helps people identify issues or problems 
+- Debugging requires finding problems as they relate to computer code
+    -Involves fixing the code of teh software to eliminate errors or bugs 
+
+## Cloud Management 
+## Concepts
+- SOC (separation of concerns)
 ## Compute Resources
 - CPU
 - Memory
@@ -41,12 +79,12 @@ The content below highlights the various technologies and concepts I learned.
 - Bits/Bytes
 - Base-2
 
+## NBA
+- Flask
+- Api
 sudo -H pip install Flask
 sudo -H pip install pyodbc
 sudo -H pip install waitress
-## NBA
-
-## Git 
 
 ## Relational Database
 - sql language
