@@ -55,12 +55,27 @@ The content below highlights the various technologies and concepts I learned.
 - Software that tracks changes in any set of files so you have a record of what's been done
     - Can also revert to specific versions if you ever need to 
 - Used for collaborating and coordinating work among programmers 
+- 3 main components of a Git project:
+    - Repository
+        - the .git/folder inside a project
+        - if .git/folder is deleted, your project's history will be deleted 
+    - Working tree
+        - where files are modified 
+    - Index
+        - staging area where commits are prepared by comparing files in the working tree to the files in the repo
+- Basic Git Workflow:
+    - Modify file in the working tree
+    - Stage the changes you want to include in the next commit 
+        - `git add`
+    - Commit changes to the repo 
+        - `git commit -m` 
 - https://training.github.com/downloads/github-git-cheat-sheet.pdf
 - file:///Users/oliviabrzozowski/Downloads/SWTM-2088_Atlassian-Git-Cheatsheet.pdf
 - GitHub is a widely used Git repository hosting service 
 - Remote vs Local
     - Local repository resides on the computer of the worker
     - Remote repositories are hosted on a server, such as GitHub
+
 
 ## Troubleshooting and Debugging
 - Troubleshooting is a process that helps people identify issues or problems 
@@ -70,6 +85,16 @@ The content below highlights the various technologies and concepts I learned.
 ## Cloud Management 
 ## Concepts
 - SOC (separation of concerns)
+    # Network Concepts
+    - localhost and 127.0.0.1
+        - /etc/hosts file
+    - DNS (domain name system)
+        - maps domain name to an IP address
+        - domain name 
+            -
+    - port numbers 
+        -as an example, think of IP address as an apartment building street address, and port number as a
+        specific apartment number
 ## Compute Resources
 - CPU
 - Memory
@@ -85,51 +110,6 @@ The content below highlights the various technologies and concepts I learned.
 sudo -H pip install Flask
 sudo -H pip install pyodbc
 sudo -H pip install waitress
-
-## Relational Database
-- sql language
-- mysql
-    -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
-- first, second, third normal form
-- dbeaver 
-    -client tool used on a mac
-- ODBC
-    -we used pyodbc module for the odbc implentation
-- primary and foreign keys
-- CRUD
-    -Create, Read, Update, Delete
-
-## Restful API
-- JSON
-- Media Type
-- URL (Uniform Resource Locator)
-    -the path to a unique resource on the Web
-    -breakdown https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL
-
-## Http (hypertext transmission protocol)
-- http vs https 
-    -http is insecure
-    -https is secured by a certificate on a server that tells clients that they are talking to the domain they intended to talk to 
-- PKI (public key infrastructure)
-    -public/private key
-    -used to make https secure
-    -https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
-- http server
-- HTTP methods
-    -GET, POST, PUT, DELETE
-- https://developer.mozilla.org/en-US/docs/Web/HTTP
-
-## Chrome debugger
-## Network Concepts
-- localhost and 127.0.0.1
-    - /etc/hosts file
-- DNS (domain name system)
-    - maps domain name to an IP address
-    - domain name 
-        -
-- port numbers 
-    -as an example, think of IP address as an apartment building street address, and port number as a
-    specific apartment number
 
 ## Setup ODBC for module pyodbc (unixODBC)
 1. Download the driver for your specific database
@@ -166,6 +146,41 @@ The Fix:
 > ps -fA | grep python
 >
 > kill -9 `<pid>`
+
+## Relational Database
+- sql language
+- mysql
+    -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
+- first, second, third normal form
+- dbeaver 
+    -client tool used on a mac
+- ODBC
+    -we used pyodbc module for the odbc implentation
+- primary and foreign keys
+- CRUD
+    -Create, Read, Update, Delete
+
+## Restful API
+- JSON
+- Media Type
+- URL (Uniform Resource Locator)
+    -the path to a unique resource on the Web
+    -breakdown https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL
+
+## Http (hypertext transmission protocol)
+- http vs https 
+    -http is insecure
+    -https is secured by a certificate on a server that tells clients that they are talking to the domain they intended to talk to 
+- PKI (public key infrastructure)
+    -public/private key
+    -used to make https secure
+    -https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
+- http server
+- HTTP methods
+    -GET, POST, PUT, DELETE
+- https://developer.mozilla.org/en-US/docs/Web/HTTP
+
+## Chrome debugger
 
 ## HTML
 - Javascript basics 
