@@ -77,15 +77,24 @@ The content below highlights the various technologies and concepts I learned.
     - Remote repositories are hosted on a server, such as GitHub
 ## Concepts
 - SOC (separation of concerns)
+    - the process of separating unrelated functionality from each other 
+    - achieved through functions, classes, modules, etc.
+    - makes code more understandable and maintainable 
 - ### Network Concepts
     - localhost and 127.0.0.1
-        - /etc/hosts file
-    - DNS (domain name system)
-        - maps domain name to an IP address
-        - domain name 
-            -
-    - port numbers 
-        -as an example, think of IP address as an apartment building street address, and port number as a
+        - a hostname that refers to the current computer at the network level
+        - defined in `/etc/hosts` file
+    - DNS/Domain Name (domain name system)
+        - Domain name
+            - a user friendly name for an IP Address
+            - example: `olib.cloud`
+        - DNS maps domain name to an IP address 
+            - example: `nslookup olib.cloud`
+    - IP Address
+        - a unique **Internet Protocol** address that identifies a device on the internet or a local network
+    - Port Number 
+        - Identifies a particular application or service on a system
+        - Example: think of an IP address as an apartment building's street address, and port number as a
         specific apartment number
 ## Compute Resources
 - CPU
