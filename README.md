@@ -39,6 +39,8 @@ The content below highlights the various technologies and concepts I learned.
         - The **dunder** __init__ is a specialized function (constructor) that gets called when a new instance is being created and allows   you to specify properties and their initial values 
 - Interpreter
     - A program that converts python scripts to an executable program that runs on a specific CPU/operating system (macOS, Linux, Windows)
+- Resources
+    - https://www.w3schools.com/python/default.asp
 
 ## Operating System
 - Windows, MacOS, Linux
@@ -96,50 +98,76 @@ The content below highlights the various technologies and concepts I learned.
         - Identifies a particular application or service on a system
         - Example: think of an IP address as an apartment building's street address, and port number as a
         specific apartment number
+
 ## Compute Resources
 - CPU
+    - Central Processing Unit 
+    - The electronic circuitry that executes instructions comprising a computer program
+    - The CPU performs basic arithmetic, logic, controlling, and input/output operations specified by the instructions in the program
+    - The register within a CPU is what determines the size of the CPU (32/64 bit)
+        - https://techterms.com/definition/register
 - Memory
+    - Random Access Memory (RAM) is the high speed, non-persistent storage part of the computer that stores various parts of a running program
+    - Non-persistent means when the computer shuts down, everything in memory is lost
+    - This is where instructions, functions, variables, instances of classes, etc. are stored 
 - Hard Drive
+    - The part of a computer where persistent data is stored so that it can be retrieved after the computer restarts 
+    - Persistent means when the computer shuts down, the data still exists and can retrieved when the program runs
+    - Significantly slower than RAM 
+    - Examples are databasing systems (SQL servers)
 
 ## Binary
 - Bits/Bytes
 - Base-2
+- https://www.mathsisfun.com/numbers/bases.html
 
-## NBA
-- Flask
-- Api
-sudo -H pip install Flask
-sudo -H pip install pyodbc
-sudo -H pip install waitress
-
-## Setup ODBC for module pyodbc (unixODBC)
-1. Download the driver for your specific database
-2. Open terminal
-3. Run `odbcinst -j`
-You should see something like
-`
-unixODBC 2.3.9
-DRIVERS............: /etc/odbcinst.ini
-SYSTEM DATA SOURCES: /etc/odbc.ini
-FILE DATA SOURCES..: /etc/ODBCDataSources
-USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
-SQLULEN Size.......: 8
-SQLLEN Size........: 8
-SQLSETPOSIROW Size.: 8
-`
-4. Open file to the right of `DRIVERS:`
-5. Enter your driver information something similiar to
-`
-[ODBC Driver 17 for SQL Server]
-Description=Microsoft ODBC Driver 17 for SQL Server
-Driver=/usr/local/lib/libmsodbcsql.17.dylib
-UsageCount=1
-`
-6. In your python code, use the string within the brackets for the 'Driver='
-
-## Pyodbc
-This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
-> self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
+## ODBC/DBMS
+- Open Database Connectivity
+- DBMS (database management system)
+    - A server or software system that enables users to define, create, maintain and control access to data in a database
+    - MySQL, Microsoft SQL Server, MariaDB, PostgreSQL
+- A specification that allows applications to interface with various DBMS's  
+- For your program to work with a specific DBMS, you will use a driver specific to the DBMS to implement your requests
+    ### Relational Database
+    - sql language
+    - mysql
+        -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
+    - first, second, third normal form
+    - dbeaver 
+        -client tool used on a mac
+    - ODBC
+        -we used pyodbc module for the odbc implentation
+    - primary and foreign keys
+    - CRUD
+        -Create, Read, Update, Delete
+    ### Setup ODBC Driver for module pyodbc (unixODBC)
+    - pyodbc is the python implentation of the ODBC specification
+    1. Download the driver for your specific database
+    2. Open terminal
+    3. Run `odbcinst -j`
+    You should see something like
+    `
+    unixODBC 2.3.9
+    DRIVERS............: /etc/odbcinst.ini
+    SYSTEM DATA SOURCES: /etc/odbc.ini
+    FILE DATA SOURCES..: /etc/ODBCDataSources
+    USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
+    SQLULEN Size.......: 8
+    SQLLEN Size........: 8
+    SQLSETPOSIROW Size.: 8
+    `
+    4. Open file to the right of `DRIVERS:`
+    5. Enter your driver information something similiar to
+    `
+    [ODBC Driver 17 for SQL Server]
+    Description=Microsoft ODBC Driver 17 for SQL Server
+    Driver=/usr/local/lib/libmsodbcsql.17.dylib
+    UsageCount=1
+    `
+    6. In your python code, use the string within the brackets for the 'Driver='
+    ### Pyodbc
+    This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
+    > self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
 
 ## Fixing Flask issue with 'address already in use'
 Killing the Flask process does not stop the port it's using.
@@ -147,20 +175,6 @@ The Fix:
 > ps -fA | grep python
 >
 > kill -9 `<pid>`
-
-## Relational Database
-- sql language
-- mysql
-    -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
-- first, second, third normal form
-- dbeaver 
-    -client tool used on a mac
-- ODBC
-    -we used pyodbc module for the odbc implentation
-- primary and foreign keys
-- CRUD
-    -Create, Read, Update, Delete
-
 ## Restful API
 - JSON
 - Media Type
@@ -286,7 +300,12 @@ sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
 sudo nano /etc/nginx/nginx.conf
 sudo systemctl restart nginx
 
-
+## NBA
+- Flask
+- Api
+sudo -H pip install Flask
+sudo -H pip install pyodbc
+sudo -H pip install waitress
 
 
 
