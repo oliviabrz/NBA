@@ -122,79 +122,61 @@ The content below highlights the various technologies and concepts I learned.
 - https://www.mathsisfun.com/numbers/bases.html
 
 ## ODBC/DBMS
-- Open Database Connectivity
 - DBMS (database management system)
     - A server or software system that enables users to define, create, maintain and control access to data in a database
     - MySQL, Microsoft SQL Server, MariaDB, PostgreSQL
-- A specification that allows applications to interface with various DBMS's  
-- For your program to work with a specific DBMS, you will use a driver specific to the DBMS to implement your requests
+- ODBC (Open Database Connectivity)
+    - A specification that describes or defines a generic way of accessing DBMS's
+    - It is meant to be independent of any specific database or operating system
+    - A ODBC Driver is what implements the specific way of accessing DBMS's
+        - For your program to work with a specific DBMS, you will use a driver specific to the DBMS to implement your requests
     ### Relational Database
-    - sql language
-    - mysql
-        -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
-    - first, second, third normal form
-    - dbeaver 
-        -client tool used on a mac
-    - ODBC
-        -we used pyodbc module for the odbc implentation
-    - primary and foreign keys
+    - A type of database that stores and provides access to data points that are related to one another
+    - SQL (Structered Query Language)
+        - The standard language for relational DBMS's 
+    - Primary key
+        - Uniquely identifies each record in a table
+    - Foreign key
+        - a database key that is used to link two tables together
+    - Normal forms
+        - First normal form
+            - The relation cannot contain any repeating groups
+        - Second normal form
+            - Every field in the relation must be functionally dependent upon the entire primary key
+        - Third normal form
+            - The relation cannot contain any transitive dependencies
     - CRUD
-        -Create, Read, Update, Delete
-    ### Setup ODBC Driver for module pyodbc (unixODBC)
-    - pyodbc is the python implentation of the ODBC specification
-    1. Download the driver for your specific database
-    2. Open terminal
-    3. Run `odbcinst -j`
-    You should see something like
-    `
-    unixODBC 2.3.9
-    DRIVERS............: /etc/odbcinst.ini
-    SYSTEM DATA SOURCES: /etc/odbc.ini
-    FILE DATA SOURCES..: /etc/ODBCDataSources
-    USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
-    SQLULEN Size.......: 8
-    SQLLEN Size........: 8
-    SQLSETPOSIROW Size.: 8
-    `
-    4. Open file to the right of `DRIVERS:`
-    5. Enter your driver information something similiar to
-    `
-    [ODBC Driver 17 for SQL Server]
-    Description=Microsoft ODBC Driver 17 for SQL Server
-    Driver=/usr/local/lib/libmsodbcsql.17.dylib
-    UsageCount=1
-    `
-    6. In your python code, use the string within the brackets for the 'Driver='
-    ### Pyodbc
-    This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
-    > self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
-
-## Fixing Flask issue with 'address already in use'
-Killing the Flask process does not stop the port it's using.
-The Fix:
-> ps -fA | grep python
->
-> kill -9 `<pid>`
-## Restful API
-- JSON
-- Media Type
-- URL (Uniform Resource Locator)
-    -the path to a unique resource on the Web
-    -breakdown https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL
-
-## Http (hypertext transmission protocol)
-- http vs https 
-    -http is insecure
+        - Create, Read, Update, Delete
+        - The 4 types of operations that can be performed on a database 
+## HTTP (hypertext transmission protocol)
+- HTTP is a protocol which allows the fetching of resources on the Internet 
+    - https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+- HTTP vs HTTPS
+    -HTTP is insecure
     -https is secured by a certificate on a server that tells clients that they are talking to the domain they intended to talk to 
-- PKI (public key infrastructure)
-    -public/private key
-    -used to make https secure
-    -https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
-- http server
-- HTTP methods
-    -GET, POST, PUT, DELETE
-- https://developer.mozilla.org/en-US/docs/Web/HTTP
+        - PKI (public key infrastructure)
+            - public/private key
+            - used to make https secure
+            - https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
+- URL (Uniform Resource Locater)
+    - The path to a unique resource on the Web
+    - https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL 
+- HTTP server
+    - Computer software that accepts requests via HTTP
+    - All web applications/api's require a http server
+    - Examples: Apache Tomcat, IIS, node.js, python flask/waitress
+- Most common HTTP methods
+    - GET, POST, PUT, DELETE
 
+## Web API
+- API (Application Programming Interface)
+    - An interface which has a set of functions that allow programmers to access specific features or data of an application, operating     system or other services 
+- Web API
+    - A set of functions that are called or requested using HTTP 
+    - Requests are received by an HTTP server and passed to a programmer defined service running on a computer that executes the functions
+- JSON (JavaScript Object Notation)
+    - 
+- Media Type
 ## Chrome debugger
 
 ## HTML
@@ -269,8 +251,6 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
             - Verify you can pull the .txt file using the verification URL
 
 ## Azure
-
-
 ## Linux
 ### Setup Python Flask Api as a service 
 https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
@@ -306,8 +286,45 @@ sudo systemctl restart nginx
 sudo -H pip install Flask
 sudo -H pip install pyodbc
 sudo -H pip install waitress
+- mysql
+        -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
+- dbeaver 
+        -client tool used on a mac
+    ### Setup ODBC Driver for module pyodbc (unixODBC)
+        - pyodbc is the python implentation of the ODBC specification
+        1. Download the driver for your specific database
+        2. Open terminal
+        3. Run `odbcinst -j`
+        You should see something like
+        `
+        unixODBC 2.3.9
+        DRIVERS............: /etc/odbcinst.ini
+        SYSTEM DATA SOURCES: /etc/odbc.ini
+        FILE DATA SOURCES..: /etc/ODBCDataSources
+        USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
+        SQLULEN Size.......: 8
+        SQLLEN Size........: 8
+        SQLSETPOSIROW Size.: 8
+        `
+        4. Open file to the right of `DRIVERS:`
+        5. Enter your driver information something similiar to
+        `
+        [ODBC Driver 17 for SQL Server]
+        Description=Microsoft ODBC Driver 17 for SQL Server
+        Driver=/usr/local/lib/libmsodbcsql.17.dylib
+        UsageCount=1
+        `
+        6. In your python code, use the string within the brackets for the 'Driver='
+        ### Pyodbc
+        This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
+        > self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
 
-
+    ## Fixing Flask issue with 'address already in use'
+    Killing the Flask process does not stop the port it's using.
+    The Fix:
+    > ps -fA | grep python
+    >
+    > kill -9 `<pid>`
 
 
 
