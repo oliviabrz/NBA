@@ -82,6 +82,8 @@ The content below highlights the various technologies and concepts I learned.
     - the process of separating unrelated functionality from each other 
     - achieved through functions, classes, modules, etc.
     - makes code more understandable and maintainable 
+- Client/Server
+    - A model where clients make requests to a server which fulfills the request
 - ### Network Concepts
     - localhost and 127.0.0.1
         - a hostname that refers to the current computer at the network level
@@ -160,6 +162,7 @@ The content below highlights the various technologies and concepts I learned.
             - https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
 - URL (Uniform Resource Locater)
     - The path to a unique resource on the Web
+    - https://blog.hubspot.com/marketing/parts-url
     - https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL 
 - HTTP server
     - Computer software that accepts requests via HTTP
@@ -167,6 +170,9 @@ The content below highlights the various technologies and concepts I learned.
     - Examples: Apache Tomcat, IIS, node.js, python flask/waitress
 - Most common HTTP methods
     - GET, POST, PUT, DELETE
+- Headers
+    - Area in an http request/response where key/value pairs of information about the request/response reside
+        - Example: **User-Agent:** Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
 
 ## Web API
 - API (Application Programming Interface)
@@ -174,28 +180,45 @@ The content below highlights the various technologies and concepts I learned.
 - Web API
     - A set of functions that are called or requested using HTTP 
     - Requests are received by an HTTP server and passed to a programmer defined service running on a computer that executes the functions
+    - example: https://www.balldontlie.io/#getting-started
 - JSON (JavaScript Object Notation)
-    - 
+    - A text based data format used to send/receive lightweight messages between computers
+    - Uses key/value pairs to structure data
 - Media Type
-## Chrome debugger
-
+    - Formally known as MIME type (Multipurpose Internet Mail Extensions)
+    - A standard way of classifying file types on the Internet according to their nature and format
 ## HTML
-- Javascript basics 
-    https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
-- DOM basics 
-    https://www.digitalocean.com/community/tutorial_series/understanding-the-dom-document-object-model
-
+- HTML (Hypertext Markup Language)
+- The set of markup symbols or codes inserted into a file intended for display on the Internet
+- The markup tells web browsers how to display a web page's words and images
+- JavaScript
+    - A programming language that can add interactivity to a website 
+    - https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
+- DOM (Document Object Model)
+    - When a web page is loaded, the browser creates a **D**ocument **O**bject **M**odel of the page
+        - The HTML DOM model is constructed as a tree of objects and exposes an api of functions and properties that can be easily accessed programatically
+            -  https://www.w3schools.com/js/js_htmldom.asp
+        - JavaScript can modify the DOM in realtime using the DOM api to give a much more interactive user experience 
+            - https://www.digitalocean.com/community/tutorial_series/understanding-the-dom-document-object-model
+    - You can visualize this using `F12` to bring up the browser debugger
+        - Go to `Console`, then type in `document.` and you should see the DOM api functions pop up
 ## Angular
-https://angular.io/docs
-Things we've learned about:
+- https://angular.io/docs
 - Components
+    - The main building block for Angular applications
+    - Each component consists of:
+        - An HTML template that declares what renders on the page
+        - A Typescript class that defines behavior
+        - A CSS selector that defines how the component is used in a template
+        - Optionally, CSS styles applied to the template
 - TypeScript(ts)
-    -Interfaces
-        -user defined data type that describes data to create a data contract
-        -data contract
-            -a formal agreement that describes data to be exchanged 
-        -strong typing
+    - an open-source language which builds on JavaScript
+- Interfaces
+    -user defined data type that describes data to create a data contract
+    -data contract
+        -a formal agreement that describes data to be exchanged 
+    -strong typing
 - Databinding
     -ngModel
     -NgModule
@@ -249,6 +272,12 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
             - Copy .txt file to a local directory given in the verification URL 
             - Run `sudo python3 -m  http.server 80` from the root of the path in the verification URL
             - Verify you can pull the .txt file using the verification URL
+
+## Useful Tools
+- Chrome debugger
+- VisualStudio Code
+- DBeaver
+- Postman
 
 ## Azure
 ## Linux
