@@ -205,55 +205,73 @@ The content below highlights the various technologies and concepts I learned.
         - Go to `Console`, then type in `document.` and you should see the DOM api functions pop up
 ## Angular
 - https://angular.io/docs
-- A development platform, built on TypeScript, used for building single page web applications 
+- A development platform, built on [TypeScript](https://www.typescriptlang.org/), used for building single page web applications 
 - SPA (Single-Page Application)
-    - A web application that loads most resources (HTML+CSS+Scripts) once when the site is first pulled up
+    - A web application that loads most resources (HTML+CSS+Scripts) only once when the site is first loaded by the browser
     - Only data is transmitted back and forth
     - This is all made possible by the DOM
 - Components
     - The main building block for Angular applications
     - Each component consists of:
-        - An HTML template that declares what renders on the page
+        - A HTML template that declares what renders on the page
         - A Typescript class that defines behavior
         - A CSS selector that defines how the component is used in a template
         - Optionally, CSS styles applied to the template
 - TypeScript(ts)
-    - an open-source language which builds on JavaScript
+    - Open-source language which builds on JavaScript
+    - Strongly typed language
+        - Each type of data is predefined 
+            - Native data types, such as a string, integer, datetime, boolean, are built into the language
+            - User defined data types, such as class or interface, allow users to define their own data types
+    - https://www.typescriptlang.org/
 - Interfaces
-    -user defined data type that describes data to create a data contract
-    -data contract
-        -a formal agreement that describes data to be exchanged 
-    -strong typing
+    - User defined data type that describes the shape of data to create a data contract
+    - Data contract
+        - A formal agreement that describes data to be exchanged 
+    - Differ from classes because they only provide shape of data (what it looks like), whereas classes provide both shape and storage (class properties) of the data
 - Databinding
-    -ngModel
-    -NgModule
-- Structure
-    -HTML
-    -CSS
-    -TypeScript (ts)
-- app.module.ts
+    - The synchronization of data between the model and view components
+        - https://docs.angularjs.org/guide/databinding#:~:text=Data%2Dbinding%20in%20AngularJS%20apps,the%20model%20at%20all%20times.
 - HttpClient service class
-    -https://angular.io/guide/http
-    -this is what we used to call our Restful api's
+    - https://angular.io/guide/http
+    - This is what we used to call our Restful api's
 - Angular Client (ng)
-    -https://angular.io/cli
-    -scaffold new application
-        -ng new 
-    -build application
-        -ng build
-    -run application
-        -ng serve
-- MaterialTable (MatTable)
-    -https://stackblitz.com/edit/angular-kj6g7p?file=src%2Fapp%2Fcomponents-table%2Fcomponents-table.component.html
+    - https://angular.io/cli
+    - scaffold new application
+        - `ng new`
+    - build application
+        - `ng build`
+    - run application
+        - `ng serve`
 
-## Possible ideas for site functionality 
-- Search player stats based on player name or team
-- Try to find how many 3 pointers a team has to shoot to get to expected total points x
-- How many guards are on a team where the team shoots above average the 3 point percentage? Plot the teams 3 point percentage to the number of guards
+## SSL Certificates 
+- An SSL (Secure Sockets Layer) certificate is a digital certificate that provides the following two functions:
+    1. Authenticates the identity of a website
+        - CA (Certificate Authority)
+            - A trusted organization that verifies a domain that websites run under, so that you trust who you’re communicating with online            
+        - CSR (Certificate Signing Request)
+            - A block of encoded text that is given to a Certificate Authority when applying for an SSL Certificate
+            - Contains information that will be included in the certificate such as the public key, organization name, common name (domain name), locality, and country
+            - A private key is usually created at the same time that you create the CSR, making a key pair
+        - Signed Certificate
+    2. Encrypts information sent to the server using SSL technology
+- An SSL certificate contains the following information:
+    - The certificate holder's name
+    - The certificate's serial number and expiration date
+    - A copy of the certificate holder's public key
+    - The digital signature of the certificate-issuing authority
+- PKI (**P**ublic **K**ey **I**nfrastructure)
+    - This is what SSL cerfiticates are based on
+    - Public/Private key
+        - Public key 
+    - used to make https secure
+    - https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
 
-## SSL Certification
+
+
+
+## SSL Certification Process
 In order to run our Angular NBA app on our azure VM, we had to secure it with an SSL certificate. The following is the process we used to get our certificate:
-
 1. Purchased `olib.cloud` domain from GoDaddy.com, a domain registrar
 2. Purchased SSL certificate from RapidSSLOnline.com, a Certificate Authority (CA)
 3. Create Certificate Signing Request (CSR) as follows:
