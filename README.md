@@ -7,23 +7,23 @@ The content below highlights the various technologies and concepts I learned.
 
 ## Python
 - Data Types
-    -string, integer, float, list, set, tuple, dictionary, bool
+    -String, integer, float, list, set, tuple, dictionary, bool
 - Variables
-    - a user declared name that points to a memory location containing data of some data type 
+    - A user declared name that points to a memory location containing data of some data type 
 - Loops
-    - for loop (iterate over a range)
-    - while loop (iterate while something is true)
+    - For loop (iterate over a range)
+    - While loop (iterate while something is true)
 - Expressions 
     - Expressions are made of operators and operands. An expression is like 2 + 3 
 - Operators 
-    - the symbols which tells the Python interpreter to do some mathematical or logical operation 
+    - The symbols which tells the Python interpreter to do some mathematical or logical operation 
 - Conditionals
-    -if/elif/else statements 
+    -If/elif/else statements 
 - Collections
-    - list (mutable, ordered, allows duplicates)
-    - tuple (immutable, ordered, allow duplicates)
-    - sets (mutable, unordered, no duplicates)
-    - dictionary(mutable, key/value)
+    - List (mutable, ordered, allows duplicates)
+    - Tuple (immutable, ordered, allow duplicates)
+    - Sets (mutable, unordered, no duplicates)
+    - Dictionary(mutable, key/value)
 - Functions
     - A block of code that runs only when it's called
     - Can accept parameters (variables) 
@@ -100,7 +100,6 @@ The content below highlights the various technologies and concepts I learned.
         - Identifies a particular application or service on a system
         - Example: think of an IP address as an apartment building's street address, and port number as a
         specific apartment number
-
 ## Compute Resources
 - CPU
     - Central Processing Unit 
@@ -117,12 +116,10 @@ The content below highlights the various technologies and concepts I learned.
     - Persistent means when the computer shuts down, the data still exists and can retrieved when the program runs
     - Significantly slower than RAM 
     - Examples are databasing systems (SQL servers)
-
 ## Binary
 - Bits/Bytes
 - Base-2
 - https://www.mathsisfun.com/numbers/bases.html
-
 ## ODBC/DBMS
 - DBMS (database management system)
     - A server or software system that enables users to define, create, maintain and control access to data in a database
@@ -173,7 +170,6 @@ The content below highlights the various technologies and concepts I learned.
 - Headers
     - Area in an http request/response where key/value pairs of information about the request/response reside
         - Example: **User-Agent:** Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
-
 ## Web API
 - API (Application Programming Interface)
     - An interface which has a set of functions that allow programmers to access specific features or data of an application, operating     system or other services 
@@ -243,7 +239,6 @@ The content below highlights the various technologies and concepts I learned.
         - `ng build`
     - run application
         - `ng serve`
-
 ## SSL Certificates 
 - An SSL (Secure Sockets Layer) certificate is a digital certificate that provides the following two functions:
     1. Authenticates the identity of a website
@@ -266,10 +261,6 @@ The content below highlights the various technologies and concepts I learned.
         - Public key 
     - used to make https secure
     - https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
-
-
-
-
 ## SSL Certification Process
 In order to run our Angular NBA app on our azure VM, we had to secure it with an SSL certificate. The following is the process we used to get our certificate:
 1. Purchased `olib.cloud` domain from GoDaddy.com, a domain registrar
@@ -295,7 +286,6 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
             - Copy .txt file to a local directory given in the verification URL 
             - Run `sudo python3 -m  http.server 80` from the root of the path in the verification URL
             - Verify you can pull the .txt file using the verification URL
-
 ## Useful Tools
 - Chrome debugger
 - VisualStudio Code
