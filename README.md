@@ -205,6 +205,11 @@ The content below highlights the various technologies and concepts I learned.
         - Go to `Console`, then type in `document.` and you should see the DOM api functions pop up
 ## Angular
 - https://angular.io/docs
+- A development platform, built on TypeScript, used for building single page web applications 
+- SPA (Single-Page Application)
+    - A web application that loads most resources (HTML+CSS+Scripts) once when the site is first pulled up
+    - Only data is transmitted back and forth
+    - This is all made possible by the DOM
 - Components
     - The main building block for Angular applications
     - Each component consists of:
