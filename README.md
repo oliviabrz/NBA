@@ -349,24 +349,25 @@ www_olib_cloud.key
 www_olib_cloud.pem
 
 ### Setup NGINX on our Linux VM
-https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
-https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
-https://medium.com/@anasecn/how-to-serve-an-angular-app-with-node-js-api-on-a-nginx-server-ca59de51850
-sudo mkdir -p /var/www/olib.cloud/html
-sudo chown -R $USER:$USER /var/www/olib.cloud/html
-sudo chmod -R 755 /var/www/olib.cloud
-nano /var/www/olib.cloud/html/index.html
-sudo nano /etc/nginx/sites-available/olib.cloud
-sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
-sudo nano /etc/nginx/nginx.conf
-sudo systemctl restart nginx
-
+Steps to setup:
+- sudo mkdir -p /var/www/olib.cloud/html
+- sudo chown -R $USER:$USER /var/www/olib.cloud/html
+- sudo chmod -R 755 /var/www/olib.cloud
+- nano /var/www/olib.cloud/html/index.html
+- sudo nano /etc/nginx/sites-available/olib.cloud
+- sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
+- sudo nano /etc/nginx/nginx.conf
+- sudo systemctl restart nginx
+Resources:
+- https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+- https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
+- https://medium.com/@anasecn/how-to-serve-an-angular-app-with-node-js-api-on-a-nginx-server-ca59de51850
 ### Setup ODBC Driver for module pyodbc (unixODBC)
 - pyodbc is the python implentation of the ODBC specification
 1. Download the driver for your specific database
 2. Open terminal
 3. Run `odbcinst -j`
-You should see something like
+You should see something like:
 `
 unixODBC 2.3.9
 DRIVERS............: /etc/odbcinst.ini
