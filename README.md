@@ -42,15 +42,9 @@ The content below highlights the various technologies and concepts I learned.
 - Resources
     - https://www.w3schools.com/python/default.asp
 
-## Operating System
-- Windows, MacOS, Linux
-- Reading and writing files
-- CSV files
-- Regular expressions
-    - https://help.relativity.com/9.3/Content/Relativity/Regular_expressions/Regular_expression_metacharacters.htm
-    - https://regex101.com/
-- Unit tests
-- Bash
+## Operating Systems
+- An operating system is system software that manages computer hardware, software resources, and provides common services for computer programs
+- Windows, MacOS, Linux, Unix
 
 ## Git 
 - Version Control System
@@ -240,60 +234,99 @@ The content below highlights the various technologies and concepts I learned.
     - run application
         - `ng serve`
 ## SSL Certificates 
+- Used to make https secure
 - An SSL (Secure Sockets Layer) certificate is a digital certificate that provides the following two functions:
-    1. Authenticates the identity of a website
+    1. Establishes trust by authenticating the identity of a website
         - CA (Certificate Authority)
             - A trusted organization that verifies a domain that websites run under, so that you trust who you’re communicating with online            
         - CSR (Certificate Signing Request)
-            - A block of encoded text that is given to a Certificate Authority when applying for an SSL Certificate
+            - A block of encoded text that is given to a Certificate Authority when applying for a signed SSL Certificate
             - Contains information that will be included in the certificate such as the public key, organization name, common name (domain name), locality, and country
             - A private key is usually created at the same time that you create the CSR, making a key pair
         - Signed Certificate
-    2. Encrypts information sent to the server using SSL technology
+            - The process a CA uses to digitally sign your certificate using their signing certificate. When your browser trusts the CA, it's automatically trusting your certificate because it was signed by the CA.
+    2. Encrypts information sent between the client/server using SSL technology and PKI
 - An SSL certificate contains the following information:
     - The certificate holder's name
     - The certificate's serial number and expiration date
     - A copy of the certificate holder's public key
     - The digital signature of the certificate-issuing authority
 - PKI (**P**ublic **K**ey **I**nfrastructure)
-    - This is what SSL cerfiticates are based on
-    - Public/Private key
-        - Public key 
-    - used to make https secure
+    - This is what the encryption function of SSL cerfiticates are based on
+    - Implemented by Asymmetric algorithms, like RSA, that use the **public key** for encrypting data and **private key** for decrypting data 
     - https://www.sslshopper.com/public-key-infrastructure-pki-overview.html
+- Exciting CA for obtaining your SSL certification 
+    - https://letsencrypt.org/
+
+
 ## SSL Certification Process
 In order to run our Angular NBA app on our azure VM, we had to secure it with an SSL certificate. The following is the process we used to get our certificate:
-1. Purchased `olib.cloud` domain from GoDaddy.com, a domain registrar
-2. Purchased SSL certificate from RapidSSLOnline.com, a Certificate Authority (CA)
+1. Purchased `olib.cloud` domain from GoDaddy.com, a **Domain Registrar**
+2. Purchased SSL certificate from RapidSSLOnline.com, a **Certificate Authority (CA)**
 3. Create Certificate Signing Request (CSR) as follows:
     ### Creating CSR
-    - generate CSR here: https://www.digicert.com/easy-csr/openssl.htm
-    - this generates the openSSL command to generate the CSR and private key
-    > openssl req -new -newkey rsa:2048 -nodes -out junk.csr -keyout junk.key -subj "/C=US/ST=KS/
-    > L=your city/O=junk/CN=junk"
-    - copy generated CSR and paste into RapidSSL CSR screen
+    - Generate CSR here: https://www.digicert.com/easy-csr/openssl.htm
+        - This generates the openSSL command to generate the CSR and public/private key pair
+        > openssl req -new -newkey rsa:2048 -nodes -out junk.csr -keyout junk.key -subj "/C=US/ST=KS/
+        > L=your city/O=junk/CN=junk"
+    - Copy generated CSR and paste into RapidSSL CSR screen
     ### Domain Control Verification (DCV)
-    See: https://docs.digicert.com/manage-certificates/demonstrate-control-over-domains-pending-certificate-order/use-http-practical-demonstration-validation-method-verify-domain-control/
-    Before a certificate can be issued to a domain, you must prove to the CA that you control the domain.
-    There are numerous methods for DCV such as email and HTTP Practical Demonstration.
-    We chose HTTP Practical Demonstration. This process is as follows:
+    - Before a certificate can be issued to a domain, you must prove to the CA that you control the domain.
+    - See: https://docs.digicert.com/manage-certificates/demonstrate-control-over-domains-pending-certificate-order/use-http-practical-demonstration-validation-method-verify-domain-control/
+    - There are numerous methods for DCV such as email and HTTP Practical Demonstration.
+    - We chose **HTTP Practical Demonstration**. This process is as follows for our domain `olib.cloud`:
         - In GoDaddy, add an `A` record that points to the IP Address of our VM
-            - To verify domain IP, run `nslookup olib.cloud` and verify the IP address is correct
+            - To verify a domain's IP, run `nslookup olib.cloud` and verify the IP address is correct for the domain
         - In RapidSSL, choose HTTP file verification method
-            - You will be given a .txt file to download 
+            - You will be given a **.txt** file to download 
             - You will be given the verification URL to pull the file from your VM
-        - On your VM, do the following:
+        - Setup your VM to serve the .txt file. On your VM, do the following:
             - Copy .txt file to a local directory given in the verification URL 
-            - Run `sudo python3 -m  http.server 80` from the root of the path in the verification URL
+            - Run a http server like `sudo python3 -m  http.server 80` from the root of the path in the verification URL
             - Verify you can pull the .txt file using the verification URL
+            - Because the file can be retrieved from my VM, proves I own the domain and VM
+
 ## Useful Tools
 - Chrome debugger
+    - `F12` key
 - VisualStudio Code
+    - Free editor we used for all of our work
+    - Supports Git, Python debugging,
 - DBeaver
+    - Client for connecting to and using various SQL servers 
 - Postman
+    - Client for making http requests, especially for testing web Api's 
 
 ## Azure
-## Linux
+- Microsoft's cloud platform that offers many services 
+- We chose to use Azure VM to host our NBA web application 
+- Other cloud platforms include Amazon Web Service (AWS), Google Cloud 
+
+## NBA Application 
+The [**NBA**](https://www.olib.cloud/) web application is my final project anf first attempt at Full Stack Development.
+The application is designed to display various NBA statistics that we pulled from publically available web Api's. The application is built using Angular for the front end, Python Flask scripts for the Api's, and MySQL for the database. The site itself is hosted in Azure Cloud on a Ubuntu Linux VM. 
+
+### Full Stack Development
+- The development process that emcompasses both Frontend (Client) and Backend (Server) technologies 
+- Frontend (Client)
+    - This is typically the User Interface (UI) 
+    - This can be web or mobile based applications
+    - We used [Angular](#angular) to build our web front end 
+        - The technologies we used are HTML, CSS, Typescript
+    - We hosted the Frontend on a Ubuntu Linux VM in Azure Cloud
+- Backend (Server)
+    - These are the parts of the application that include databasing to persist our data and Api's to update and retrieve data from our databases 
+    - We used Python, Flask, and Waitress to build a set of Api's for easier integration between the frontend and MySQL database
+        - `Python` is used to build the functions used to interface with MySQL through a MySQL ODBC Driver in the python `pyodbc` module
+        - `Flask` is used to take python functions and make them callable through http. It is only used for development and testing.
+        - `Waitress` is used to make our Flask functions production ready since Flask only provides a development server
+        - `NGINX` is used to take https requests from the internet and route the request either to the NBA app or to our Api's running under Waitress
+            - NGINX routes `https://olib.cloud` requests to the NBA Angular app
+            - NGINX routes `https://olib.cloud/api*` requests to the Waitress http server to fulfill Api requests 
+                - These Api requests happens when the Angular application needs data (ex. when you click the `Players` menu link)
+        - We used `MySQL` as our database server 
+        - We used `DBeaver` as a client tool to manage our database 
+
 ### Setup Python Flask Api as a service 
 https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
 sudo nano /etc/systemd/system/api.service
@@ -322,7 +355,7 @@ sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
 sudo nano /etc/nginx/nginx.conf
 sudo systemctl restart nginx
 
-## NBA
+
 - Flask
 - Api
 sudo -H pip install Flask
