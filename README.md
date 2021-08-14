@@ -303,11 +303,11 @@ In order to run our Angular NBA app on our azure VM, we had to secure it with an
 - Other cloud platforms include Amazon Web Service (AWS), Google Cloud 
 
 ## NBA Application 
-The [**NBA**](https://www.olib.cloud/) web application is my final project anf first attempt at Full Stack Development.
-The application is designed to display various NBA statistics that we pulled from publically available web Api's. The application is built using Angular for the front end, Python Flask scripts for the Api's, and MySQL for the database. The site itself is hosted in Azure Cloud on a Ubuntu Linux VM. 
+The [**NBA**](https://www.olib.cloud/) web application is my final project and first attempt at **Full Stack Development**.
+The application is designed to display various NBA statistics that we pulled from publically available web Api's. The application is built using Angular for the front end, Python Flask scripts for the Api's, MySQL for the database, and NGINX for the web server. The site itself is hosted in Azure Cloud on a Ubuntu Linux VM. 
 
 ### Full Stack Development
-- The development process that emcompasses both Frontend (Client) and Backend (Server) technologies 
+- The development process that encompasses both Frontend (Client) and Backend (Server) technologies 
 - Frontend (Client)
     - This is typically the User Interface (UI) 
     - This can be web or mobile based applications
@@ -315,17 +315,22 @@ The application is designed to display various NBA statistics that we pulled fro
         - The technologies we used are HTML, CSS, Typescript
     - We hosted the Frontend on a Ubuntu Linux VM in Azure Cloud
 - Backend (Server)
-    - These are the parts of the application that include databasing to persist our data and Api's to update and retrieve data from our databases 
+    - These are the parts of the application that include the following:
+        - Databasing to persist our data
+        - Api's used by the Frontend to update and retrieve data from our databases 
+        - Web server to provide https to the internet for the NBA app and the Api's
+    - We used `MySQL` as our database server 
+        - We used `DBeaver` as a client tool to manage our database 
     - We used Python, Flask, and Waitress to build a set of Api's for easier integration between the frontend and MySQL database
-        - `Python` is used to build the functions used to interface with MySQL through a MySQL ODBC Driver in the python `pyodbc` module
+        - `Python` is used to build the functions used to interface with MySQL through a MySQL ODBC Driver in the Python `pyodbc` module
         - `Flask` is used to take python functions and make them callable through http. It is only used for development and testing.
         - `Waitress` is used to make our Flask functions production ready since Flask only provides a development server
-        - `NGINX` is used to take https requests from the internet and route the request either to the NBA app or to our Api's running under Waitress
-            - NGINX routes `https://olib.cloud` requests to the NBA Angular app
-            - NGINX routes `https://olib.cloud/api*` requests to the Waitress http server to fulfill Api requests 
-                - These Api requests happens when the Angular application needs data (ex. when you click the `Players` menu link)
-        - We used `MySQL` as our database server 
-        - We used `DBeaver` as a client tool to manage our database 
+    - We used `NGINX` to take https requests from the internet and route the request either to the NBA app or to our Api's running under Waitress
+        - NGINX routes `https://olib.cloud` requests to the NBA Angular app
+        - NGINX routes `https://olib.cloud/api*` requests to the Waitress http server to fulfill Api requests 
+            - These Api requests happens when the Angular application needs data (ex. when you click the `Players` menu link)
+            - To see this in action, click `F12` to bring up the debgugger and click on Network tab 
+
 
 ### Setup Python Flask Api as a service 
 https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
