@@ -316,16 +316,17 @@ The application is designed to display various NBA statistics that we pulled fro
     - We hosted the Frontend on a Ubuntu Linux VM in Azure Cloud
 - Backend (Server)
     - These are the parts of the application that include the following:
-        - Databasing to persist our data
+        - Databasing to persist (store) our data
         - Api's used by the Frontend to update and retrieve data from our databases 
         - Web server to provide https to the internet for the NBA app and the Api's
     - We used `MySQL` as our database server 
         - We used `DBeaver` as a client tool to manage our database 
     - We used Python, Flask, and Waitress to build a set of Api's for easier integration between the frontend and MySQL database
-        - `Python` is used to build the functions used to interface with MySQL through a MySQL ODBC Driver in the Python `pyodbc` module
-        - `Flask` is used to take python functions and make them callable through http. It is only used for development and testing.
+        - `Python` is used to build the functions used to interface with MySQL 
+        - `Pyodbc` is the Python module we used for the MySQL ODBC Driver 
+        - `Flask` is used to take Python functions and make them callable through http
         - `Waitress` is used to make our Flask functions production ready since Flask only provides a development server
-    - We used `NGINX` to take https requests from the internet and route the request either to the NBA app or to our Api's running under Waitress
+    - We used `NGINX` to take https requests from the internet and route the request either to the NBA app or to our Api's running under Waitress web server
         - NGINX routes `https://olib.cloud` requests to the NBA Angular app
         - NGINX routes `https://olib.cloud/api*` requests to the Waitress http server to fulfill Api requests 
             - These Api requests happens when the Angular application needs data (ex. when you click the `Players` menu link)
@@ -347,7 +348,7 @@ sudo systemctl status api.service
 www_olib_cloud.key
 www_olib_cloud.pem
 
-### NGINX
+### Setup NGINX on our Linux VM
 https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
 https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
 https://medium.com/@anasecn/how-to-serve-an-angular-app-with-node-js-api-on-a-nginx-server-ca59de51850
@@ -360,47 +361,39 @@ sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
 sudo nano /etc/nginx/nginx.conf
 sudo systemctl restart nginx
 
+### Setup ODBC Driver for module pyodbc (unixODBC)
+- pyodbc is the python implentation of the ODBC specification
+1. Download the driver for your specific database
+2. Open terminal
+3. Run `odbcinst -j`
+You should see something like
+`
+unixODBC 2.3.9
+DRIVERS............: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+FILE DATA SOURCES..: /etc/ODBCDataSources
+USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
+SQLULEN Size.......: 8
+SQLLEN Size........: 8
+SQLSETPOSIROW Size.: 8
+`
+4. Open file to the right of `DRIVERS:`
+5. Enter your driver information something similiar to
+`
+[MySQL ODBC 8.0 ANSI Driver]
+Driver=/usr/local/lib/libmyodbc8a.so
+UsageCount=1
+`
+6. In your python code, use the string within the brackets for the 'Driver='
 
-- Flask
-- Api
-sudo -H pip install Flask
-sudo -H pip install pyodbc
-sudo -H pip install waitress
-- mysql
-        -https://phoenixnap.com/kb/install-mysql-ubuntu-20-04
-- dbeaver 
-        -client tool used on a mac
-    ### Setup ODBC Driver for module pyodbc (unixODBC)
-        - pyodbc is the python implentation of the ODBC specification
-        1. Download the driver for your specific database
-        2. Open terminal
-        3. Run `odbcinst -j`
-        You should see something like
-        `
-        unixODBC 2.3.9
-        DRIVERS............: /etc/odbcinst.ini
-        SYSTEM DATA SOURCES: /etc/odbc.ini
-        FILE DATA SOURCES..: /etc/ODBCDataSources
-        USER DATA SOURCES..: /Users/oliviabrzozowski/.odbc.ini
-        SQLULEN Size.......: 8
-        SQLLEN Size........: 8
-        SQLSETPOSIROW Size.: 8
-        `
-        4. Open file to the right of `DRIVERS:`
-        5. Enter your driver information something similiar to
-        `
-        [ODBC Driver 17 for SQL Server]
-        Description=Microsoft ODBC Driver 17 for SQL Server
-        Driver=/usr/local/lib/libmsodbcsql.17.dylib
-        UsageCount=1
-        `
-        6. In your python code, use the string within the brackets for the 'Driver='
-        ### Pyodbc
-        This line fixed issue with returning dictionary generated using __dict__ where strings were returned with the unicode replacement character
-        > self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
+## Issues and their fixes
+### Pyodbc
+In our Python script where we created our Apis, we had an issue with the returning dictionary, generated using __dict__ , where strings were returned with the unicode replacement character. The line below fixed the issue:
+> self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
 
-    ## Fixing Flask issue with 'address already in use'
-    Killing the Flask process does not stop the port it's using.
+### Fixing Flask error
+When we tried running the Flask script, we would get an error stating 'address already in use'. The lines below fixed the issue:
+    (Killing the Flask process does not stop the port it's using.)
     The Fix:
     > ps -fA | grep python
     >
