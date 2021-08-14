@@ -358,6 +358,7 @@ Steps to setup:
 - sudo ln -s /etc/nginx/sites-available/olib.cloud /etc/nginx/sites-enabled/
 - sudo nano /etc/nginx/nginx.conf
 - sudo systemctl restart nginx
+
 Resources:
 - https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
 - https://dev.to/thetrebelcc/how-to-run-a-flask-app-over-https-using-waitress-and-nginx-2020-235c
