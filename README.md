@@ -334,19 +334,19 @@ The application is designed to display various NBA statistics that we pulled fro
 
 
 ### Setup Python Flask Api as a service 
-https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
-sudo nano /etc/systemd/system/api.service
-copy/paste contents of systemd.txt
-sudo systemctl daemon-reload
-sudo systemctl enable api.service
-sudo systemctl start api.service
-sudo systemctl status api.service
+- https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
+- sudo nano /etc/systemd/system/api.service
+- copy/paste contents of systemd.txt
+- sudo systemctl daemon-reload
+- sudo systemctl enable api.service
+- sudo systemctl start api.service
+- sudo systemctl status api.service
 
-~/NBA/run/python
-/var/www/olib.cloud/html/
-/etc/nginx/sites-available
-www_olib_cloud.key
-www_olib_cloud.pem
+- ~/NBA/run/python
+- /var/www/olib.cloud/html/
+- /etc/nginx/sites-available
+- www_olib_cloud.key
+- www_olib_cloud.pem
 
 ### Setup NGINX on our Linux VM
 Steps to setup:
