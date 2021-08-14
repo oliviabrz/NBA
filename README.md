@@ -396,10 +396,11 @@ In our Python script where we created our Apis, we had an issue with the returni
 ### Fixing Flask error
 When we tried running the Flask script, we would get an error stating 'address already in use'. The lines below fixed the issue:
     (Killing the Flask process does not stop the port it's using.)
-    The Fix:
-    > ps -fA | grep python
-    >
-    > kill -9 `<pid>`
+
+The Fix:
+> ps -fA | grep python
+>
+> kill -9 `<pid>`
 
 
 
