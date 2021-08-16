@@ -3,7 +3,10 @@ This README documents my learning process to obtain the skills required for a ca
 
 This entire process, from start to finish, took me approximately 8 months. I will be honest, this journey was quite challenging because my professional background in higher education/college athletics did not come with the hard skills necessary in IT. My motivation to change careers came during the pandemic when I realized the IT world would allow me to explore different industries. My mentor, who has 30 years of experience as a Software Engineer, guided me through the entire process. Looking back, what got me through was dedicating as much time as possible 7 days a week and keeping an open mind, despite the many challenges I faced. 
 
-The content below highlights the various technologies and concepts I learned.
+The content below highlights the various learning resources, technologies and concepts I learned.
+
+## Learning Resources
+- https://codewars.com
 
 ## Python
 - Data Types
