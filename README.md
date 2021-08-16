@@ -78,6 +78,10 @@ The content below highlights the various technologies and concepts I learned.
     - makes code more understandable and maintainable 
 - Client/Server
     - A model where clients make requests to a server which fulfills the request
+- Regular Expressions (RegEx)
+    - A sequence of characters that forms a search pattern and can be used to check if a string contains the specified search pattern
+    - https://help.relativity.com/9.3/Content/Relativity/Regular_expressions/Regular_expression_metacharacters.htm
+    - https://regex101.com/
 - ### Network Concepts
     - localhost and 127.0.0.1
         - a hostname that refers to the current computer at the network level
