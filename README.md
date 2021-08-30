@@ -114,7 +114,7 @@ The content below highlights the various learning resources, technologies and co
     - This is where instructions, functions, variables, instances of classes, etc. are stored 
 - Hard Drive
     - The part of a computer where persistent data is stored so that it can be retrieved after the computer restarts 
-    - Persistent means when the computer shuts down, the data still exists and can retrieved when the program runs
+    - Persistent means when the computer shuts down, the data still exists and can be retrieved when the program runs
     - Significantly slower than RAM 
     - Examples are databasing systems (SQL servers)
 ## Binary
@@ -338,7 +338,6 @@ The application is designed to display various NBA statistics that we pulled fro
         - NGINX routes `https://olib.cloud/api*` requests to the Waitress http server to fulfill Api requests 
             - These Api requests happens when the Angular application needs data (ex. when you click the `Players` menu link)
             - To see this in action, click `F12` to bring up the debgugger and click on Network tab 
-
 
 ### Setup Python Flask Api as a service 
 - https://medium.com/codex/setup-a-python-script-as-a-service-through-systemctl-systemd-f0cc55a42267
