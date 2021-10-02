@@ -12,6 +12,9 @@ delete from NBA.PlayerGameStats
 
 select COUNT(*) from NBA.Team;
 
+select ID, FirstName, LastName, Position, HeightFeet, HeightInches, WeightPounds, TeamID
+from NBA.Player limit 10
+
 select * from NBA.Team
 
 select * from NBA.Player
@@ -22,7 +25,8 @@ select * from NBA.PlayerGameStats
 
 select * from NBA.StatsAbbreviations 
 
-select COUNT(*) from NBA.Player;
+select COUNT(*) from NBA.Player
+where HeightFeet is null
 
 select COUNT(*) from NBA.PlayerGameStats;
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NbaCsharpWebApi.Domain;
+using NbaCsharpWebApi.Dto;
 
 namespace NbaCsharpWebApi.Controllers
 {
@@ -19,9 +20,8 @@ namespace NbaCsharpWebApi.Controllers
 
         // GET: api/Player
         [HttpGet("/list")]
-        public async Task<IEnumerable<string>> GetList()
+        public async Task<IEnumerable<PlayerRecord>> GetList()
         {
-            //return new string[] { "value1", "value2" };
             var list = await PlayerModel.GetPlayerList();
             return list;
         }

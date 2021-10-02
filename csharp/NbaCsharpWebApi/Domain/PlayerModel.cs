@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NbaCsharpWebApi.DataAccess;
+using NbaCsharpWebApi.Dto;
 
 namespace NbaCsharpWebApi.Domain
 {
@@ -14,11 +15,11 @@ namespace NbaCsharpWebApi.Domain
 
         private DbDataService DbDataService { get; set; }
 
-        public async Task<List<string>> GetPlayerList()
+        public async Task<List<PlayerRecord>> GetPlayerList()
         {
             var playerList = await DbDataService.GetPlayerList();
 
-            return new List<string> { "helloworld" };
+            return playerList;
         }
     }
 }
