@@ -28,7 +28,7 @@ namespace NbaCsharpWebApi.DataAccess
 
             using var command = new MySqlCommand(@"select ID, FirstName, LastName, Position,
                                                           HeightFeet, HeightInches, WeightPounds, TeamID
-                                                   from NBA.Player", connection);
+                                                   from NBA.Player limit 10", connection);
             using var reader = await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
