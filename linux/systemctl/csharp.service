@@ -1,0 +1,13 @@
+[Unit]
+Description=NBA Api service
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/oliviabrz/NBA/csharp
+ExecStart=dotnet /home/oliviabrz/NBA/csharp/NbaCsharpWebApi.dll --urls http://localhost:6002
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
